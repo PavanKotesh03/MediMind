@@ -1,0 +1,118 @@
+@use '@angular/material' as mat;
+
+$primary: mat.define-palette(mat.$deep-purple-palette);
+$accent: mat.define-palette(mat.$cyan-palette);
+
+$theme: mat.define-dark-theme((
+  color: (
+    primary: $primary,
+    accent: $accent
+  )
+));
+
+@include mat.all-component-themes($theme);
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: radial-gradient(circle at top, #1c1c2b, #0b0b12);
+  font-family: 'Inter', sans-serif;
+  color: white;
+}
+
+/* Glass Card */
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.05)
+  );
+  backdrop-filter: blur(18px);
+  border-radius: 28px;
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+}
+
+/* Buttons */
+.primary-btn {
+  border-radius: 999px !important;
+  padding: 14px 36px !important;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  background: linear-gradient(135deg, #00e5ff, #7b1fa2) !important;
+  color: #000 !important;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,229,255,0.5);
+  }
+}
+
+.center {
+  height: calc(100vh - 64px);
+  display: grid;
+  place-items: center;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #00e5ff !important;
+}
+
+.mat-input-element::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+button {
+  &:hover {
+    filter: brightness(1.05);
+  }
+  &:active {
+    filter: brightness(1.1);
+  }
+}
+
+.cdk-overlay-pane {
+  transform: none !important;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  top: unset !important;
+}
+
+/* FIX mat-select opening at bottom */
+.cdk-overlay-pane {
+  position: absolute !important;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  inset: unset !important;
+}
+
+/* Bright focus color */
+.mat-form-field.mat-focused .mat-form-field-outline-thick {
+  stroke: #00e5ff !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #00e5ff !important;
+}
+
+/* Placeholder clarity */
+.mat-input-element::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+button {
+  transition: background-color 0.2s ease, filter 0.2s ease;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+
+  &:active {
+    filter: brightness(1.12);
+  }
+}
+

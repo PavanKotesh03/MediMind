@@ -1,0 +1,11 @@
+<div class="navbar">
+  <span>🧠 MediMind</span>
+
+  <span class="spacer"></span>
+
+  <span *ngIf="userName">
+    Welcome, {{ userName }}
+  </span>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,28 @@
+<div class="center">
+  <mat-card class="glass-card auth-card">
+    <h2>Login to MediMind</h2>
+
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        placeholder="Email or Phone"
+        [(ngModel)]="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password">
+    </mat-form-field>
+
+    <button class="primary-btn full" (click)="login()">
+      Login
+    </button>
+
+    <button class="secondary-btn full" routerLink="/signup">
+      Create New Account
+    </button>
+  </mat-card>
+</div>

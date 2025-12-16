@@ -1,0 +1,28 @@
+<div class="chat-container">
+
+  <div class="chat-header">
+    <span>💬 MediMind Assistant</span>
+    <div>
+      <button mat-button (click)="clear()">Clear</button>
+      <button mat-button (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="chat-body">
+    <div *ngFor="let msg of messages"
+         class="chat-card"
+         [class.user]="msg.sender === 'user'"
+         [class.bot]="msg.sender === 'bot'">
+      {{ msg.text }}
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      [(ngModel)]="message"
+      placeholder="Type your message..."
+      (keyup.enter)="send()">
+    <button (click)="send()">➤</button>
+  </div>
+
+</div>
