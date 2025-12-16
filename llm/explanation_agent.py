@@ -55,3 +55,22 @@ Mention warning signs briefly.
             blocks.append(text)
             total += len(text)
         return "\n---\n".join(blocks)
+
+
+# Export the explain method as a function for backward compatibility
+explanation_agent_instance = None
+
+def explain(disease: str, history: list) -> str:
+    """
+    Wrapper function to provide backward compatibility.
+    Creates a singleton instance of MedicalExplanationAgent if needed.
+    """
+    global explanation_agent_instance
+    if explanation_agent_instance is None:
+        # Create a dummy retriever for now - this will be replaced by the actual one
+        def dummy_retriever(query, top_k=5):
+            print(f"⚠️ Using dummy retriever for explanation query: {query}")
+            return []
+        explanation_agent_instance = MedicalExplanationAgent(dummy_retriever)
+    
+    return explanation_agent_instance.explain(disease, history)

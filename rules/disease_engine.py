@@ -111,6 +111,16 @@ class DiseasePatternEngine:
                 return False, 0.0
 
         # ----------------------------
+        # TEMPERATURE CONSTRAINT
+        # ----------------------------
+        if "min_temperature_c" in pattern:
+            total_checks += 1
+            if facts.temperature_c is not None and facts.temperature_c >= pattern["min_temperature_c"]:
+                matched_checks += 1
+            else:
+                return False, 0.0
+
+        # ----------------------------
         # FINAL CONFIDENCE
         # ----------------------------
         if total_checks == 0:

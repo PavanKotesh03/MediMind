@@ -19,13 +19,15 @@ except LookupError:
     nltk.download('punkt')
 
 # FAST MODEL FOR STAGE 1 RETRIEVAL
+# Use absolute paths to ensure consistency
+PROJECT_ROOT = Path(__file__).parent.parent.absolute()
 EMBEDDING_MODEL = "intfloat/e5-small-v2"  # Fastest with good accuracy
 BATCH_SIZE = 64
-CHROMA_DB_PATH = "chroma_db"
-BM25_INDEX_PATH = "bm25_index.pkl"
+CHROMA_DB_PATH = str(PROJECT_ROOT / "chroma_db")
+BM25_INDEX_PATH = str(PROJECT_ROOT / "bm25_index.pkl")
 COLLECTION_NAME = "medical_textbooks"
-INPUT_DIR = "processed_chunks"
-LOG_FILE = "logs/embedding_log.json"
+INPUT_DIR = str(PROJECT_ROOT / "processed_chunks")
+LOG_FILE = str(PROJECT_ROOT / "logs/embedding_log.json")
 
 print("=" * 70)
 print("STEP 3: HYBRID EMBEDDING SYSTEM (BM25 + VECTOR)")

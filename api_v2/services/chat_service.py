@@ -149,34 +149,33 @@ def continue_chat_session(session_id: str, message: str) -> tuple[str, bool, Lis
         # Get the interview agent for this session
         interview_agent = interview_agents[session_id]
         
-        # Check if this is a new topic after interview completion
-        if interview_agent.finished:
-            # Look for keywords indicating a new medical topic
-            new_topic_keywords = ["cancer", "diabetes", "heart", "stroke", "asthma", "arthritis", 
-                                "hypertension", "depression", "anxiety", "migraine", "allergy", 
-                                "fever", "headache", "cough", "pain"]
-            message_lower = message.lower()
-            
-            # If user mentions a medical topic, reset the session to start fresh
-            if any(keyword in message_lower for keyword in new_topic_keywords):
-                print(f"🔄 Detected new medical topic: {message}. Resetting session.")
-                # Remove the old session and create a new one
-                if session_id in interview_agents:
-                    del interview_agents[session_id]
-                # Create a lazy retriever for this session
-                def lazy_retriever(query, top_k=5):
-                    # Get the actual retriever when first called
-                    actual_retriever = get_retriever()
-                    return actual_retriever(query, top_k)
-                # Create a new interview agent for this new topic
-                interview_agent = MedicalInterviewAgent(lazy_retriever)
-                interview_agents[session_id] = interview_agent
-                response = interview_agent.start(message)
-                finished = interview_agent.finished
-            else:
-                # For non-medical topics, just acknowledge
-                response = "Thank you for the information. If you have questions about a medical condition, please let me know."
-                finished = True
+        # Look for keywords indicating a new medical topic
+        # Always check for new medical topics, even after interview completion
+        new_topic_keywords = ["cancer", "diabetes", "heart", "stroke", "asthma", "arthritis", 
+                            "hypertension", "depression", "anxiety", "migraine", "allergy", 
+                            "fever", "headache", "cough", "pain"]
+        message_lower = message.lower()
+        
+        # If user mentions a medical topic, reset the session to start fresh
+        if any(keyword in message_lower for keyword in new_topic_keywords):
+            print(f"🔄 Detected new medical topic: {message}. Resetting session.")
+            # Remove the old session and create a new one
+            if session_id in interview_agents:
+                del interview_agents[session_id]
+            # Create a lazy retriever for this session
+            def lazy_retriever(query, top_k=5):
+                # Get the actual retriever when first called
+                actual_retriever = get_retriever()
+                return actual_retriever(query, top_k)
+            # Create a new interview agent for this new topic
+            interview_agent = MedicalInterviewAgent(lazy_retriever)
+            interview_agents[session_id] = interview_agent
+            response = interview_agent.start(message)
+            finished = interview_agent.finished
+        elif interview_agent.finished:
+            # For non-medical topics after interview completion, just acknowledge
+            response = "Thank you for the information. If you have questions about a medical condition, please let me know."
+            finished = True
         else:
             # Normal flow for ongoing interviews
             try:
@@ -190,7 +189,11 @@ def continue_chat_session(session_id: str, message: str) -> tuple[str, bool, Lis
         if finished:
             try:
                 try:
-                    explanation = explanation_agent.explain(interview_agent.history)
+                    # Create a decision pipeline to determine the disease
+                    from llm.llm_rule_bridge import MedicalDecisionPipeline
+                    pipeline = MedicalDecisionPipeline()
+                    result = pipeline.run(interview_agent.history)
+                    explanation = result.get('explanation', 'No explanation available.')
                 except Exception as e:
                     print(f"❌ Error in explanation_agent.explain: {e}")
                     explanation = ""

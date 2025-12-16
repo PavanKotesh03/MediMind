@@ -15,10 +15,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # CONFIGURATION
+# Use absolute paths to ensure the files can be found regardless of working directory
+PROJECT_ROOT = Path(__file__).parent.parent.absolute()
 FAST_MODEL = "intfloat/e5-small-v2"
 RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
-CHROMA_DB_PATH = "chroma_db"
-BM25_INDEX_PATH = "bm25_index.pkl"
+CHROMA_DB_PATH = str(PROJECT_ROOT / "chroma_db")
+BM25_INDEX_PATH = str(PROJECT_ROOT / "bm25_index.pkl")
 COLLECTION_NAME = "medical_textbooks"
 
 # Retrieval parameters

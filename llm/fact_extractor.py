@@ -33,6 +33,14 @@ def extract_facts(history):
         facts.cardiac = True
 
     # =====================================================
+    # MUSCULOSKELETAL SYMPTOMS
+    # =====================================================
+    if "lump" in text or "mass" in text or "swelling" in text:
+        facts.symptoms.append("lump")
+        facts.musculoskeletal = True
+        facts.swelling = True
+
+    # =====================================================
     # GI / ABDOMINAL
     # =====================================================
     if "stomach pain" in text or "abdominal pain" in text or "belly pain" in text:

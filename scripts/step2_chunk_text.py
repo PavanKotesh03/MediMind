@@ -11,9 +11,11 @@ CHUNK_SIZE = 1000  # Reduced from 2500 for better symptom isolation
 CHUNK_OVERLAP = 200  # Reduced from 500
 MIN_CHUNK_SIZE = 300  # Lower minimum to keep more medical content
 
-INPUT_DIR = "processed_chunks"
-OUTPUT_DIR = "processed_chunks"
-LOG_FILE = "logs/chunking_log.json"
+# Use absolute paths for consistency
+PROJECT_ROOT = Path(__file__).parent.parent.absolute()
+INPUT_DIR = str(PROJECT_ROOT / "processed_chunks")
+OUTPUT_DIR = str(PROJECT_ROOT / "processed_chunks")
+LOG_FILE = str(PROJECT_ROOT / "logs/chunking_log.json")
 
 # Enhanced medical keywords
 MEDICAL_KEYWORDS = [

@@ -178,6 +178,19 @@ DISEASE_PATTERNS = [
 },
 
 # =====================================================
+# MUSCULOSKELETAL SYSTEM
+# =====================================================
+{
+    "name": "Soft Tissue Injury with Swelling",
+    "system": "musculoskeletal",
+    "required_symptoms": ["lump"],
+    "required_flags": ["swelling"],
+    "optional_flags": ["pain_severity"],
+    "severity": "MODERATE",
+    "reason": "Trauma-induced soft tissue swelling with associated pain"
+},
+
+# =====================================================
 # METABOLIC & SYSTEMIC
 # =====================================================
 {
