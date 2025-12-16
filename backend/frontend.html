@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Interview Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .chat-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .messages {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+        .ai-message {
+            background-color: #f1f8e9;
+            border-left: 4px solid #4caf50;
+        }
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #1976d2;
+        }
+        button:disabled {
+            background-color: #bbdefb;
+            cursor: not-allowed;
+        }
+        .session-info {
+            background-color: #fff3e0;
+            border: 1px solid #ffcc80;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .explanation {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .explanation p {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        
+        .explanation strong {
+            color: #e65100;
+        }
+        
+        .explanation ul, .explanation ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .explanation li {
+            margin: 5px 0;
+        }
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏥 Medical Interview Chatbot</h1>
+    <p>This chatbot simulates a doctor's consultation. Describe your symptoms and the AI will ask follow-up questions to gather more information.</p>
+    
+    <div class="session-info">
+        <strong>Session ID:</strong> <span id="session-id">Not started</span>
+        <button id="reset-btn" onclick="resetSession()" disabled>Reset Session</button>
+    </div>
+    
+    <div class="chat-container">
+        <div class="messages" id="messages">
+            <div class="message ai-message">
+                Welcome to the Medical Interview Chatbot! Please describe your main symptom or concern to begin.
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+            <button id="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "http://localhost:8000";
+        let sessionId = null;
+        let conversationFinished = false;
+
+        function addMessage(role, content) {
+            const messagesDiv = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}-message`;
+            
+            // Format the content for better readability
+            let formattedContent = content;
+            
+            // Handle the explanation section
+            if (content.includes('Here is a simple explanation:')) {
+                const parts = content.split('Here is a simple explanation:');
+                formattedContent = parts[0];
+                if (parts[1]) {
+                    // Format the explanation with proper line breaks and paragraphs
+                    let explanationText = parts[1].trim();
+                    // Convert double newlines to paragraph breaks
+                    explanationText = explanationText.replace(/\n\n/g, '</p><p>');
+                    // Convert single newlines to line breaks
+                    explanationText = explanationText.replace(/\n/g, '<br>');
+                    // Wrap in paragraph tags if not already
+                    if (!explanationText.startsWith('<p>')) {
+                        explanationText = '<p>' + explanationText + '</p>';
+                    }
+                    formattedContent += `<div class="explanation"><strong>📝 Simple Explanation:</strong><br>${explanationText}</div>`;
+                }
+            } else if (content.includes('**')) {
+                // Handle markdown-style bold text
+                formattedContent = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                // Handle bullet points
+                formattedContent = formattedContent.replace(/\* /g, '• ');
+                // Handle line breaks
+                formattedContent = formattedContent.replace(/\n/g, '<br>');
+            } else {
+                // Default formatting - convert newlines to breaks
+                formattedContent = content.replace(/\n/g, '<br>');
+            }
+            
+            messageDiv.innerHTML = `<strong>${role === 'user' ? 'You' : 'Doctor'}:</strong><br>${formattedContent}`;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function setLoading(loading) {
+            const sendBtn = document.getElementById('send-btn');
+            const userInput = document.getElementById('user-input');
+            sendBtn.disabled = loading;
+            userInput.disabled = loading;
+            
+            if (loading) {
+                sendBtn.textContent = 'Sending...';
+                addMessage('ai', '<span class="loading">Doctor is typing...</span>');
+                // Scroll to bottom to show loading message
+                const messagesDiv = document.getElementById('messages');
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            } else {
+                sendBtn.textContent = 'Send';
+                // Remove loading message if it exists
+                const loadingMessages = document.querySelectorAll('.loading');
+                loadingMessages.forEach(msg => {
+                    msg.closest('.message').remove();
+                });
+            }
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to UI
+            addMessage('user', message);
+            userInput.value = '';
+            
+            // Set loading state
+            setLoading(true);
+            
+            try {
+                let response;
+                if (!sessionId) {
+                    // Start new session
+                    const newSessionId = generateSessionId();
+                    response = await fetch(`${API_BASE}/start`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            session_id: newSessionId,
+                            message: message
+                        })
+                    });
+                    sessionId = newSessionId; // Set session ID immediately
+                } else {
+                    // Continue existing session
+                    response = await fetch(`${API_BASE}/reply`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            session_id: sessionId,
+                            message: message
+                        })
+                    });
+                }
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`API error: ${response.status} - ${errorText}`);
+                }
+                
+                const data = await response.json();
+                document.getElementById('session-id').textContent = sessionId;
+                document.getElementById('reset-btn').disabled = false;
+                
+                // Add AI response to UI
+                addMessage('ai', data.response);
+                
+                // Check if conversation is finished
+                if (data.finished) {
+                    conversationFinished = true;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('ai', `Sorry, I encountered an error: ${error.message}. Please try again.`);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function generateSessionId() {
+            return 'session_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        async function resetSession() {
+            if (!sessionId) return;
+            
+            try {
+                await fetch(`${API_BASE}/reset`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId
+                    })
+                });
+                
+                // Reset UI
+                sessionId = null;
+                conversationFinished = false;
+                document.getElementById('session-id').textContent = 'Not started';
+                document.getElementById('reset-btn').disabled = true;
+                
+                // Clear messages except the welcome message
+                const messagesDiv = document.getElementById('messages');
+                messagesDiv.innerHTML = '<div class="message ai-message">Welcome to the Medical Interview Chatbot! Please describe your main symptom or concern to begin.</div>';
+            } catch (error) {
+                console.error('Error resetting session:', error);
+                alert('Error resetting session: ' + error.message);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Focus on input field when page loads
+        window.onload = function() {
+            document.getElementById('user-input').focus();
+        };
+    </script>
+</body>
+</html>
