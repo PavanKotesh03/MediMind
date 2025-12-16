@@ -1,0 +1,37 @@
+# requirements.txt - Complete for Hybrid Medical RAG System (Python 3.12)
+
+# PDF Processing
+PyPDF2==3.0.1
+pypdf==3.17.4
+
+# Embeddings and NLP
+sentence-transformers==2.7.0
+transformers==4.46.0
+torch==2.5.1
+
+# Vector Database
+chromadb==0.5.23
+
+# BM25 Keyword Search
+rank-bm25==0.2.2
+
+# Text Processing
+langchain-text-splitters==0.3.4
+nltk==3.9.2
+
+# Data Processing
+numpy==1.26.3
+pandas==2.2.0
+scikit-learn==1.8.0
+
+# Utilities
+tqdm==4.66.1
+python-dotenv==1.0.0
+typing-extensions==4.9.0
+
+# Hugging Face
+huggingface_hub>=0.23.2
+
+# Additional Dependencies
+pillow==10.2.0
+requests==2.32.3

@@ -1,0 +1,60 @@
+{
+  "timestamp": "2025-12-15T22:42:45.341134",
+  "total_pdfs": 6,
+  "results": [
+    {
+      "file": "02.-Diagnosis-and-Treatment-Manual-author-Patestos-Dimitrios-7-277.pdf",
+      "pages": 271,
+      "raw_characters": 452879,
+      "cleaned_characters": 424654,
+      "filtered_percentage": 6.23,
+      "output": "processed_chunks\\02.-Diagnosis-and-Treatment-Manual-author-Patestos-Dimitrios-7-277_extracted.txt",
+      "status": "success"
+    },
+    {
+      "file": "03.-Good-clinical-diagnostic-practice-author-Jane-Carter-Irmela-M-ller-St-ver-Harald-stensen-Claus-Chr.-Heuck-16-211.pdf",
+      "pages": 196,
+      "raw_characters": 312324,
+      "cleaned_characters": 308378,
+      "filtered_percentage": 1.26,
+      "output": "processed_chunks\\03.-Good-clinical-diagnostic-practice-author-Jane-Carter-Irmela-M-ller-St-ver-Harald-stensen-Claus-Chr.-Heuck-16-211_extracted.txt",
+      "status": "success"
+    },
+    {
+      "file": "05.-Standard-treatment-guidelines-and-essential-medicines-list-author-Various-authors-23-415.pdf",
+      "pages": 393,
+      "raw_characters": 749967,
+      "cleaned_characters": 712633,
+      "filtered_percentage": 4.98,
+      "output": "processed_chunks\\05.-Standard-treatment-guidelines-and-essential-medicines-list-author-Various-authors-23-415_extracted.txt",
+      "status": "success"
+    },
+    {
+      "file": "differential_diagnosis_in_clinical_medicine.pdf",
+      "pages": 254,
+      "raw_characters": 226762,
+      "cleaned_characters": 221834,
+      "filtered_percentage": 2.17,
+      "output": "processed_chunks\\differential_diagnosis_in_clinical_medicine_extracted.txt",
+      "status": "success"
+    },
+    {
+      "file": "Document.pdf",
+      "pages": 103,
+      "raw_characters": 319630,
+      "cleaned_characters": 302461,
+      "filtered_percentage": 5.37,
+      "output": "processed_chunks\\Document_extracted.txt",
+      "status": "success"
+    },
+    {
+      "file": "Internal-Medicine-Getachew-Tizazu-Tadesse-Anteneh-17-596.pdf",
+      "pages": 580,
+      "raw_characters": 939381,
+      "cleaned_characters": 916832,
+      "filtered_percentage": 2.4,
+      "output": "processed_chunks\\Internal-Medicine-Getachew-Tizazu-Tadesse-Anteneh-17-596_extracted.txt",
+      "status": "success"
+    }
+  ]
+}
