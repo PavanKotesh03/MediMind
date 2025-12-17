@@ -26,7 +26,7 @@ VECTOR_TOP_K = 50
 BM25_TOP_K = 50
 RERANK_TOP_K = 100
 FINAL_RESULTS = 10
-MIN_SCORE = 0.15  # Minimum relevance threshold
+MIN_SCORE = 0.20  # Minimum relevance threshold
 
 # Hybrid weights
 VECTOR_WEIGHT = 0.5  # 50% semantic
