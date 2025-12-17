@@ -45,7 +45,7 @@ cd d:\Rag_op\backend\api_v2
 python main.py
 ```
 
-The API will be available at: http://127.0.0.1:8001
+The API will be available at: http://127.0.0.1:8003
 
 ## API Endpoints
 
