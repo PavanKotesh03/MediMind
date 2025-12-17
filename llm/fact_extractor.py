@@ -33,6 +33,22 @@ def extract_facts(history):
         facts.cardiac = True
 
     # =====================================================
+    # CARDIOVASCULAR SYMPTOMS
+    # =====================================================
+    if "blood pressure" in text or "hypertension" in text or "high bp" in text:
+        facts.symptoms.append("high blood pressure")
+        facts.cardiac = True
+        # Check for elevated values
+        bp_values = re.findall(r"(\d{2,3})/(\d{2,3})", text)
+        if bp_values:
+            systolic, diastolic = int(bp_values[0][0]), int(bp_values[0][1])
+            facts.blood_pressure_systolic = systolic
+            facts.blood_pressure_diastolic = diastolic
+            # Mark as danger sign if severely elevated
+            if systolic > 180 or diastolic > 120:
+                facts.danger_signs.append("severe hypertension")
+
+    # =====================================================
     # MUSCULOSKELETAL SYMPTOMS
     # =====================================================
     if "lump" in text or "mass" in text or "swelling" in text:

@@ -98,6 +98,26 @@ DISEASE_PATTERNS = [
 },
 
 # =====================================================
+# HYPERTENSION
+# =====================================================
+{
+    "name": "Essential Hypertension",
+    "system": "cardiac",
+    "required_symptoms": ["high blood pressure"],
+    "exclude_danger_signs": True,
+    "severity": "MODERATE",
+    "reason": "Chronic elevation of blood pressure without immediate organ damage"
+},
+{
+    "name": "Hypertensive Crisis",
+    "system": "cardiac",
+    "required_symptoms": ["high blood pressure"],
+    "required_danger_signs": ["severe hypertension"],
+    "severity": "EMERGENCY",
+    "reason": "Severely elevated blood pressure with risk of organ damage"
+},
+
+# =====================================================
 # GASTROINTESTINAL SYSTEM
 # =====================================================
 {

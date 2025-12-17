@@ -149,16 +149,51 @@ def continue_chat_session(session_id: str, message: str) -> tuple[str, bool, Lis
         # Get the interview agent for this session
         interview_agent = interview_agents[session_id]
         
-        # Look for keywords indicating a new medical topic
-        # Always check for new medical topics, even after interview completion
-        new_topic_keywords = ["cancer", "diabetes", "heart", "stroke", "asthma", "arthritis", 
-                            "hypertension", "depression", "anxiety", "migraine", "allergy", 
-                            "fever", "headache", "cough", "pain"]
+        # Check if this might be a new medical topic using heuristic approach
         message_lower = message.lower()
         
-        # If user mentions a medical topic, reset the session to start fresh
-        if any(keyword in message_lower for keyword in new_topic_keywords):
-            print(f"🔄 Detected new medical topic: {message}. Resetting session.")
+        # Heuristic indicators of new medical topics
+        medical_indicators = [
+            # Specific conditions (more comprehensive list)
+            "cancer", "diabetes", "heart disease", "stroke", "asthma", "arthritis", 
+            "hypertension", "high blood pressure", "blood pressure", "depression", "anxiety", "migraine", "allergy", 
+            "tuberculosis", "malaria", "pneumonia", "influenza", "flu", 
+            "coronavirus", "covid", "hiv", "aids", "hepatitis", "epilepsy", "parkinson",
+            "alzheimer", "osteoporosis", "anemia", "thyroid", "arthritis", "gout",
+            "pompe disease", "huntington's disease", "muscular dystrophy", "multiple sclerosis",
+            "parkinson's disease", "alzheimer's disease", "crohn's disease", "ulcerative colitis",
+            
+            # Question patterns indicating new concerns
+            "what about", "how about", "can you tell me", "i think i have", 
+            "i might have", "could this be", "is this related to",
+            
+            # Transition phrases
+            "actually", "by the way", "also", "another thing"
+        ]
+        
+        # Strong indicators that suggest a new topic
+        strong_indicators = [
+            "i think i have", "i might have", "what about", "how about",
+            "let's discuss", "can we talk about"
+        ]
+        
+        # Check for new medical topic
+        has_medical_indicator = any(indicator in message_lower for indicator in medical_indicators)
+        has_strong_indicator = any(indicator in message_lower for indicator in strong_indicators)
+        
+        # Enhanced detection: Check if message contains medical terms even if not in our list
+        # Simple heuristic: if message is short and contains capitalized words, it might be a condition
+        words = message_lower.split()
+        is_short_message = len(words) <= 4
+        has_capitalized_medical_term = any(word.capitalize() in message and len(word) > 3 for word in words)
+        
+        # If it seems like a new medical topic, reset the session
+        # Always check for new topics when interview is finished
+        if (has_strong_indicator or 
+            (has_medical_indicator and interview_agent.finished) or
+            (interview_agent.finished and is_short_message and has_capitalized_medical_term) or
+            (interview_agent.finished and len(words) <= 2)):
+            print(f"🔄 Detected potential new medical topic: {message}. Resetting session.")
             # Remove the old session and create a new one
             if session_id in interview_agents:
                 del interview_agents[session_id]
@@ -173,8 +208,8 @@ def continue_chat_session(session_id: str, message: str) -> tuple[str, bool, Lis
             response = interview_agent.start(message)
             finished = interview_agent.finished
         elif interview_agent.finished:
-            # For non-medical topics after interview completion, just acknowledge
-            response = "Thank you for the information. If you have questions about a medical condition, please let me know."
+            # For post-completion messages, offer to start new conversation
+            response = "Thank you for the information. If you'd like to discuss a different medical condition, please let me know."
             finished = True
         else:
             # Normal flow for ongoing interviews
@@ -202,6 +237,9 @@ def continue_chat_session(session_id: str, message: str) -> tuple[str, bool, Lis
                     response += f"\n\nThank you. Here is a simple explanation:\n\n{explanation}"
                 else:
                     response += "\n\nThank you for providing all this information. Based on our conversation, I recommend consulting with a healthcare professional for a proper diagnosis."
+                
+                # Mark this session as completed and ready for new topics
+                interview_agent.finished = True
             except Exception as e:
                 print(f"❌ Error generating explanation: {e}")
                 import traceback
