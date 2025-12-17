@@ -1,0 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent browser-level scroll */
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+* {
+  box-sizing: border-box;
+}
