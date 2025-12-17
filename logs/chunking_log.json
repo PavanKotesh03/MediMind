@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-12-15T22:43:04.799289",
+  "config": {
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "min_chunk_size": 300
+  },
+  "results": [
+    {
+      "file": "02.-Diagnosis-and-Treatment-Manual-author-Patestos-Dimitrios-7-277_extracted.txt",
+      "chunks": 525,
+      "output": "processed_chunks\\02.-Diagnosis-and-Treatment-Manual-author-Patestos-Dimitrios-7-277_extracted_chunked.json",
+      "status": "success"
+    },
+    {
+      "file": "03.-Good-clinical-diagnostic-practice-author-Jane-Carter-Irmela-M-ller-St-ver-Harald-stensen-Claus-Chr.-Heuck-16-211_extracted.txt",
+      "chunks": 315,
+      "output": "processed_chunks\\03.-Good-clinical-diagnostic-practice-author-Jane-Carter-Irmela-M-ller-St-ver-Harald-stensen-Claus-Chr.-Heuck-16-211_extracted_chunked.json",
+      "status": "success"
+    },
+    {
+      "file": "05.-Standard-treatment-guidelines-and-essential-medicines-list-author-Various-authors-23-415_extracted.txt",
+      "chunks": 820,
+      "output": "processed_chunks\\05.-Standard-treatment-guidelines-and-essential-medicines-list-author-Various-authors-23-415_extracted_chunked.json",
+      "status": "success"
+    },
+    {
+      "file": "differential_diagnosis_in_clinical_medicine_extracted.txt",
+      "chunks": 277,
+      "output": "processed_chunks\\differential_diagnosis_in_clinical_medicine_extracted_chunked.json",
+      "status": "success"
+    },
+    {
+      "file": "Document_extracted.txt",
+      "chunks": 380,
+      "output": "processed_chunks\\Document_extracted_chunked.json",
+      "status": "success"
+    },
+    {
+      "file": "Internal-Medicine-Getachew-Tizazu-Tadesse-Anteneh-17-596_extracted.txt",
+      "chunks": 1145,
+      "output": "processed_chunks\\Internal-Medicine-Getachew-Tizazu-Tadesse-Anteneh-17-596_extracted_chunked.json",
+      "status": "success"
+    }
+  ],
+  "total_chunks": 3462
+}
