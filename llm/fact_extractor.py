@@ -16,13 +16,22 @@ def extract_facts(history):
     if "fever" in text:
         facts.symptoms.append("fever")
 
-    if "body pain" in text or "body ache" in text:
+    if "body pain" in text or "body ache" in text or "pain in body" in text or "entire body" in text:
         facts.symptoms.append("body pain")
         facts.musculoskeletal = True
-
     if "headache" in text:
         facts.symptoms.append("headache")
         facts.neuro = True
+        
+        # Extract additional headache characteristics
+        if "one side" in text or "unilateral" in text:
+            facts.headache_severity = 7  # Higher severity for unilateral headaches
+        elif "both sides" in text or "bilateral" in text:
+            facts.headache_severity = 3  # Lower severity for bilateral headaches
+            
+        # Check for stress triggers
+        if "stress" in text or "scold" in text or "boss" in text:
+            facts.stress = True
 
     if "cough" in text:
         facts.symptoms.append("cough")
@@ -85,9 +94,8 @@ def extract_facts(history):
     # =====================================================
     # FOOD-RELATED TRIGGERS
     # =====================================================
-    if any(word in text for word in ["fried", "spicy", "oily", "outside food", "junk"]):
+    if any(word in text for word in ["fried", "spicy", "oily", "outside food", "junk", "street"]):
         facts.food_trigger = True
-
     # =====================================================
     # DANGER SIGNS
     # =====================================================
@@ -98,10 +106,10 @@ def extract_facts(history):
     if "breath" in text or "shortness of breath" in text:
         facts.danger_signs.append("shortness of breath")
         facts.respiratory = True
+        facts.shortness_of_breath = True
 
     if "blood" in text:
         facts.danger_signs.append("bleeding")
-
     # =====================================================
     # DURATION (DAYS / HOURS)
     # =====================================================

@@ -35,3 +35,8 @@ huggingface_hub>=0.23.2
 # Additional Dependencies
 pillow==10.2.0
 requests==2.32.3
+
+# FastAPI for Web Interface
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0

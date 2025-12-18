@@ -45,7 +45,7 @@ cd d:\Rag_op\backend\api_v2
 python main.py
 ```
 
-The API will be available at: http://127.0.0.1:8003
+The API will be available at: http://127.0.0.1:8004
 
 ## API Endpoints
 
@@ -67,6 +67,6 @@ This V2 API:
 
 To use this V2 API with your frontend:
 
-1. Change API base URL from `http://localhost:8000` to `http://localhost:8003/api/v2`
+1. Change API base URL from `http://localhost:8000` to `http://localhost:8005/api/v2`
 2. Change endpoint from `/reply` to `/chat`
 3. All other functionality remains the same

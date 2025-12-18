@@ -121,6 +121,15 @@ DISEASE_PATTERNS = [
 # GASTROINTESTINAL SYSTEM
 # =====================================================
 {
+    "name": "Foodborne Illness (Suspected)",
+    "system": "gi",
+    "required_symptoms": ["fever"],
+    "required_flags": ["food_trigger"],
+    "optional_symptoms": ["body pain", "headache"],
+    "severity": "MODERATE",
+    "reason": "Fever with suspected food trigger"
+},
+{
     "name": "Acute Gastritis",
     "system": "gi",
     "required_symptoms": ["abdominal pain"],
@@ -134,8 +143,7 @@ DISEASE_PATTERNS = [
     "required_flags": ["diarrhea"],
     "severity": "LOW",
     "reason": "Acute bowel infection"
-},
-{
+},{
     "name": "Acute Appendicitis (Possible)",
     "system": "gi",
     "required_symptoms": ["abdominal pain"],
@@ -155,9 +163,19 @@ DISEASE_PATTERNS = [
 # NEUROLOGICAL SYSTEM
 # =====================================================
 {
+    "name": "Tension Headache",
+    "system": "neuro",
+    "required_symptoms": ["headache"],
+    "required_flags": ["stress"],
+    "exclude_danger_signs": True,
+    "severity": "LOW",
+    "reason": "Muscle tension or stress-related headache"
+},
+{
     "name": "Migraine",
     "system": "neuro",
     "required_symptoms": ["headache"],
+    "optional_flags": ["headache_severity"],
     "exclude_danger_signs": True,
     "severity": "MODERATE",
     "reason": "Recurrent neurovascular headache"

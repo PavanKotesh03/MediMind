@@ -230,13 +230,13 @@ def continue_chat_session(session_id: str, message: str) -> tuple[str, bool, Lis
                     result = pipeline.run(interview_agent.history)
                     explanation = result.get('explanation', 'No explanation available.')
                 except Exception as e:
-                    print(f"❌ Error in explanation_agent.explain: {e}")
+                    print(f"❌ Error in explanation generation: {e}")
                     explanation = ""
                 # Format the explanation properly with markdown
                 if explanation:
-                    response += f"\n\nThank you. Here is a simple explanation:\n\n{explanation}"
+                    response += f"\n\nThank you. Here is some guidance based on our conversation:\n\n{explanation}"
                 else:
-                    response += "\n\nThank you for providing all this information. Based on our conversation, I recommend consulting with a healthcare professional for a proper diagnosis."
+                    response += "\n\nThank you for providing all this information. Based on our conversation, I recommend consulting with a healthcare professional for proper evaluation."
                 
                 # Mark this session as completed and ready for new topics
                 interview_agent.finished = True
@@ -244,7 +244,7 @@ def continue_chat_session(session_id: str, message: str) -> tuple[str, bool, Lis
                 print(f"❌ Error generating explanation: {e}")
                 import traceback
                 traceback.print_exc()
-                response += "\n\nThank you for providing all this information. Based on our conversation, I recommend consulting with a healthcare professional for a proper diagnosis."
+                response += "\n\nThank you for providing all this information. Based on our conversation, I recommend consulting with a healthcare professional for proper evaluation."
         
         # Return the response with session info
         return response, finished, [Message(role=msg["role"], content=msg["content"]) for msg in interview_agent.history]

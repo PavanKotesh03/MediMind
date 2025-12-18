@@ -10,9 +10,13 @@ SEVERITY_RANK = {
 def sort_by_severity(results: list[dict]) -> list[dict]:
     return sorted(
         results,
-        key=lambda r: SEVERITY_RANK.get(r["severity"], 0),
+        key=lambda r: (
+            r.get("confidence", 0),  # Primary sort by confidence (higher is better)
+            SEVERITY_RANK.get(r["severity"], 0)  # Secondary sort by severity
+        ),
         reverse=True
     )
+
 
 def highest_severity(results: list[dict]) -> str | None:
     if not results:

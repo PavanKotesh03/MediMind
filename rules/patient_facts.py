@@ -131,4 +131,4 @@ class PatientFacts:
 
 
     food_trigger: bool = False
-
+    stress: bool = False
