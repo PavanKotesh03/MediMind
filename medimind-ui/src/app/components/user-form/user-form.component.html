@@ -1,0 +1,33 @@
+<div class="form-wrapper">
+  <div class="form-card">
+    <h2>MediMind</h2>
+    <p class="subtitle">Your AI Medical Assistant</p>
+
+    <input
+      type="text"
+      placeholder="Name"
+      [(ngModel)]="name"
+    />
+
+    <input
+      type="number"
+      placeholder="Age"
+      [(ngModel)]="age"
+      min="1"
+    />
+
+    <select [(ngModel)]="gender">
+      <option value="" disabled selected>Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+
+    <!-- POPUP ERROR MESSAGE -->
+    <div class="error-popup" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <button (click)="submit()">Start Chat</button>
+  </div>
+</div>
