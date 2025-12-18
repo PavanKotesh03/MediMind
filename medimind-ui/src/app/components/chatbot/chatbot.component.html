@@ -1,7 +1,10 @@
 <div class="chat-wrapper">
   <div class="chat-column">
     <div class="messages">
-      <div *ngFor="let msg of messages" class="row" [class.user]="msg.role === 'user'">
+      <div
+        *ngFor="let msg of messages"
+        class="row"
+        [class.user]="msg.role === 'user'">
 
         <div class="bubble" [class.loading-bubble]="msg.loading">
 
@@ -22,9 +25,13 @@
     </div>
 
     <div class="input-box">
-      <textarea [(ngModel)]="input" placeholder="Message MediMind…" (keydown)="handleKeydown($event)">
+      <textarea
+        [(ngModel)]="input"
+        placeholder="Message MediMind…"
+        (keydown)="handleKeydown($event)">
       </textarea>
-      <button (click)="send()">➤</button>
+
+      <button type="button" (click)="send()">➤</button>
     </div>
   </div>
 </div>

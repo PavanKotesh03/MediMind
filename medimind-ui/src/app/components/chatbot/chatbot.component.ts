@@ -1,32 +1,74 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service';
 
-
-interface Message {
-  role: 'user' | 'assistant';
+interface ChatMessage {
+  role: 'user' | 'bot';
   content: string;
   loading?: boolean;
 }
-
-
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent implements OnInit {
-  messages: Message[] = [];
+
+  @Input() initialMessage = '';
+  @Input() sessionId = '';
+
+  constructor(private apiService: ApiService) {}
+
+
+
+  messages: ChatMessage[] = [];
   input = '';
 
-
-  @ViewChild('textarea') textarea!: ElementRef<HTMLTextAreaElement>;
-
-
-  ngOnInit() {
-    this.messages.push({
-      role: 'assistant',
-      content: 'Hello! I’m MediMind. How can I help you today?'
-    });
+  ngOnInit(): void {
+    if (this.initialMessage) {
+      this.messages.push({
+        role: 'bot',
+        content: this.initialMessage
+      });
+    }
   }
+
+  send() {
+  if (!this.input.trim()) return;
+
+  const userMessage = this.input;
+
+  // show user message
+  this.messages.push({
+    role: 'user',
+    content: userMessage
+  });
+
+  this.input = '';
+
+  // loading bubble
+  const loadingIndex = this.messages.push({
+    role: 'bot',
+    content: '',
+    loading: true
+  }) - 1;
+
+  // call backend
+  this.apiService.continueChat(this.sessionId, userMessage)
+    .subscribe({
+      next: (response) => {
+        this.messages[loadingIndex] = {
+          role: 'bot',
+          content: response.response
+        };
+      },
+      error: () => {
+        this.messages[loadingIndex] = {
+          role: 'bot',
+          content: 'Something went wrong. Please try again.'
+        };
+      }
+    });
+}
 
 
   handleKeydown(event: KeyboardEvent) {
@@ -34,24 +76,5 @@ export class ChatbotComponent implements OnInit {
       event.preventDefault();
       this.send();
     }
-  }
-
-
-  send() {
-    if (!this.input.trim()) return;
-
-
-    this.messages.push({ role: 'user', content: this.input });
-    const loading: Message = { role: 'assistant', content: '…', loading: true };
-    this.messages.push(loading);
-
-
-    this.input = '';
-
-
-    setTimeout(() => {
-      loading.loading = false;
-      loading.content = 'This is a sample response from MediMind.';
-    }, 1500);
   }
 }

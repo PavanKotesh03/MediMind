@@ -9,5 +9,11 @@
     (startChat)="onUserSubmitted($event)">
   </app-user-form>
 
-  <app-chatbot *ngIf="chatStarted"></app-chatbot>
+  <app-chatbot
+  *ngIf="chatStarted"
+  [initialMessage]="firstBotMessage"
+  [sessionId]="sessionId">
+</app-chatbot>
+
+
 </div>

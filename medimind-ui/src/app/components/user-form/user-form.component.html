@@ -5,29 +5,36 @@
 
     <input
       type="text"
+      name="name"
       placeholder="Name"
       [(ngModel)]="name"
     />
 
     <input
       type="number"
+      name="age"
       placeholder="Age"
       [(ngModel)]="age"
       min="1"
     />
 
-    <select [(ngModel)]="gender">
-      <option value="" disabled selected>Gender</option>
-      <option>Male</option>
-      <option>Female</option>
-      <option>Other</option>
+    <select
+      name="gender"
+      [(ngModel)]="gender"
+    >
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
     </select>
 
-    <!-- POPUP ERROR MESSAGE -->
+    <!-- ERROR MESSAGE -->
     <div class="error-popup" *ngIf="errorMessage">
       {{ errorMessage }}
     </div>
 
-    <button (click)="submit()">Start Chat</button>
+    <button type="button" (click)="submit()">
+      Start Chat
+    </button>
   </div>
 </div>

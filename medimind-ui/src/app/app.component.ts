@@ -6,11 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  userName: string = '';
-  chatStarted = false
 
-  onUserSubmitted(name: string) {
-    this.userName = name;
-    this.chatStarted = true;
-  }
+  chatStarted = false;
+  firstBotMessage = '';
+  sessionId = '';
+  userName = '';
+
+
+  // ⬇️ NOW ACCEPTS OBJECT (not string)
+  onUserSubmitted(event: { sessionId: string; firstMessage: string }) {
+  this.chatStarted = true;              // 👈 switch UI immediately
+  this.sessionId = event.sessionId;
+  this.firstBotMessage = event.firstMessage;
+}
+
 }
