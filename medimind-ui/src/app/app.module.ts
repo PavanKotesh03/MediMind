@@ -1,23 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { UserFormComponent } from './components/user-form/user-form.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
-
+import { SignupComponent } from './auth/signup/signup.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    UserFormComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

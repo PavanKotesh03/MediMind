@@ -1,11 +1,30 @@
 <nav class="navbar">
-<div class="left">
-<img src="assets/chatbot.png" class="logo" />
-<span class="title">MediMind</span>
-</div>
+  <div class="left">
+    <img src="assets/chatbot.png" class="logo" />
+    <span class="title">MediMind</span>
+  </div>
 
+  <!-- USER ICON + DROPDOWN -->
+  <div class="right" *ngIf="userName">
+    <div class="user-menu" (click)="toggleMenu()">
+      <img
+        src="assets/user.png"
+        alt="User"
+        class="user-icon"
+      />
+    </div>
 
-<div class="right" *ngIf="userName">
-Hi, {{ userName }} 
-</div>
+    <!-- DROPDOWN -->
+    <div class="dropdown" *ngIf="menuOpen">
+      <div class="dropdown-item user-name">
+        {{ userName }}
+      </div>
+
+      <div class="dropdown-divider"></div>
+
+      <div class="dropdown-item logout" (click)="logout()">
+        Logout
+      </div>
+    </div>
+  </div>
 </nav>

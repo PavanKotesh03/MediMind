@@ -1,13 +1,6 @@
-<app-navbar [userName]="userName"></app-navbar>
+<app-navbar
+  *ngIf="showNavbar"
+  [userName]="userName">
+</app-navbar>
 
-<div
-  class="main-container"
-  [class.no-scroll]="!chatStarted">
-
-  <app-user-form
-    *ngIf="!chatStarted"
-    (startChat)="onUserSubmitted($event)">
-  </app-user-form>
-
-  <app-chatbot *ngIf="chatStarted"></app-chatbot>
-</div>
+<router-outlet></router-outlet>

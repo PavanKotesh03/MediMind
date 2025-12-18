@@ -25,3 +25,57 @@ font-weight: 600;
 display: flex;
 align-items: center;
 }
+
+.right {
+  position: relative;
+}
+
+/* USER ICON */
+.user-menu {
+  cursor: pointer;
+}
+
+.user-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+/* DROPDOWN MENU */
+.dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 160px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f7f7f8;
+}
+
+.user-name {
+  font-weight: 600;
+  cursor: default;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.logout {
+  color: #dc2626;
+}
