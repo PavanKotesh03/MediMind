@@ -29,7 +29,7 @@ def call_llm(messages, temperature=0.2, max_tokens=256):
         OLLAMA_URL,
         json=payload,
         stream=True,
-        timeout=120
+        timeout=300
     )
     resp.raise_for_status()
 
