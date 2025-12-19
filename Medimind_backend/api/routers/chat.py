@@ -1,9 +1,11 @@
 from fastapi import APIRouter, HTTPException
+from guardrails.guard_exceptions import PromptInjectionError
 
 from api.schemas.chat import (
     StartRequest,
     ChatRequest,
-    ChatResponse
+    ChatResponse,
+    ResetRequest
 )
 
 from services.chat_service import (
@@ -20,7 +22,14 @@ router = APIRouter(tags=["Chat"])
 # =====================================================
 @router.post("/start", response_model=ChatResponse)
 def start_chat(req: StartRequest):
-    session_id, reply, finished = start_session(req.message)
+    try:
+        session_id, reply, finished = start_session(req.message)
+    except PromptInjectionError as e:
+        # 🔒 Guardrail violation → client error
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
 
     return ChatResponse(
         session_id=session_id,
@@ -30,14 +39,26 @@ def start_chat(req: StartRequest):
 
 
 # =====================================================
-# CHAT (AUTO FINAL WHEN INTERVIEW ENDS)
+# CHAT (INTERVIEW CONTINUATION)
 # =====================================================
 @router.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
     try:
         result = chat_session(req.session_id, req.message)
+
+    except PromptInjectionError as e:
+        # 🔒 Guardrail violation
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        # Invalid session_id etc.
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
 
     # 🔚 Interview finished → return FINAL explanation
     if result["finished"]:
@@ -59,6 +80,6 @@ def chat(req: ChatRequest):
 # RESET SESSION
 # =====================================================
 @router.post("/reset")
-def reset(req: ChatRequest):
+def reset(req: ResetRequest):
     reset_session(req.session_id)
     return {"status": "session reset"}

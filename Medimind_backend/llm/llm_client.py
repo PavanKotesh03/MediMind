@@ -4,6 +4,8 @@ import os
 import requests
 import json
 
+from guardrails.output_guard import validate_llm_output  # 🔒 OUTPUT GUARD
+
 OLLAMA_URL = os.getenv(
     "OLLAMA_URL",
     "http://localhost:11434/api/chat"
@@ -22,7 +24,7 @@ def call_llm(messages, temperature=0.2, max_tokens=256):
             "temperature": temperature,
             "num_predict": max_tokens
         },
-        "stream": True   # 🔥 Ollama streams by default
+        "stream": True
     }
 
     resp = requests.post(
@@ -47,4 +49,7 @@ def call_llm(messages, temperature=0.2, max_tokens=256):
         if data.get("done"):
             break
 
-    return "".join(final_text).strip()
+    raw_output = "".join(final_text).strip()
+
+    # 🔒 FINAL SAFETY NET
+    return validate_llm_output(raw_output)

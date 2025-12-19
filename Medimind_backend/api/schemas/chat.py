@@ -16,6 +16,13 @@ class ChatRequest(BaseModel):
     session_id: str
     message: str
 
+# =====================================================
+# RESET SESSION
+# =====================================================
+
+class ResetRequest(BaseModel):
+    session_id: str
+
 
 # =====================================================
 # FINAL ASSESSMENT STRUCTURE

@@ -6,6 +6,9 @@ from llm.fact_extractor import extract_facts
 from rules.disease_engine import DiseasePatternEngine
 from scripts.step4_query_system_hybrid import hybrid_search
 
+from guardrails.input_guard import sanitize_user_input
+from guardrails.scope_guard import ensure_medical_scope
+
 
 # =====================================================
 # RAG RETRIEVER
@@ -49,10 +52,17 @@ def _is_valid_uuid(val: str) -> bool:
 # START SESSION
 # =====================================================
 def start_session(user_message: str):
-    session_id = str(uuid.uuid4())
+    # 🔒 GUARDRAILS (INPUT)
+    clean_input = sanitize_user_input(user_message)
+    ensure_medical_scope(clean_input)
 
+    # ✅ Create interview FIRST
     interview = MedicalInterviewAgent(retriever)
-    reply = interview.start(user_message)
+
+    # ✅ Use CLEAN input only
+    reply = interview.start(clean_input)
+
+    session_id = str(uuid.uuid4())
 
     _sessions[session_id] = {
         "interview": interview,
@@ -64,8 +74,6 @@ def start_session(user_message: str):
 
 # =====================================================
 # CHAT SESSION
-# - continues interview
-# - auto runs rule engine + RAG when finished
 # =====================================================
 def chat_session(session_id: str, user_message: str):
     if not _is_valid_uuid(session_id):
@@ -74,18 +82,22 @@ def chat_session(session_id: str, user_message: str):
     if session_id not in _sessions:
         raise ValueError("Session not found")
 
+    # 🔒 GUARDRAILS (INPUT)
+    clean_input = sanitize_user_input(user_message)
+    ensure_medical_scope(clean_input)
+
     session = _sessions[session_id]
     interview = session["interview"]
 
-    reply = interview.reply(user_message)
+    # ✅ Use CLEAN input
+    reply = interview.reply(clean_input)
 
     # 🔚 Interview finished → FINAL OUTPUT
     if interview.finished:
 
-        # ⛔ Prevent recomputation
         if session["final"] is None:
 
-            # 1️⃣ Extract structured facts
+            # 1️⃣ Extract facts
             facts = extract_facts(interview.history)
 
             # 2️⃣ Rule engine
@@ -118,7 +130,6 @@ def chat_session(session_id: str, user_message: str):
             "final": session["final"]
         }
 
-    # 🟢 Interview continues
     return {
         "finished": False,
         "reply": reply
