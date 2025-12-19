@@ -1,0 +1,33 @@
+<div class="form-wrapper">
+  <div class="form-card">
+    <h2>MediMind</h2>
+    <p class="subtitle">Login to your account</p>
+
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="email"
+      [disabled]="isLoading"
+    />
+
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password"
+      [disabled]="isLoading"
+    />
+
+    <div class="error-popup" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <button (click)="login()" [disabled]="isLoading">
+      {{ isLoading ? 'Logging in...' : 'Login' }}
+    </button>
+
+    <p class="link-text">
+      New user?
+      <a routerLink="/signup">Create an account</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+.navbar {
+height: 60px;
+background: #ffffff;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px; /* spacing between New Chat & icon */
+}
+
+/* NEW CHAT BUTTON */
+.new-chat-btn {
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid #10a37f;
+  background: white;
+  color: #10a37f;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.new-chat-btn:hover {
+  background: #10a37f;
+  color: white;
+}
+
+.logo {
+width: 35px;
+margin-right: 10px;
+}
+
+
+.title {
+font-size: 22px;
+font-weight: 600;
+}
+
+
+.left {
+display: flex;
+align-items: center;
+}
+
+.right {
+  position: relative;
+}
+
+/* USER ICON */
+.user-menu {
+  cursor: pointer;
+}
+
+.user-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+/* DROPDOWN MENU */
+.dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 160px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f7f7f8;
+}
+
+.user-name {
+  font-weight: 600;
+  cursor: default;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.logout {
+  color: #dc2626;
+}

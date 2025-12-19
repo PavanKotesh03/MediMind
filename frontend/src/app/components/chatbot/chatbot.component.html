@@ -1,0 +1,72 @@
+<div class="chat-wrapper">
+  <div class="chat-column">
+
+    <div class="messages" #messagesContainer>
+      <div *ngFor="let msg of messages" class="row" [class.user]="msg.role === 'user'">
+
+        <div class="bubble" 
+             [class.loading-bubble]="msg.loading"
+             [class.final-bubble]="msg.isFinal">
+
+          <!-- NORMAL MESSAGE -->
+          <ng-container *ngIf="!msg.loading && !msg.isFinal">
+            <span style="white-space: pre-wrap;">{{ msg.content }}</span>
+          </ng-container>
+
+          <!-- FINAL ASSESSMENT (NO BUTTON) -->
+          <ng-container *ngIf="!msg.loading && msg.isFinal && msg.finalData">
+            <div class="final-assessment">
+              <h3>🏥 Assessment Complete</h3>
+              
+              <div class="assessment-item">
+                <strong>Condition:</strong> {{ msg.finalData.disease }}
+              </div>
+              
+              <div class="assessment-item">
+                <strong>Severity:</strong> 
+                <span [class.severity-high]="msg.finalData.severity === 'HIGH'"
+                      [class.severity-medium]="msg.finalData.severity === 'MEDIUM'"
+                      [class.severity-emergency]="msg.finalData.severity === 'EMERGENCY'">
+                  {{ msg.finalData.severity }}
+                </span>
+              </div>
+              
+              <div class="assessment-item">
+                <strong>Reason:</strong> {{ msg.finalData.reason }}
+              </div>
+              
+              <div class="assessment-explanation">
+                <strong>Medical Explanation:</strong>
+                <p>{{ msg.finalData.explanation }}</p>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- TYPING INDICATOR -->
+          <ng-container *ngIf="msg.loading">
+            <span class="typing">
+              <span></span><span></span><span></span>
+            </span>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- INPUT BOX - Textarea stays enabled, only button disabled -->
+    <div class="input-box">
+      <textarea
+        [(ngModel)]="input"
+        placeholder="Message MediMind…"
+        [disabled]="conversationFinished"
+        (keydown)="handleKeydown($event)">
+      </textarea>
+
+      <button (click)="send()" 
+              [disabled]="conversationFinished || isWaitingForResponse || !input.trim()">
+        {{ conversationFinished ? '✓' : '➤' }}
+      </button>
+    </div>
+
+  </div>
+</div>
