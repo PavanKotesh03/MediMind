@@ -3,29 +3,29 @@
   justify-content: center;
   align-items: center;
 
-  /* FIXED HEIGHT */
-  height: calc(100vh - 60px); /* navbar height */
+  min-height: calc(100vh - 60px); /* allow growth */
   padding: 16px;
 
   background: #f7f7f8;
-  overflow: hidden; /* prevent page scroll */
+
+  /* allow scroll on small devices */
+  overflow-y: auto;
 }
+
 
 /* CARD */
 .form-card {
   width: 100%;
   max-width: 380px;
 
-  /* 🔥 IMPORTANT FIX */
-  max-height: calc(100vh - 100px); /* safe space */
-  overflow: hidden;
-
-  padding: 24px; /* slightly reduced */
+  padding: 24px;
   background: white;
   border-radius: 16px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+
   box-sizing: border-box;
 }
+
 
 
 h2 {
@@ -120,4 +120,39 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+/* MOBILE DEVICES */
+@media (max-width: 480px) {
+  .form-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  input,
+  select {
+    height: 42px;
+    font-size: 14px;
+  }
+
+  button {
+    height: 44px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-card {
+    max-width: 420px;
+  }
 }
