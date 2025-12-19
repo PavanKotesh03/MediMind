@@ -1,0 +1,8 @@
+.main-container {
+  height: calc(100vh - 60px);
+}
+
+/* Disable scrollbar ONLY on form page */
+.no-scroll {
+  overflow: hidden;
+}

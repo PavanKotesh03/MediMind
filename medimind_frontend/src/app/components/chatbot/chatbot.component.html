@@ -1,0 +1,37 @@
+<div class="chat-wrapper">
+  <div class="chat-column">
+
+    <!-- 🔥 ADD TEMPLATE REF HERE -->
+    <div class="messages" #messagesContainer>
+      <div *ngFor="let msg of messages" class="row" [class.user]="msg.role === 'user'">
+
+        <div class="bubble" [class.loading-bubble]="msg.loading">
+
+          <!-- NORMAL MESSAGE -->
+          <ng-container *ngIf="!msg.loading">
+            {{ msg.content }}
+          </ng-container>
+
+          <!-- TYPING INDICATOR -->
+          <ng-container *ngIf="msg.loading">
+            <span class="typing">
+              <span></span><span></span><span></span>
+            </span>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <textarea
+        [(ngModel)]="input"
+        placeholder="Message MediMind…"
+        (keydown)="handleKeydown($event)">
+      </textarea>
+
+      <button (click)="send()">➤</button>
+    </div>
+
+  </div>
+</div>

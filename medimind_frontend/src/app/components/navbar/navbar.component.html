@@ -1,0 +1,37 @@
+<nav class="navbar">
+  <div class="left">
+    <img src="assets/chatbot.png" class="logo" />
+    <span class="title">MediMind</span>
+  </div>
+
+  <!-- RIGHT SECTION -->
+  <div class="right" *ngIf="userName">
+
+    <!-- 🔥 NEW CHAT (LEFT OF USER ICON) -->
+    <button class="new-chat-btn" (click)="newChat()">
+      New Chat
+    </button>
+
+    <!-- USER ICON -->
+    <div class="user-menu" (click)="toggleMenu()">
+      <img
+        src="assets/user.png"
+        alt="User"
+        class="user-icon"
+      />
+    </div>
+
+    <!-- DROPDOWN -->
+    <div class="dropdown" *ngIf="menuOpen">
+      <div class="dropdown-item user-name">
+        {{ userName }}
+      </div>
+
+      <div class="dropdown-divider"></div>
+
+      <div class="dropdown-item logout" (click)="logout()">
+        Logout
+      </div>
+    </div>
+  </div>
+</nav>

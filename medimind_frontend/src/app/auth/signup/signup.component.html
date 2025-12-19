@@ -1,0 +1,63 @@
+<div class="form-wrapper">
+  <div class="form-card">
+    <h2>MediMind</h2>
+    <p class="subtitle">Create your account</p>
+
+    <!-- NAME -->
+    <input
+      type="text"
+      placeholder="Name"
+      [(ngModel)]="name"
+    />
+
+    <!-- AGE -->
+    <input
+      type="number"
+      placeholder="Age"
+      [(ngModel)]="age"
+      min="1"
+    />
+
+    <!-- GENDER -->
+    <select [(ngModel)]="gender">
+      <option value="" disabled selected>Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+
+    <!-- EMAIL -->
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="email"
+    />
+
+    <!-- PASSWORD -->
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password"
+    />
+
+    <!-- CONFIRM PASSWORD -->
+    <input
+      type="password"
+      placeholder="Confirm Password"
+      [(ngModel)]="confirmPassword"
+    />
+
+    <!-- ERROR POPUP -->
+    <div class="error-popup" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <!-- SIGNUP BUTTON -->
+    <button (click)="signup()">Sign Up</button>
+
+    <p class="link-text">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+  </div>
+</div>
