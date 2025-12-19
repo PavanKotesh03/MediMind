@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   userName = '';
-  showNavbar = true;
+  showNavbar = false;
 
   constructor(
     private authService: AuthService,
@@ -18,12 +18,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // React to login/logout immediately
+    // Listen to login/logout changes
     this.authService.userName$.subscribe(name => {
       this.userName = name;
     });
 
-    // React to route changes (HIDE navbar on auth pages)
+    // Show navbar ONLY on non-auth routes
     this.router.events
       .pipe(
         filter(

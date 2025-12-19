@@ -4,8 +4,15 @@
     <span class="title">MediMind</span>
   </div>
 
-  <!-- USER ICON + DROPDOWN -->
+  <!-- RIGHT SECTION -->
   <div class="right" *ngIf="userName">
+
+    <!-- 🔥 NEW CHAT (LEFT OF USER ICON) -->
+    <button class="new-chat-btn" (click)="newChat()">
+      New Chat
+    </button>
+
+    <!-- USER ICON -->
     <div class="user-menu" (click)="toggleMenu()">
       <img
         src="assets/user.png"
