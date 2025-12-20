@@ -6,6 +6,7 @@ import {
   AfterViewChecked
 } from '@angular/core';
 import { ChatService } from '../../shared/chat.service';
+import { AuthService } from '../../shared/auth.service';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -26,19 +27,33 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   sessionId: string | null = null;
   isFirstMessage = true;
   conversationFinished = false;
-  isWaitingForResponse = false; // ADD THIS
+  isWaitingForResponse = false;
+  isViewingHistory = false;
+  userEmail: string = '';
 
   @ViewChild('messagesContainer')
   private messagesContainer!: ElementRef<HTMLDivElement>;
 
-  constructor(private chatService: ChatService) {}
+  constructor(
+    private chatService: ChatService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    // Get user email
+    this.authService.userData$.subscribe(userData => {
+      if (userData) {
+        this.userEmail = userData.email;
+      }
+    });
+
+    // Initial greeting message
     this.messages.push({
       role: 'assistant',
       content: 'Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.'
     });
 
+    // Listen for reset events
     this.chatService.reset$.subscribe(reset => {
       if (reset) {
         this.performReset();
@@ -61,7 +76,6 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
-      // Only send if not waiting for response
       if (!this.isWaitingForResponse && !this.conversationFinished) {
         this.send();
       }
@@ -69,11 +83,13 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
 
   send() {
-    if (!this.input.trim() || this.conversationFinished || this.isWaitingForResponse) return;
+    if (!this.input.trim() || this.conversationFinished || this.isWaitingForResponse) {
+      return;
+    }
 
     const userMessage = this.input.trim();
 
-    // Add user message
+    // Add user message to chat
     this.messages.push({
       role: 'user',
       content: userMessage
@@ -88,9 +104,9 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.messages.push(loadingMsg);
 
     this.input = '';
-    this.isWaitingForResponse = true; // DISABLE SEND
+    this.isWaitingForResponse = true;
 
-    // Call appropriate API
+    // Start new session or continue existing
     if (this.isFirstMessage) {
       this.chatService.startInterview(userMessage).subscribe({
         next: (response) => {
@@ -98,11 +114,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
           this.sessionId = response.session_id;
           this.chatService.setSessionId(response.session_id);
           this.isFirstMessage = false;
-          this.isWaitingForResponse = false; // RE-ENABLE SEND
+          this.isWaitingForResponse = false;
         },
         error: (error) => {
           this.handleError(error, loadingMsg);
-          this.isWaitingForResponse = false; // RE-ENABLE SEND
+          this.isWaitingForResponse = false;
         }
       });
     } else {
@@ -110,11 +126,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         this.chatService.sendMessage(this.sessionId, userMessage).subscribe({
           next: (response) => {
             this.handleResponse(response, loadingMsg);
-            this.isWaitingForResponse = false; // RE-ENABLE SEND
+            this.isWaitingForResponse = false;
           },
           error: (error) => {
             this.handleError(error, loadingMsg);
-            this.isWaitingForResponse = false; // RE-ENABLE SEND
+            this.isWaitingForResponse = false;
           }
         });
       }
@@ -150,21 +166,6 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  resetConversation() {
-    if (this.sessionId) {
-      this.chatService.resetChat(this.sessionId).subscribe({
-        next: () => {
-          this.performReset();
-        },
-        error: () => {
-          this.performReset();
-        }
-      });
-    } else {
-      this.performReset();
-    }
-  }
-
   private performReset() {
     this.messages = [{
       role: 'assistant',
@@ -173,11 +174,67 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.sessionId = null;
     this.isFirstMessage = true;
     this.conversationFinished = false;
-    this.isWaitingForResponse = false; // RESET LOADING STATE
+    this.isWaitingForResponse = false;
+    this.isViewingHistory = false;
     this.chatService.clearSession();
   }
 
-  onResetClick() {
-    this.resetConversation();
+  // ===== HISTORY METHODS =====
+
+  /**
+   * ✅ FIXED: Load conversation and check if it's active or completed
+   */
+  loadConversation(sessionId: string) {
+    if (!this.userEmail) return;
+
+    this.chatService.getConversation(sessionId, this.userEmail).subscribe({
+      next: (conversation) => {
+        // Clear existing messages
+        this.messages = [];
+
+        // Load all messages from conversation
+        this.messages = conversation.messages.map(msg => ({
+          role: msg.role as 'user' | 'assistant',
+          content: msg.content,
+          loading: false
+        }));
+
+        // Add final assessment if conversation is completed
+        if (conversation.assessment) {
+          this.messages.push({
+            role: 'assistant',
+            content: '',
+            isFinal: true,
+            finalData: conversation.assessment
+          });
+        }
+
+        // ✅ KEY FIX: Set state based on conversation status
+        this.sessionId = sessionId;
+        this.conversationFinished = conversation.status === 'completed';
+        
+        if (conversation.status === 'completed') {
+          // ✅ Completed conversation - read-only
+          this.isViewingHistory = true;
+          this.isFirstMessage = false;
+        } else {
+          // ✅ Active conversation - can continue
+          this.isViewingHistory = false;
+          this.isFirstMessage = false;
+          this.chatService.setSessionId(sessionId);
+        }
+      },
+      error: (error) => {
+        console.error('Error loading conversation:', error);
+        alert('Failed to load conversation');
+      }
+    });
+  }
+
+  /**
+   * Start a new chat (called from history sidebar or navbar)
+   */
+  startNewChat() {
+    this.performReset();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
 import { ChatService } from '../../shared/chat.service';
@@ -9,7 +9,7 @@ import { ChatService } from '../../shared/chat.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @Input() userName = '';
+  userName = '';
   menuOpen = false;
 
   constructor(
@@ -19,10 +19,9 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Subscribe to userData to get actual name from backend
     this.authService.userData$.subscribe(userData => {
       if (userData) {
-        this.userName = userData.name; // Real name from backend
+        this.userName = userData.name;
       }
     });
   }
@@ -38,20 +37,23 @@ export class NavbarComponent implements OnInit {
       // Call backend reset API
       this.chatService.resetChat(sessionId).subscribe({
         next: () => {
-          // Clear session and trigger UI reset
           this.chatService.clearSession();
         },
         error: () => {
-          // Still clear locally even if backend fails
           this.chatService.clearSession();
         }
       });
     } else {
-      // No active session, just trigger UI reset
+      // Just trigger reset
       this.chatService.clearSession();
     }
     
     this.menuOpen = false;
+    
+    // Navigate to chatbot if not already there
+    if (this.router.url !== '/chatbot') {
+      this.router.navigate(['/chatbot']);
+    }
   }
 
   logout() {

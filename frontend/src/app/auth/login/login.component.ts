@@ -11,7 +11,7 @@ export class LoginComponent {
   email = '';
   password = '';
   errorMessage = '';
-  isLoading = false; // Add loading state
+  isLoading = false;
 
   constructor(
     private router: Router,
@@ -34,18 +34,21 @@ export class LoginComponent {
       return;
     }
 
-    // Call backend API
+    // ✅ Call backend API
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         this.isLoading = false;
         if (response.success) {
-          console.log('Login successful:', response.user);
+          console.log('✅ Login successful:', response.user);
+          // User data is automatically stored by AuthService via tap()
           this.router.navigate(['/chat']);
+        } else {
+          this.errorMessage = response.message || 'Login failed';
         }
       },
       error: (error) => {
         this.isLoading = false;
-        console.error('Login error:', error);
+        console.error('❌ Login error:', error);
         
         // Handle different error types
         if (error.status === 401) {

@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from api.routers import chat, auth  # Both routers
+from api.routers import chat, auth, history  # Add history
 from guardrails.guard_exceptions import PromptInjectionError
 
 app = FastAPI(
@@ -11,9 +11,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# =====================================================
-# EXCEPTION HANDLER (GUARDRAILS)
-# =====================================================
 @app.exception_handler(PromptInjectionError)
 async def prompt_injection_handler(request: Request, exc: PromptInjectionError):
     return JSONResponse(
@@ -24,12 +21,9 @@ async def prompt_injection_handler(request: Request, exc: PromptInjectionError):
         }
     )
 
-# =====================================================
-# CORS MIDDLEWARE
-# =====================================================
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # Angular frontend
+    allow_origins=["http://localhost:4200"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -38,12 +32,10 @@ app.add_middleware(
 # =====================================================
 # ROUTERS
 # =====================================================
-app.include_router(chat.router, prefix="/api")      # Chat routes with guardrails
-app.include_router(auth.router, prefix="/api")      # Authentication routes
+app.include_router(chat.router, prefix="/api")
+app.include_router(auth.router, prefix="/api")
+app.include_router(history.router, prefix="/api")  # NEW
 
-# =====================================================
-# HEALTH CHECK
-# =====================================================
 @app.get("/")
 def health_check():
     return {"status": "Medimind API running", "version": "1.0.0"}

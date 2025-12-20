@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ChatHistoryComponent } from './components/chat-history/chat-history.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LoginComponent,
     SignupComponent,
     ChatbotComponent,
-    NavbarComponent
+    NavbarComponent,
+    ChatHistoryComponent
   ],
   imports: [
     BrowserModule,

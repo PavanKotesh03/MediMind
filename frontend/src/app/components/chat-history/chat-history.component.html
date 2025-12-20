@@ -1,0 +1,103 @@
+<div class="history-sidebar">
+  
+  <!-- REMOVED: New Chat button (it's in navbar) -->
+  
+  <div class="history-container" *ngIf="!isLoading">
+    
+    <!-- Today -->
+    <div class="history-group" *ngIf="groupedHistory.today.length > 0">
+      <h4 class="group-title">Today</h4>
+      <div *ngFor="let session of groupedHistory.today"
+           class="history-item"
+           [class.active]="activeSessionId === session.session_id"
+           (click)="selectSession(session.session_id)">
+        <div class="item-content">
+          <p class="item-title">{{ session.title }}</p>
+          <span class="item-time">{{ formatDate(session.created_at) }}</span>
+        </div>
+        <button class="btn-delete" (click)="deleteSession(session.session_id, $event)">
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <!-- Yesterday -->
+    <div class="history-group" *ngIf="groupedHistory.yesterday.length > 0">
+      <h4 class="group-title">Yesterday</h4>
+      <div *ngFor="let session of groupedHistory.yesterday"
+           class="history-item"
+           [class.active]="activeSessionId === session.session_id"
+           (click)="selectSession(session.session_id)">
+        <div class="item-content">
+          <p class="item-title">{{ session.title }}</p>
+          <span class="item-time">{{ formatDate(session.created_at) }}</span>
+        </div>
+        <button class="btn-delete" (click)="deleteSession(session.session_id, $event)">
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <!-- This Week -->
+    <div class="history-group" *ngIf="groupedHistory.this_week.length > 0">
+      <h4 class="group-title">Previous 7 Days</h4>
+      <div *ngFor="let session of groupedHistory.this_week"
+           class="history-item"
+           [class.active]="activeSessionId === session.session_id"
+           (click)="selectSession(session.session_id)">
+        <div class="item-content">
+          <p class="item-title">{{ session.title }}</p>
+          <span class="item-time">{{ formatDate(session.created_at) }}</span>
+        </div>
+        <button class="btn-delete" (click)="deleteSession(session.session_id, $event)">
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <!-- This Month -->
+    <div class="history-group" *ngIf="groupedHistory.this_month.length > 0">
+      <h4 class="group-title">Previous 30 Days</h4>
+      <div *ngFor="let session of groupedHistory.this_month"
+           class="history-item"
+           [class.active]="activeSessionId === session.session_id"
+           (click)="selectSession(session.session_id)">
+        <div class="item-content">
+          <p class="item-title">{{ session.title }}</p>
+          <span class="item-time">{{ formatDate(session.created_at) }}</span>
+        </div>
+        <button class="btn-delete" (click)="deleteSession(session.session_id, $event)">
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <!-- Older -->
+    <div class="history-group" *ngIf="groupedHistory.older.length > 0">
+      <h4 class="group-title">Older</h4>
+      <div *ngFor="let session of groupedHistory.older"
+           class="history-item"
+           [class.active]="activeSessionId === session.session_id"
+           (click)="selectSession(session.session_id)">
+        <div class="item-content">
+          <p class="item-title">{{ session.title }}</p>
+          <span class="item-time">{{ formatDate(session.created_at) }}</span>
+        </div>
+        <button class="btn-delete" (click)="deleteSession(session.session_id, $event)">
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <!-- No History -->
+    <div class="no-history" *ngIf="!hasHistory()">
+      <p>No chat history yet</p>
+      <small>Your conversations will appear here</small>
+    </div>
+
+  </div>
+
+  <div class="loading-history" *ngIf="isLoading">
+    <p>Loading...</p>
+  </div>
+</div>

@@ -26,13 +26,12 @@ export class AuthService {
     localStorage.getItem('userName') || ''
   );
 
-  // ADD: Store complete user data
   private userDataSubject = new BehaviorSubject<User | null>(
     this.getUserDataFromStorage()
   );
 
   userName$ = this.userNameSubject.asObservable();
-  userData$ = this.userDataSubject.asObservable(); // NEW
+  userData$ = this.userDataSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -67,7 +66,7 @@ export class AuthService {
     );
   }
 
-  // Store user data in localStorage and BehaviorSubject
+  // ✅ Store user data in localStorage and BehaviorSubject
   private storeUserData(user: User) {
     localStorage.setItem('userName', user.name);
     localStorage.setItem('userData', JSON.stringify(user));
@@ -75,7 +74,7 @@ export class AuthService {
     this.userDataSubject.next(user);
   }
 
-  // Get user data from localStorage
+  // ✅ Get user data from localStorage
   private getUserDataFromStorage(): User | null {
     const userData = localStorage.getItem('userData');
     return userData ? JSON.parse(userData) : null;
@@ -87,9 +86,15 @@ export class AuthService {
     this.userNameSubject.next(name);
   }
 
-  // Get current user data
+  // ✅ Get current user data (IMPORTANT for ChatService)
   getUserData(): User | null {
     return this.userDataSubject.value;
+  }
+
+  // ✅ Get user email directly
+  getUserEmail(): string {
+    const user = this.getUserData();
+    return user?.email || '';
   }
 
   // Clear user data on logout
