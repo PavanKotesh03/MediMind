@@ -15,10 +15,10 @@ class MedicalExplanationAgent:
         - Symptom-based RAG if disease is undifferentiated
         """
 
-        # 🔹 Build symptom-based query from history
+        #  Build symptom-based query from history
         symptom_query = self._build_symptom_query(history)
 
-        # 🔹 Decide RAG query
+        #  Decide RAG query
         if disease.lower().startswith("undifferentiated"):
             rag_query = symptom_query
             explanation_mode = "symptom-based"
@@ -26,7 +26,7 @@ class MedicalExplanationAgent:
             rag_query = disease
             explanation_mode = "disease-based"
 
-        # 🔍 RAG retrieval
+        #  RAG retrieval
         docs = self.retriever(rag_query, top_k=6)
         context = self._format_context(docs)
 

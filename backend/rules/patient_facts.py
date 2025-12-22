@@ -10,7 +10,7 @@ class PatientFacts:
     symptoms: List[str] = field(default_factory=list)
 
     # =====================================================
-    # FEVER / VITAL FLAGS (🔥 ADDED)
+    # FEVER / VITAL FLAGS (ADDED)
     # =====================================================
     fever: bool = False
     chills: bool = False
@@ -37,7 +37,7 @@ class PatientFacts:
     pain_radiation: Optional[str] = None
     pain_character: Optional[str] = None     # dull, sharp, burning
     pain_triggered_by_exertion: bool = False
-    radiation: bool = False                  # 🔥 semantic flag for rules
+    radiation: bool = False                  #  semantic flag for rules
 
     # =====================================================
     # DEMOGRAPHICS

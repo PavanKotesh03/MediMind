@@ -82,6 +82,14 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  //  Helper to clean END marker
+  private cleanText(text: string | null | undefined): string {
+    if (!text) return '';
+    return text
+      .replace(/<END_OF_INTERVIEW>/gi, '')
+      .trim();
+  }
+
   send() {
     if (!this.input.trim() || this.conversationFinished || this.isWaitingForResponse) {
       return;
@@ -146,7 +154,8 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       loadingMsg.finalData = response.final;
       loadingMsg.content = this.formatFinalAssessment(response.final);
     } else {
-      loadingMsg.content = response.reply || 'Please continue...';
+      //  Clean END marker from live replies
+      loadingMsg.content = this.cleanText(response.reply || 'Please continue...');
     }
   }
 
@@ -181,9 +190,6 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
 
   // ===== HISTORY METHODS =====
 
-  /**
-   * ✅ FIXED: Load conversation and check if it's active or completed
-   */
   loadConversation(sessionId: string) {
     if (!this.userEmail) return;
 
@@ -192,12 +198,14 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         // Clear existing messages
         this.messages = [];
 
-        // Load all messages from conversation
-        this.messages = conversation.messages.map(msg => ({
-          role: msg.role as 'user' | 'assistant',
-          content: msg.content,
-          loading: false
-        }));
+        //  Clean text when loading from history
+        this.messages = conversation.messages
+          .map(msg => ({
+            role: msg.role as 'user' | 'assistant',
+            content: this.cleanText(msg.content),
+            loading: false
+          }))
+          .filter(m => m.content && m.content.trim().length > 0);
 
         // Add final assessment if conversation is completed
         if (conversation.assessment) {
@@ -209,20 +217,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
           });
         }
 
-        // ✅ KEY FIX: Set state based on conversation status
         this.sessionId = sessionId;
         this.conversationFinished = conversation.status === 'completed';
-        
-        if (conversation.status === 'completed') {
-          // ✅ Completed conversation - read-only
-          this.isViewingHistory = true;
-          this.isFirstMessage = false;
-        } else {
-          // ✅ Active conversation - can continue
-          this.isViewingHistory = false;
-          this.isFirstMessage = false;
-          this.chatService.setSessionId(sessionId);
-        }
+        this.isViewingHistory = conversation.status === 'completed';
+        this.isFirstMessage = false;
+        this.chatService.setSessionId(sessionId);
       },
       error: (error) => {
         console.error('Error loading conversation:', error);
@@ -231,9 +230,6 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     });
   }
 
-  /**
-   * Start a new chat (called from history sidebar or navbar)
-   */
   startNewChat() {
     this.performReset();
   }

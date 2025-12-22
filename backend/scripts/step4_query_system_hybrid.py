@@ -48,7 +48,7 @@ RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 VECTOR_TOP_K = 30
 BM25_TOP_K = 30
 RERANK_TOP_K = 100
-FINAL_RESULTS = 5
+FINAL_RESULTS = 6
 MIN_SCORE = 0.15
 
 VECTOR_WEIGHT = 0.4
@@ -123,7 +123,7 @@ def normalize(scores: List[float]) -> List[float]:
     return [(s - mn) / (mx - mn) for s in scores]
 
 # -------------------------------------------------------------------
-# 🔥 MAIN API — USED BY LLM
+#  MAIN API — USED BY LLM
 # -------------------------------------------------------------------
 def hybrid_search(query: str, top_k: int = FINAL_RESULTS) -> List[Dict]:
     """
@@ -208,7 +208,7 @@ def hybrid_search(query: str, top_k: int = FINAL_RESULTS) -> List[Dict]:
     return final
 
 # -------------------------------------------------------------------
-# 🧪 CLI DEBUG MODE ONLY
+# CLI DEBUG MODE ONLY
 # -------------------------------------------------------------------
 if __name__ == "__main__":
     VERBOSE = True

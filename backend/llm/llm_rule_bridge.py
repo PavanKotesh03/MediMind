@@ -18,10 +18,10 @@ class MedicalDecisionPipeline:
         returns: final structured output
         """
 
-        # 1️⃣ Extract structured facts
+        #  Extract structured facts
         facts = extract_facts(history)
 
-        # 2️⃣ Evaluate disease patterns
+        #  Evaluate disease patterns
         matches = self.engine.evaluate(facts)
 
         if not matches:
@@ -31,10 +31,10 @@ class MedicalDecisionPipeline:
                 "explanation": "No clear disease pattern could be identified."
             }
 
-        # 3️⃣ Pick highest severity disease
+        #  Pick highest severity disease
         top = matches[0]
 
-        # 4️⃣ Generate explanation using RAG + LLM
+        #  Generate explanation using RAG + LLM
         explanation = explain(top["disease"], history)
 
         return {

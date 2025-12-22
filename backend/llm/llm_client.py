@@ -22,7 +22,7 @@ def call_llm(messages, temperature=0.2, max_tokens=256):
             "temperature": temperature,
             "num_predict": max_tokens
         },
-        "stream": True   # 🔥 Ollama streams by default
+        "stream": True   #  Ollama streams by default
     }
 
     resp = requests.post(

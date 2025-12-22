@@ -16,7 +16,7 @@
   width: 100%;
   max-width: 380px;
 
-  /* 🔥 IMPORTANT FIX */
+  /*  IMPORTANT FIX */
   max-height: calc(100vh - 100px); /* safe space */
   overflow: hidden;
 

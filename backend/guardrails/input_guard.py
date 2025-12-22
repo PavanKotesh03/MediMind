@@ -12,20 +12,20 @@ def sanitize_user_input(text: str) -> str:
 
     lowered = text.lower()
 
-    # 🚫 Prompt injection detection
+    #  Prompt injection detection
     for pattern in INJECTION_PATTERNS:
         if pattern in lowered:
             raise PromptInjectionError(
                 "Unsafe instruction detected in input"
             )
 
-    # 🔒 Remove role tags explicitly
+    #  Remove role tags explicitly
     text = re.sub(r"<\s*/?\s*(system|assistant|user)\s*>", "", text)
 
-    # 🔒 Remove markdown code blocks (often used for jailbreaks)
+    #  Remove markdown code blocks (often used for jailbreaks)
     text = re.sub(r"```.*?```", "", text, flags=re.DOTALL)
 
-    # 🔒 Collapse excessive whitespace
+    #  Collapse excessive whitespace
     text = re.sub(r"\s{3,}", " ", text).strip()
 
     return text

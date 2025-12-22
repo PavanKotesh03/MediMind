@@ -16,10 +16,10 @@ export class AuthGuard implements CanActivate {
     const userName = localStorage.getItem('userName');
 
     if (userName) {
-      return true; // ✅ allow access
+      return true; //  allow access
     }
 
-    // ❌ block access
+    //  block access
     this.router.navigate(['/login']);
     return false;
   }

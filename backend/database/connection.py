@@ -7,17 +7,17 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# ✅ Get DATABASE_URL from .env
+# Get DATABASE_URL from .env
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-# ✅ Validate that DATABASE_URL exists
+# Validate that DATABASE_URL exists
 if not DATABASE_URL:
     raise ValueError(
         "DATABASE_URL not found in environment variables. "
         "Please check your .env file."
     )
 
-print(f"🔍 Using DATABASE_URL: {DATABASE_URL}")
+print(f" Using DATABASE_URL: {DATABASE_URL}")
 
 # Create database engine
 engine = create_engine(DATABASE_URL)

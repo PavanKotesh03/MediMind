@@ -27,7 +27,7 @@ def start_chat(req: StartRequest):
     - **user_email**: Email of logged-in user
     """
     try:
-        # ✅ Use user_email from request
+        # Use user_email from request
         session_id, reply, finished = start_session(req.message, req.user_email)
         
         return ChatResponse(
@@ -92,9 +92,9 @@ def chat(req: ChatRequest):
         )
 
 
-# =====================================================
+
 # RESET SESSION
-# =====================================================
+
 @router.post("/reset")
 def reset(req: ResetRequest):
     """

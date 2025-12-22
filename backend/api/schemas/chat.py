@@ -8,7 +8,7 @@ from datetime import datetime
 # =====================================================
 class StartRequest(BaseModel):
     message: str
-    user_email: str  # ✅ ADDED
+    user_email: str 
 
 
 # =====================================================

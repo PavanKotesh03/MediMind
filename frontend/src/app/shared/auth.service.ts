@@ -66,7 +66,7 @@ export class AuthService {
     );
   }
 
-  // ✅ Store user data in localStorage and BehaviorSubject
+  //  Store user data in localStorage and BehaviorSubject
   private storeUserData(user: User) {
     localStorage.setItem('userName', user.name);
     localStorage.setItem('userData', JSON.stringify(user));
@@ -74,7 +74,7 @@ export class AuthService {
     this.userDataSubject.next(user);
   }
 
-  // ✅ Get user data from localStorage
+  //  Get user data from localStorage
   private getUserDataFromStorage(): User | null {
     const userData = localStorage.getItem('userData');
     return userData ? JSON.parse(userData) : null;
@@ -86,12 +86,12 @@ export class AuthService {
     this.userNameSubject.next(name);
   }
 
-  // ✅ Get current user data (IMPORTANT for ChatService)
+  //  Get current user data (IMPORTANT for ChatService)
   getUserData(): User | null {
     return this.userDataSubject.value;
   }
 
-  // ✅ Get user email directly
+  //  Get user email directly
   getUserEmail(): string {
     const user = this.getUserData();
     return user?.email || '';

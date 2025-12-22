@@ -12,7 +12,7 @@ class DiseasePatternEngine:
         matches = []
 
         # ==========================
-        # 🔴 CARDIAC / CHEST PAIN
+        # CARDIAC / CHEST PAIN
         # ==========================
         if facts.cardiac:
             high_risk = False
@@ -43,7 +43,7 @@ class DiseasePatternEngine:
                 })
 
         # ==========================
-        # 🟢 FEVER (VIRAL)
+        #  FEVER (VIRAL)
         # ==========================
         if facts.fever and not facts.danger_signs:
             if facts.duration_days is not None and facts.duration_days <= 3:
@@ -54,7 +54,7 @@ class DiseasePatternEngine:
                 })
 
         # ==========================
-        # 🔴 SYSTEMIC / EMERGENCY
+        #  SYSTEMIC / EMERGENCY
         # ==========================
         if facts.danger_signs:
             if (

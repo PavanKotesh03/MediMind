@@ -51,7 +51,7 @@ def _generate_title(first_message: str) -> str:
 
 
 # =====================================================
-# ✅ NEW: RESTORE SESSION FROM DATABASE
+#  RESTORE SESSION FROM DATABASE
 # =====================================================
 def restore_session_from_db(session_id: str, db: DBSession) -> bool:
     """
@@ -99,11 +99,11 @@ def restore_session_from_db(session_id: str, db: DBSession) -> bool:
             "user_email": db_session.user_email
         }
         
-        print(f"✅ Restored session {session_id} with {len(messages)} messages")
+        print(f"Restored session {session_id} with {len(messages)} messages")
         return True
         
     except Exception as e:
-        print(f"❌ Error restoring session: {e}")
+        print(f" Error restoring session: {e}")
         return False
 
 
@@ -114,7 +114,7 @@ def start_session(user_message: str, user_email: str):
     """
     Start new chat session and save to database
     """
-    # 🔒 GUARDRAILS
+    #  GUARDRAILS
     clean_input = sanitize_user_input(user_message)
     ensure_medical_scope(clean_input)
 
@@ -132,7 +132,7 @@ def start_session(user_message: str, user_email: str):
         "user_email": user_email
     }
     
-    # 💾 Save to database with proper transaction handling
+    # Save to database with proper transaction handling
     db = SessionLocal()
     try:
         # 1. Create session record FIRST
@@ -143,7 +143,7 @@ def start_session(user_message: str, user_email: str):
             status='active'
         )
         db.add(db_session)
-        db.flush()  # ✅ FIX: Flush to commit session_id before messages
+        db.flush()  # FIX: Flush to commit session_id before messages
         
         # 2. Save messages (after session exists in DB)
         greeting = ChatMessage(
@@ -174,12 +174,12 @@ def start_session(user_message: str, user_email: str):
         
     except IntegrityError as e:
         db.rollback()
-        print(f"❌ Database integrity error: {e}")
+        print(f" Database integrity error: {e}")
         raise ValueError(f"Failed to save session: {e}")
         
     except SQLAlchemyError as e:
         db.rollback()
-        print(f"❌ Database error: {e}")
+        print(f" Database error: {e}")
         raise ValueError(f"Database error: {e}")
         
     finally:
@@ -189,13 +189,13 @@ def start_session(user_message: str, user_email: str):
 
 
 # =====================================================
-# ✅ UPDATED: CHAT SESSION (with DB restore)
+#  UPDATED: CHAT SESSION (with DB restore)
 # =====================================================
 def chat_session(session_id: str, user_message: str):
     if not _is_valid_uuid(session_id):
         raise ValueError("Invalid session_id")
 
-    # ✅ NEW: Try to restore session from database if not in memory
+    #  NEW: Try to restore session from database if not in memory
     if session_id not in _sessions:
         db = SessionLocal()
         try:
@@ -204,7 +204,7 @@ def chat_session(session_id: str, user_message: str):
         finally:
             db.close()
 
-    # 🔒 GUARDRAILS
+    #  GUARDRAILS
     clean_input = sanitize_user_input(user_message)
     ensure_medical_scope(clean_input)
 
@@ -214,7 +214,7 @@ def chat_session(session_id: str, user_message: str):
     
     reply = interview.reply(clean_input)
     
-    # 💾 Save messages to database
+    #  Save messages to database
     db = SessionLocal()
     try:
         # Save user message
@@ -246,17 +246,17 @@ def chat_session(session_id: str, user_message: str):
         
     except IntegrityError as e:
         db.rollback()
-        print(f"❌ Failed to save messages: {e}")
+        print(f" Failed to save messages: {e}")
         # Continue without saving (better than crashing)
         
     except SQLAlchemyError as e:
         db.rollback()
-        print(f"❌ Database error: {e}")
+        print(f" Database error: {e}")
         
     finally:
         db.close()
 
-    # 🔚 Interview finished
+    #  Interview finished
     if interview.finished:
         if session["final"] is None:
             facts = extract_facts(interview.history)
@@ -283,7 +283,7 @@ def chat_session(session_id: str, user_message: str):
                 "explanation": explanation
             }
             
-            # 💾 Save assessment and mark session complete
+            #  Save assessment and mark session complete
             db = SessionLocal()
             try:
                 assessment = ChatAssessment(
@@ -307,11 +307,11 @@ def chat_session(session_id: str, user_message: str):
                 
             except IntegrityError as e:
                 db.rollback()
-                print(f"❌ Failed to save assessment: {e}")
+                print(f" Failed to save assessment: {e}")
                 
             except SQLAlchemyError as e:
                 db.rollback()
-                print(f"❌ Database error: {e}")
+                print(f" Database error: {e}")
                 
             finally:
                 db.close()

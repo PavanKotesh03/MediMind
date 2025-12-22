@@ -24,7 +24,7 @@
             <!-- FINAL ASSESSMENT -->
             <ng-container *ngIf="!msg.loading && msg.isFinal && msg.finalData">
               <div class="final-assessment">
-                <h3>🏥 Assessment Complete</h3>
+                <h3>Assessment Complete</h3>
                 
                 <div class="assessment-item">
                   <strong>Condition:</strong> {{ msg.finalData.disease }}
@@ -63,12 +63,12 @@
 
       <!-- INPUT BOX -->
       <div class="input-box">
-        <!-- ✅ Show message for completed conversations -->
+        <!--  Show message for completed conversations -->
         <div *ngIf="conversationFinished" class="conversation-completed">
-          <p>📋 This conversation is completed. Click "New Chat" to start fresh.</p>
+          <p> This conversation is completed. Click "New Chat" to start fresh.</p>
         </div>
 
-        <!-- ✅ Show input for active conversations -->
+        <!--  Show input for active conversations -->
         <ng-container *ngIf="!conversationFinished">
           <textarea
             [(ngModel)]="input"

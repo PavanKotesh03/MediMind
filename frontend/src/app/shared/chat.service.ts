@@ -67,20 +67,20 @@ export class ChatService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService  // ✅ INJECT AuthService
+    private authService: AuthService  // INJECT AuthService
   ) {}
 
   // =====================================================
   // CHAT METHODS
   // =====================================================
   
-  // ✅ UPDATED: Include user_email from AuthService
+  //  UPDATED: Include user_email from AuthService
   startInterview(message: string): Observable<ChatResponse> {
     const userData = this.authService.getUserData();
     
     return this.http.post<ChatResponse>(`${this.API_URL}/start`, {
       message: message,
-      user_email: userData?.email || ''  // ✅ ADD user_email
+      user_email: userData?.email || ''  //  ADD user_email
     });
   }
 
