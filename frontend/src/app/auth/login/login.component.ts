@@ -8,10 +8,10 @@ import { AuthService } from '../../shared/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email = '';
-  password = '';
-  errorMessage = '';
-  isLoading = false;
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -34,21 +34,24 @@ export class LoginComponent {
       return;
     }
 
-    //  Call backend API
+    console.log('Attempting login...', this.email);  // DEBUG
+
+    // Call backend API
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
+        console.log('Login successful:', response);  // DEBUG
         this.isLoading = false;
+        
         if (response.success) {
-          console.log(' Login successful:', response.user);
-          // User data is automatically stored by AuthService via tap()
+          // Navigate to chat
           this.router.navigate(['/chat']);
         } else {
           this.errorMessage = response.message || 'Login failed';
         }
       },
       error: (error) => {
+        console.error('Login error:', error);  // DEBUG
         this.isLoading = false;
-        console.error(' Login error:', error);
         
         // Handle different error types
         if (error.status === 401) {

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 // Backend response interfaces
@@ -18,7 +20,6 @@ interface ChatResponse {
   final?: FinalAssessment;
 }
 
-// History interfaces
 interface SessionSummary {
   session_id: string;
   title: string;
@@ -65,36 +66,89 @@ export class ChatService {
   public resetSubject = new BehaviorSubject<boolean>(false);
   reset$ = this.resetSubject.asObservable();
 
+  // History cache
+  private historyCache: GroupedHistory | null = null;
+  private historyCacheTime: number = 0;
+  private CACHE_DURATION = 10000; // 10 seconds
+
   constructor(
     private http: HttpClient,
-    private authService: AuthService  // INJECT AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
+  // Better auth header handling
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    
+    if (!token) {
+      console.error('No JWT token found');
+      this.router.navigate(['/login']);
+      throw new Error('Authentication required');
+    }
+    
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  }
+
+  // Global error handler
+  private handleError(error: any): Observable<never> {
+    console.error('API Error:', error);
+    
+    if (error.status === 401) {
+      console.error('JWT token expired or invalid - redirecting to login');
+      this.authService.clearUser();
+      this.router.navigate(['/login']);
+    }
+    
+    return throwError(() => error);
+  }
+
   // =====================================================
-  // CHAT METHODS
+  // CHAT METHODS (JWT PROTECTED)
   // =====================================================
   
-  //  UPDATED: Include user_email from AuthService
   startInterview(message: string): Observable<ChatResponse> {
     const userData = this.authService.getUserData();
     
-    return this.http.post<ChatResponse>(`${this.API_URL}/start`, {
-      message: message,
-      user_email: userData?.email || ''  //  ADD user_email
-    });
+    return this.http.post<ChatResponse>(
+      `${this.API_URL}/start`,
+      {
+        message: message,
+        user_email: userData?.email || ''
+      },
+      { headers: this.getAuthHeaders() }
+    ).pipe(
+      tap(() => this.clearHistoryCache()),
+      catchError(this.handleError.bind(this))
+    );
   }
 
   sendMessage(sessionId: string, message: string): Observable<ChatResponse> {
-    return this.http.post<ChatResponse>(`${this.API_URL}/chat`, {
-      session_id: sessionId,
-      message: message
-    });
+    return this.http.post<ChatResponse>(
+      `${this.API_URL}/chat`,
+      {
+        session_id: sessionId,
+        message: message
+      },
+      { headers: this.getAuthHeaders() }
+    ).pipe(
+      tap(() => this.clearHistoryCache()),
+      catchError(this.handleError.bind(this))
+    );
   }
 
   resetChat(sessionId: string): Observable<any> {
-    return this.http.post(`${this.API_URL}/reset`, {
-      session_id: sessionId
-    });
+    return this.http.post(
+      `${this.API_URL}/reset`,
+      { session_id: sessionId },
+      { headers: this.getAuthHeaders() }
+    ).pipe(
+      tap(() => this.clearHistoryCache()),
+      catchError(this.handleError.bind(this))
+    );
   }
 
   setSessionId(sessionId: string) {
@@ -108,39 +162,96 @@ export class ChatService {
   clearSession() {
     this.currentSessionId = null;
     this.resetSubject.next(true);
+    this.clearHistoryCache();
   }
 
   // =====================================================
-  // HISTORY METHODS
+  // HISTORY METHODS - WITH CACHING
   // =====================================================
 
-  // Get all chat history for user
   getHistory(userEmail: string, limit: number = 50): Observable<SessionSummary[]> {
     const params = new HttpParams()
       .set('user_email', userEmail)
       .set('limit', limit.toString());
     
-    return this.http.get<SessionSummary[]>(`${this.API_URL}/chat/history/`, { params });
-  }
-
-  // Get grouped history (Today, Yesterday, etc.)
-  getGroupedHistory(userEmail: string): Observable<GroupedHistory> {
-    const params = new HttpParams().set('user_email', userEmail);
-    return this.http.get<GroupedHistory>(`${this.API_URL}/chat/history/grouped`, { params });
-  }
-
-  // Get specific conversation
-  getConversation(sessionId: string, userEmail: string): Observable<ConversationDetail> {
-    const params = new HttpParams().set('user_email', userEmail);
-    return this.http.get<ConversationDetail>(
-      `${this.API_URL}/chat/history/${sessionId}`,
-      { params }
+    return this.http.get<SessionSummary[]>(
+      `${this.API_URL}/history/`,
+      { 
+        params,
+        headers: this.getAuthHeaders()
+      }
+    ).pipe(
+      catchError(this.handleError.bind(this))
     );
   }
 
-  // Delete conversation
+  // With caching to reduce requests
+  getGroupedHistory(userEmail: string): Observable<GroupedHistory> {
+    // Return cached data if still valid
+    const now = Date.now();
+    if (this.historyCache && (now - this.historyCacheTime) < this.CACHE_DURATION) {
+      console.log('Using cached history');
+      return of(this.historyCache);
+    }
+
+    console.log('Fetching fresh history from API');
+    const params = new HttpParams().set('user_email', userEmail);
+    
+    return this.http.get<GroupedHistory>(
+      `${this.API_URL}/history/grouped`,
+      { 
+        params,
+        headers: this.getAuthHeaders()
+      }
+    ).pipe(
+      tap(data => {
+        this.historyCache = data;
+        this.historyCacheTime = Date.now();
+        console.log('History cached');
+      }),
+      catchError(this.handleError.bind(this))
+    );
+  }
+
+  getConversation(sessionId: string, userEmail: string): Observable<ConversationDetail> {
+    const params = new HttpParams().set('user_email', userEmail);
+    
+    return this.http.get<ConversationDetail>(
+      `${this.API_URL}/history/${sessionId}`,
+      { 
+        params,
+        headers: this.getAuthHeaders()
+      }
+    ).pipe(
+      catchError(this.handleError.bind(this))
+    );
+  }
+
   deleteConversation(sessionId: string, userEmail: string): Observable<any> {
     const params = new HttpParams().set('user_email', userEmail);
-    return this.http.delete(`${this.API_URL}/chat/history/${sessionId}`, { params });
+    
+    return this.http.delete(
+      `${this.API_URL}/history/${sessionId}`,
+      { 
+        params,
+        headers: this.getAuthHeaders()
+      }
+    ).pipe(
+      tap(() => this.clearHistoryCache()),
+      catchError(this.handleError.bind(this))
+    );
+  }
+
+  // Clear cache manually
+  clearHistoryCache() {
+    this.historyCache = null;
+    this.historyCacheTime = 0;
+    console.log('History cache cleared');
+  }
+
+  // Force refresh history (bypasses cache)
+  refreshHistory(userEmail: string): Observable<GroupedHistory> {
+    this.clearHistoryCache();
+    return this.getGroupedHistory(userEmail);
   }
 }

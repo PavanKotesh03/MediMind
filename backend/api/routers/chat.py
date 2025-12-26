@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from api.schemas.chat import (
     StartRequest,
     ChatRequest,
@@ -11,24 +11,27 @@ from services.chat_service import (
     reset_session
 )
 from guardrails.guard_exceptions import PromptInjectionError
+from auth.jwt_bearer import JWTBearer  # NEW IMPORT
+
 
 router = APIRouter(tags=["Chat"])
 
 
+
 # =====================================================
-# START INTERVIEW
+# START INTERVIEW (JWT PROTECTED)
 # =====================================================
 @router.post("/start", response_model=ChatResponse)
-def start_chat(req: StartRequest):
+def start_chat(req: StartRequest, user_email: str = Depends(JWTBearer())):  # CHANGED
     """
     Start a new medical interview chat session.
     
     - **message**: First user message (symptoms)
-    - **user_email**: Email of logged-in user
+    - JWT token required in Authorization header
     """
     try:
-        # Use user_email from request
-        session_id, reply, finished = start_session(req.message, req.user_email)
+        # Use user_email from JWT token (not from request)
+        session_id, reply, finished = start_session(req.message, user_email)  # CHANGED
         
         return ChatResponse(
             session_id=session_id,
@@ -48,16 +51,18 @@ def start_chat(req: StartRequest):
         )
 
 
+
 # =====================================================
-# CHAT (INTERVIEW CONTINUATION)
+# CHAT (INTERVIEW CONTINUATION - JWT PROTECTED)
 # =====================================================
 @router.post("/chat", response_model=ChatResponse)
-def chat(req: ChatRequest):
+def chat(req: ChatRequest, user_email: str = Depends(JWTBearer())):  # CHANGED
     """
     Continue an existing chat session.
     
     - **session_id**: UUID of the active session
     - **message**: User's response to bot's question
+    - JWT token required in Authorization header
     """
     try:
         result = chat_session(req.session_id, req.message)
@@ -93,14 +98,15 @@ def chat(req: ChatRequest):
 
 
 
-# RESET SESSION
 
+# RESET SESSION (JWT PROTECTED)
 @router.post("/reset")
-def reset(req: ResetRequest):
+def reset(req: ResetRequest, user_email: str = Depends(JWTBearer())):  # CHANGED
     """
     Reset/clear a chat session from memory.
     
     - **session_id**: UUID of session to reset
+    - JWT token required in Authorization header
     """
     try:
         reset_session(req.session_id)

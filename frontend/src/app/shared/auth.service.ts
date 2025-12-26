@@ -14,6 +14,7 @@ interface AuthResponse {
   success: boolean;
   message: string;
   user: User | null;
+  access_token?: string;  // MUST HAVE THIS
 }
 
 @Injectable({
@@ -45,8 +46,9 @@ export class AuthService {
       password
     }).pipe(
       tap(response => {
-        if (response.success && response.user) {
-          this.storeUserData(response.user);
+        console.log('Register response:', response);  // DEBUG
+        if (response.success && response.user && response.access_token) {
+          this.storeUserData(response.user, response.access_token);
         }
       })
     );
@@ -59,54 +61,60 @@ export class AuthService {
       password
     }).pipe(
       tap(response => {
-        if (response.success && response.user) {
-          this.storeUserData(response.user);
+        console.log('Login response:', response);  // DEBUG
+        if (response.success && response.user && response.access_token) {
+          this.storeUserData(response.user, response.access_token);
         }
       })
     );
   }
 
-  //  Store user data in localStorage and BehaviorSubject
-  private storeUserData(user: User) {
+  // Store user data and JWT token
+  private storeUserData(user: User, token: string) {
+    console.log('Storing user data:', user);  // DEBUG
+    console.log('Storing token:', token);     // DEBUG
+    
     localStorage.setItem('userName', user.name);
     localStorage.setItem('userData', JSON.stringify(user));
+    localStorage.setItem('access_token', token);
+    
     this.userNameSubject.next(user.name);
     this.userDataSubject.next(user);
   }
 
-  //  Get user data from localStorage
+  // Get user data from localStorage
   private getUserDataFromStorage(): User | null {
     const userData = localStorage.getItem('userData');
     return userData ? JSON.parse(userData) : null;
   }
 
-  // Legacy method (keep for compatibility)
-  setUserName(name: string) {
-    localStorage.setItem('userName', name);
-    this.userNameSubject.next(name);
-  }
-
-  //  Get current user data (IMPORTANT for ChatService)
+  // Get current user data
   getUserData(): User | null {
     return this.userDataSubject.value;
   }
 
-  //  Get user email directly
+  // Get user email directly
   getUserEmail(): string {
     const user = this.getUserData();
     return user?.email || '';
+  }
+
+  // Get JWT token
+  getToken(): string | null {
+    return localStorage.getItem('access_token');
   }
 
   // Clear user data on logout
   clearUser() {
     localStorage.removeItem('userName');
     localStorage.removeItem('userData');
+    localStorage.removeItem('access_token');
     this.userNameSubject.next('');
     this.userDataSubject.next(null);
   }
 
   // Check if user is logged in
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('userName');
+    return !!this.getToken();
   }
 }

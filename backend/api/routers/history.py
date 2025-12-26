@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException, Depends, Query
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
+from auth.jwt_handler import verify_token
 
 from api.schemas.chat import SessionSummary, ConversationDetail
 from services.history_service import (
@@ -11,7 +13,28 @@ from services.history_service import (
 )
 from database.connection import get_db
 
-router = APIRouter(prefix="/chat/history", tags=["Chat History"])
+router = APIRouter(tags=["Chat History"])
+
+security = HTTPBearer()
+
+def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> str:
+    """Extract user email from JWT token"""
+    if not credentials:
+        raise HTTPException(
+            status_code=401,
+            detail="Missing authentication token",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
+    
+    try:
+        return verify_token(credentials.credentials)
+    except HTTPException as e:
+        # Re-raise with proper WWW-Authenticate header
+        raise HTTPException(
+            status_code=401,
+            detail=str(e.detail),
+            headers={"WWW-Authenticate": "Bearer"}
+        )
 
 # =====================================================
 # GET USER'S CHAT HISTORY
@@ -20,28 +43,41 @@ router = APIRouter(prefix="/chat/history", tags=["Chat History"])
 def get_history(
     user_email: str = Query(..., description="User's email"),
     limit: int = Query(50, ge=1, le=100),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
-    """
-    Get all chat sessions for a user
+    """Get all chat sessions for a user"""
+    if current_user != user_email:
+        raise HTTPException(
+            status_code=403,
+            detail=f"Access denied: Token user '{current_user}' cannot access '{user_email}' data"
+        )
     
-    - **user_email**: Email of the logged-in user
-    - **limit**: Maximum number of sessions to return (default 50)
-    """
-    return get_user_chat_history(db, user_email, limit)
+    try:
+        return get_user_chat_history(db, user_email, limit)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch history: {str(e)}")
 
 # =====================================================
-# GET GROUPED HISTORY (Today, Yesterday, etc.)
+# GET GROUPED HISTORY
 # =====================================================
 @router.get("/grouped")
 def get_history_grouped(
     user_email: str = Query(..., description="User's email"),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
-    """
-    Get chat history grouped by time periods
-    """
-    return get_grouped_history(db, user_email)
+    """Get chat history grouped by time periods"""
+    if current_user != user_email:
+        raise HTTPException(
+            status_code=403,
+            detail=f"Access denied: Token user '{current_user}' cannot access '{user_email}' data"
+        )
+    
+    try:
+        return get_grouped_history(db, user_email)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch grouped history: {str(e)}")
 
 # =====================================================
 # GET SPECIFIC CONVERSATION
@@ -50,23 +86,30 @@ def get_history_grouped(
 def get_conversation(
     session_id: str,
     user_email: str = Query(..., description="User's email"),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
-    """
-    Get full conversation details including all messages
-    
-    - **session_id**: UUID of the conversation
-    - **user_email**: Email of the logged-in user (for security)
-    """
-    conversation = get_conversation_by_id(db, session_id, user_email)
-    
-    if not conversation:
+    """Get full conversation details including all messages"""
+    if current_user != user_email:
         raise HTTPException(
-            status_code=404,
-            detail="Conversation not found or you don't have access"
+            status_code=403,
+            detail=f"Access denied: Token user '{current_user}' cannot access '{user_email}' data"
         )
     
-    return conversation
+    try:
+        conversation = get_conversation_by_id(db, session_id, user_email)
+        
+        if not conversation:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Conversation '{session_id}' not found or you don't have access"
+            )
+        
+        return conversation
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch conversation: {str(e)}")
 
 # =====================================================
 # DELETE CONVERSATION
@@ -75,24 +118,31 @@ def get_conversation(
 def delete_chat(
     session_id: str,
     user_email: str = Query(..., description="User's email"),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: str = Depends(get_current_user)
 ):
-    """
-    Delete a conversation permanently
-    
-    - **session_id**: UUID of the conversation
-    - **user_email**: Email of the logged-in user (for security)
-    """
-    success = delete_conversation(db, session_id, user_email)
-    
-    if not success:
+    """Delete a conversation permanently"""
+    if current_user != user_email:
         raise HTTPException(
-            status_code=404,
-            detail="Conversation not found or you don't have access"
+            status_code=403,
+            detail=f"Access denied: Token user '{current_user}' cannot access '{user_email}' data"
         )
     
-    return {
-        "status": "success",
-        "message": "Conversation deleted",
-        "session_id": session_id
-    }
+    try:
+        success = delete_conversation(db, session_id, user_email)
+        
+        if not success:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Conversation '{session_id}' not found or you don't have access"
+            )
+        
+        return {
+            "status": "success",
+            "message": "Conversation deleted",
+            "session_id": session_id
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete conversation: {str(e)}")

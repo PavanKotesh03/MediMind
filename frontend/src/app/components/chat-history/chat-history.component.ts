@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { ChatService } from '../../shared/chat.service';
 import { AuthService } from '../../shared/auth.service';
+import { Subscription } from 'rxjs';
 
 interface SessionSummary {
   session_id: string;
@@ -23,7 +24,7 @@ interface GroupedHistory {
   templateUrl: './chat-history.component.html',
   styleUrls: ['./chat-history.component.css']
 })
-export class ChatHistoryComponent implements OnInit {
+export class ChatHistoryComponent implements OnInit, OnDestroy {
   @Output() sessionSelected = new EventEmitter<string>();
   @Output() newChatClicked = new EventEmitter<void>();
 
@@ -39,6 +40,9 @@ export class ChatHistoryComponent implements OnInit {
   userEmail = '';
   activeSessionId: string | null = null;
 
+  private subscriptions: Subscription[] = [];
+  private refreshInterval: any;
+
   constructor(
     private chatService: ChatService,
     private authService: AuthService
@@ -46,19 +50,38 @@ export class ChatHistoryComponent implements OnInit {
 
   ngOnInit() {
     // Get user email
-    this.authService.userData$.subscribe(userData => {
+    const userSub = this.authService.userData$.subscribe(userData => {
       if (userData) {
         this.userEmail = userData.email;
         this.loadHistory();
       }
     });
+    this.subscriptions.push(userSub);
 
-    // Reload history every 30 seconds
-    setInterval(() => {
+    // Reload every 5 minutes instead of 60 seconds
+    this.refreshInterval = setInterval(() => {
       if (this.userEmail) {
+        console.log('Auto-refreshing history (5 min interval)');
         this.loadHistory();
       }
-    }, 30000);
+    }, 300000); // 5 minutes (300,000ms)
+
+    // Reload history when chat resets
+    const resetSub = this.chatService.reset$.subscribe(reset => {
+      if (reset && this.userEmail) {
+        console.log('Reloading history after reset');
+        this.loadHistory();
+      }
+    });
+    this.subscriptions.push(resetSub);
+  }
+
+  ngOnDestroy() {
+    // Clean up subscriptions and interval
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+    if (this.refreshInterval) {
+      clearInterval(this.refreshInterval);
+    }
   }
 
   loadHistory() {
@@ -69,9 +92,34 @@ export class ChatHistoryComponent implements OnInit {
       next: (history) => {
         this.groupedHistory = history;
         this.isLoading = false;
+        console.log('History loaded:', history);
       },
       error: (error) => {
         console.error('Error loading history:', error);
+        this.isLoading = false;
+        
+        // Show user-friendly error
+        if (error.status === 401) {
+          console.log('Token expired - user will be redirected to login');
+        }
+      }
+    });
+  }
+
+  // Manual refresh button
+  refreshHistory() {
+    if (!this.userEmail) return;
+    
+    console.log('Manually refreshing history');
+    this.isLoading = true;
+    this.chatService.refreshHistory(this.userEmail).subscribe({
+      next: (history) => {
+        this.groupedHistory = history;
+        this.isLoading = false;
+        console.log('History refreshed');
+      },
+      error: (error) => {
+        console.error('Error refreshing history:', error);
         this.isLoading = false;
       }
     });
@@ -89,15 +137,15 @@ export class ChatHistoryComponent implements OnInit {
 
     this.chatService.deleteConversation(sessionId, this.userEmail).subscribe({
       next: () => {
-        this.loadHistory();
+        console.log('Session deleted');
+        this.loadHistory(); // Reload after delete
       },
       error: (error) => {
         console.error('Error deleting:', error);
+        alert('Failed to delete conversation');
       }
     });
   }
-
- 
 
   formatDate(dateString: string): string {
     const date = new Date(dateString);
