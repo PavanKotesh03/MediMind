@@ -20,12 +20,14 @@ class MedicalInterviewAgent:
             m["content"] for m in self.history if m["role"] == "user"
         )
 
-        docs = self.retriever(query, top_k=5)
-        context = self._format_context(docs)
+        # Removed RAG search during interview for speed
+        # docs = self.retriever(query, top_k=5)
+        # context = self._format_context(docs)
 
         messages = [
             {"role": "system", "content": INTERVIEW_SYSTEM_PROMPT},
-            {"role": "system", "content": f"TEXTBOOK CONTEXT:\n{context}"},
+            # Removed textbook context for faster responses
+            # {"role": "system", "content": f"TEXTBOOK CONTEXT:\n{context}"},
             *self.history,
         ]
 

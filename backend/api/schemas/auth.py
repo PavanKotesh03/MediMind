@@ -1,17 +1,19 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel
+from typing import Optional
 
-class UserRegister(BaseModel):
-    name: str = Field(..., min_length=2, max_length=100)
-    age: int = Field(..., ge=1, le=120)
-    gender: str = Field(..., pattern="^(Male|Female|Other)$")
-    email: EmailStr
-    password: str = Field(..., min_length=6)
+class RegisterRequest(BaseModel):
+    name: str
+    age: int
+    gender: str
+    email: str
+    password: str
 
-class UserLogin(BaseModel):
-    email: EmailStr
+class LoginRequest(BaseModel):
+    email: str
     password: str
 
 class AuthResponse(BaseModel):
     success: bool
     message: str
-    user: dict | None = None
+    user: Optional[dict] = None
+    access_token: Optional[str] = None  # Add this field

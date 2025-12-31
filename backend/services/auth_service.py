@@ -2,10 +2,8 @@ from sqlalchemy.orm import Session
 from database.models import User
 from utils.password import PasswordHasher
 
-def register_user(db: Session, name: str, age: int, gender: str, 
-                  email: str, password: str) -> dict:
+def register_user(db: Session, name: str, age: int, gender: str, email: str, password: str) -> dict:
     """Register a new user"""
-    
     # Check if user exists
     existing_user = db.query(User).filter(User.email == email).first()
     if existing_user:
@@ -36,9 +34,9 @@ def register_user(db: Session, name: str, age: int, gender: str,
 
 def login_user(db: Session, email: str, password: str) -> dict:
     """Validate login credentials"""
-    
     # Find user
     user = db.query(User).filter(User.email == email).first()
+    
     if not user:
         raise ValueError("Invalid email or password")
     

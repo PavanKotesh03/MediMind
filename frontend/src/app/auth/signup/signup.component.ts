@@ -15,7 +15,7 @@ export class SignupComponent {
   password = '';
   confirmPassword = '';
   errorMessage = '';
-  isLoading = false; // Add loading state
+  isLoading = false;
 
   constructor(
     private router: Router,
@@ -63,6 +63,8 @@ export class SignupComponent {
     // Call backend API
     this.isLoading = true;
     
+    console.log('Attempting registration...', this.email.toLowerCase());
+    
     this.authService.register(
       this.name.trim(),
       this.age,
@@ -71,23 +73,39 @@ export class SignupComponent {
       this.password
     ).subscribe({
       next: (response) => {
+        console.log('Registration response:', response);
         this.isLoading = false;
+        
         if (response.success) {
-          console.log('Registration successful:', response.user);
+          console.log('User registered:', response.user);
+          console.log('Token received:', response.access_token ? 'Yes' : 'No');
+          
+          // Check if token was stored
+          const token = this.authService.getToken();
+          console.log('Token in localStorage:', token ? 'Yes' : 'No');
+          
+          // Navigate to chat
           this.router.navigate(['/chat']);
+        } else {
+          this.errorMessage = response.message || 'Registration failed';
         }
       },
       error: (error) => {
-        this.isLoading = false;
         console.error('Registration error:', error);
+        console.error('Error status:', error.status);
+        console.error('Error detail:', error.error);
+        
+        this.isLoading = false;
         
         // Handle different error types
         if (error.status === 400) {
           this.errorMessage = error.error?.detail || 'Email already registered';
         } else if (error.status === 0) {
           this.errorMessage = 'Cannot connect to server. Is the backend running?';
+        } else if (error.status === 500) {
+          this.errorMessage = 'Server error. Please check backend logs.';
         } else {
-          this.errorMessage = 'Registration failed. Please try again.';
+          this.errorMessage = error.error?.detail || 'Registration failed. Please try again.';
         }
       }
     });

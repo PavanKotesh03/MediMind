@@ -7,7 +7,8 @@ import {
 } from '@angular/core';
 import { ChatService } from '../../shared/chat.service';
 import { AuthService } from '../../shared/auth.service';
-
+ 
+ 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
@@ -15,7 +16,8 @@ interface Message {
   isFinal?: boolean;
   finalData?: any;
 }
-
+ 
+ 
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
@@ -30,15 +32,18 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   isWaitingForResponse = false;
   isViewingHistory = false;
   userEmail: string = '';
-
+ 
+ 
   @ViewChild('messagesContainer')
   private messagesContainer!: ElementRef<HTMLDivElement>;
-
+ 
+ 
   constructor(
     private chatService: ChatService,
     private authService: AuthService
   ) {}
-
+ 
+ 
   ngOnInit() {
     // Get user email
     this.authService.userData$.subscribe(userData => {
@@ -46,63 +51,74 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         this.userEmail = userData.email;
       }
     });
-
+ 
+ 
     // Initial greeting message
     this.messages.push({
       role: 'assistant',
       content: 'Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.'
     });
-
-    // Listen for reset events
+ 
+ 
+    // Listen for reset events from navbar
     this.chatService.reset$.subscribe(reset => {
       if (reset) {
         this.performReset();
+        // Reset the flag after handling
         this.chatService.resetSubject.next(false);
       }
     });
   }
-
+ 
+ 
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
-
+ 
+ 
   private scrollToBottom(): void {
     if (this.messagesContainer) {
       this.messagesContainer.nativeElement.scrollTop =
         this.messagesContainer.nativeElement.scrollHeight;
     }
   }
-
+ 
+ 
   handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
-      if (!this.isWaitingForResponse && !this.conversationFinished) {
+      if (!this.isWaitingForResponse && !this.conversationFinished && !this.isViewingHistory) {
         this.send();
       }
     }
   }
-
-  //  Helper to clean END marker
+ 
+ 
+  // Helper to clean END marker
   private cleanText(text: string | null | undefined): string {
     if (!text) return '';
     return text
       .replace(/<END_OF_INTERVIEW>/gi, '')
       .trim();
   }
-
+ 
+ 
   send() {
-    if (!this.input.trim() || this.conversationFinished || this.isWaitingForResponse) {
+    if (!this.input.trim() || this.conversationFinished || this.isWaitingForResponse || this.isViewingHistory) {
       return;
     }
-
+ 
+ 
     const userMessage = this.input.trim();
-
+ 
+ 
     // Add user message to chat
     this.messages.push({
       role: 'user',
       content: userMessage
     });
-
+ 
+ 
     // Add loading indicator
     const loadingMsg: Message = {
       role: 'assistant',
@@ -110,10 +126,12 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       loading: true
     };
     this.messages.push(loadingMsg);
-
+ 
+ 
     this.input = '';
     this.isWaitingForResponse = true;
-
+ 
+ 
     // Start new session or continue existing
     if (this.isFirstMessage) {
       this.chatService.startInterview(userMessage).subscribe({
@@ -144,28 +162,31 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       }
     }
   }
-
+ 
+ 
   private handleResponse(response: any, loadingMsg: Message) {
     loadingMsg.loading = false;
-
+ 
+ 
     if (response.finished && response.final) {
       this.conversationFinished = true;
       loadingMsg.isFinal = true;
       loadingMsg.finalData = response.final;
       loadingMsg.content = this.formatFinalAssessment(response.final);
     } else {
-      //  Clean END marker from live replies
+      // Clean END marker from live replies
       loadingMsg.content = this.cleanText(response.reply || 'Please continue...');
     }
   }
-
+ 
+ 
   private formatFinalAssessment(final: any): string {
     return `Assessment Complete\n\nCondition: ${final.disease}\nSeverity: ${final.severity}\nReason: ${final.reason}\n\nExplanation:\n${final.explanation}`;
   }
-
+ 
+ 
   private handleError(error: any, loadingMsg: Message) {
     loadingMsg.loading = false;
-    
     if (error.status === 0) {
       loadingMsg.content = 'Cannot connect to server. Please ensure the backend is running.';
     } else if (error.status === 400) {
@@ -174,8 +195,10 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       loadingMsg.content = 'An error occurred. Please try again.';
     }
   }
-
+ 
+ 
   private performReset() {
+    // Only reset the chat state, not the component
     this.messages = [{
       role: 'assistant',
       content: 'Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.'
@@ -185,20 +208,25 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.conversationFinished = false;
     this.isWaitingForResponse = false;
     this.isViewingHistory = false;
-    this.chatService.clearSession();
+    // Don't call clearSession here - it's already called by navbar
+    // This prevents infinite loop
   }
-
+ 
+ 
   // ===== HISTORY METHODS =====
-
+ 
+ 
   loadConversation(sessionId: string) {
     if (!this.userEmail) return;
-
+ 
+ 
     this.chatService.getConversation(sessionId, this.userEmail).subscribe({
       next: (conversation) => {
         // Clear existing messages
         this.messages = [];
-
-        //  Clean text when loading from history
+ 
+ 
+        // Clean text when loading from history
         this.messages = conversation.messages
           .map(msg => ({
             role: msg.role as 'user' | 'assistant',
@@ -206,7 +234,8 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             loading: false
           }))
           .filter(m => m.content && m.content.trim().length > 0);
-
+ 
+ 
         // Add final assessment if conversation is completed
         if (conversation.assessment) {
           this.messages.push({
@@ -216,7 +245,8 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
             finalData: conversation.assessment
           });
         }
-
+ 
+ 
         this.sessionId = sessionId;
         this.conversationFinished = conversation.status === 'completed';
         this.isViewingHistory = conversation.status === 'completed';
@@ -229,7 +259,8 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       }
     });
   }
-
+ 
+ 
   startNewChat() {
     this.performReset();
   }
