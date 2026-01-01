@@ -2,7 +2,15 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, EmailStr
 
+import logging
+
 from services.auth_service import register_user, login_user  # ✅ CHANGED: authservice → auth_service
+from database.connection import get_db
+from auth.jwt_handler import create_access_token
+
+logger = logging.getLogger(__name__)
+
+router = APIRouter(tags=["Authentication"])
 from database.connection import get_db
 from auth.jwt_handler import create_access_token
 
@@ -29,6 +37,7 @@ class AuthResponse(BaseModel):
 @router.post("/register", response_model=AuthResponse)
 def register(user_data: UserRegister, db: Session = Depends(get_db)):
     """Register new user"""
+    logger.info(f"Registration attempt for email: {user_data.email}")
     try:
         user = register_user(
             db,
@@ -42,6 +51,7 @@ def register(user_data: UserRegister, db: Session = Depends(get_db)):
         # Create JWT token
         access_token = create_access_token(data={"sub": user_data.email})
         
+        logger.info(f"User {user_data.email} registered successfully")
         return AuthResponse(
             success=True,
             message="Registration successful",
@@ -54,17 +64,20 @@ def register(user_data: UserRegister, db: Session = Depends(get_db)):
             access_token=access_token
         )
     except ValueError as e:
+        logger.warning(f"Registration failed for {user_data.email}: {str(e)}")
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.post("/login", response_model=AuthResponse)
 def login(credentials: UserLogin, db: Session = Depends(get_db)):
     """Login user and return JWT"""
+    logger.info(f"Login attempt for email: {credentials.email}")
     try:
         user = login_user(db, credentials.email, credentials.password)
         
         # Create JWT token
         access_token = create_access_token(data={"sub": credentials.email})
         
+        logger.info(f"User {credentials.email} logged in successfully")
         return AuthResponse(
             success=True,
             message="Login successful",
@@ -72,4 +85,5 @@ def login(credentials: UserLogin, db: Session = Depends(get_db)):
             access_token=access_token
         )
     except ValueError as e:
+        logger.warning(f"Login failed for {credentials.email}: {str(e)}")
         raise HTTPException(status_code=401, detail=str(e))

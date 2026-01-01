@@ -4,13 +4,19 @@ from typing import List, Optional
 from datetime import datetime, timedelta
 import uuid
 
+import logging
+
 from database.chat_models import ChatSession, ChatMessage, ChatAssessment
+from api.schemas.chat import SessionSummary, ConversationDetail, MessageResponse, FinalAssessment
+
+logger = logging.getLogger(__name__)
 from api.schemas.chat import SessionSummary, ConversationDetail, MessageResponse, FinalAssessment
 
 def get_user_chat_history(db: Session, user_email: str, limit: int = 50) -> List[SessionSummary]:
     """
     Get all chat sessions for a user, ordered by most recent
     """
+    logger.debug(f"Fetching chat history for user: {user_email}, limit: {limit}")
     sessions = db.query(
         ChatSession.session_id,
         ChatSession.title,
@@ -29,7 +35,7 @@ def get_user_chat_history(db: Session, user_email: str, limit: int = 50) -> List
         desc(ChatSession.created_at)
     ).limit(limit).all()
     
-    return [
+    result = [
         SessionSummary(
             session_id=str(s.session_id),
             title=s.title or "Untitled Chat",
@@ -41,11 +47,14 @@ def get_user_chat_history(db: Session, user_email: str, limit: int = 50) -> List
         )
         for s in sessions
     ]
+    logger.info(f"Retrieved {len(result)} chat sessions for {user_email}")
+    return result
 
 def get_conversation_by_id(db: Session, session_id: str, user_email: str) -> Optional[ConversationDetail]:
     """
     Get full conversation details including all messages and assessment
     """
+    logger.debug(f"Fetching conversation {session_id} for user: {user_email}")
     # Validate session belongs to user
     session = db.query(ChatSession).filter(
         ChatSession.session_id == uuid.UUID(session_id),
@@ -53,6 +62,7 @@ def get_conversation_by_id(db: Session, session_id: str, user_email: str) -> Opt
     ).first()
     
     if not session:
+        logger.warning(f"Conversation {session_id} not found for user {user_email}")
         return None
     
     # Get all messages
@@ -74,7 +84,7 @@ def get_conversation_by_id(db: Session, session_id: str, user_email: str) -> Opt
             explanation=assessment.explanation
         )
     
-    return ConversationDetail(
+    result = ConversationDetail(
         session_id=str(session.session_id),
         title=session.title or "Untitled Chat",
         status=session.status,
@@ -91,27 +101,33 @@ def get_conversation_by_id(db: Session, session_id: str, user_email: str) -> Opt
         ],
         assessment=assessment_data
     )
+    logger.info(f"Retrieved conversation {session_id} with {len(messages)} messages for {user_email}")
+    return result
 
 def delete_conversation(db: Session, session_id: str, user_email: str) -> bool:
     """
     Delete a conversation (CASCADE will delete messages and assessment)
     """
+    logger.info(f"Deleting conversation {session_id} for user: {user_email}")
     session = db.query(ChatSession).filter(
         ChatSession.session_id == uuid.UUID(session_id),
         ChatSession.user_email == user_email
     ).first()
     
     if not session:
+        logger.warning(f"Conversation {session_id} not found for deletion by user {user_email}")
         return False
     
     db.delete(session)
     db.commit()
+    logger.info(f"Conversation {session_id} deleted for {user_email}")
     return True
 
 def get_grouped_history(db: Session, user_email: str):
     """
     Get chat history grouped by time periods (Today, Yesterday, This Week, etc.)
     """
+    logger.debug(f"Fetching grouped history for user: {user_email}")
     now = datetime.utcnow()
     today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
     yesterday_start = today_start - timedelta(days=1)
@@ -142,4 +158,5 @@ def get_grouped_history(db: Session, user_email: str):
         else:
             grouped["older"].append(session)
     
+    logger.info(f"Grouped history for {user_email}: { {k: len(v) for k, v in grouped.items()} }")
     return grouped

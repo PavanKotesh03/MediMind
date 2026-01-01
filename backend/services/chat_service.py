@@ -3,7 +3,21 @@ from datetime import datetime
 from sqlalchemy.orm import Session as DBSession
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
+import logging
+
 from llm.interview_agent import MedicalInterviewAgent
+from llm.explanation_agent import MedicalExplanationAgent
+from llm.fact_extractor import extract_facts
+from rules.disease_engine import DiseasePatternEngine
+from scripts.step4_query_system_hybrid import hybrid_search
+
+from guardrails.input_guard import sanitize_user_input
+from guardrails.scope_guard import ensure_medical_scope
+
+from database.connection import SessionLocal
+from database.chat_models import ChatSession, ChatMessage, ChatAssessment
+
+logger = logging.getLogger(__name__)
 from llm.explanation_agent import MedicalExplanationAgent
 from llm.fact_extractor import extract_facts
 from rules.disease_engine import DiseasePatternEngine
@@ -114,6 +128,7 @@ def start_session(user_message: str, user_email: str):
     """
     Start new chat session and save to database
     """
+    logger.info(f"Starting new chat session for user: {user_email}")
     #  GUARDRAILS
     clean_input = sanitize_user_input(user_message)
     ensure_medical_scope(clean_input)
@@ -171,14 +186,17 @@ def start_session(user_message: str, user_email: str):
         db.add(bot_reply)
         
         db.commit()
+        logger.info(f"Chat session {session_id} started and saved for {user_email}")
         
     except IntegrityError as e:
         db.rollback()
+        logger.error(f"Database integrity error starting session for {user_email}: {e}")
         print(f" Database integrity error: {e}")
         raise ValueError(f"Failed to save session: {e}")
         
     except SQLAlchemyError as e:
         db.rollback()
+        logger.error(f"Database error starting session for {user_email}: {e}")
         print(f" Database error: {e}")
         raise ValueError(f"Database error: {e}")
         
@@ -192,14 +210,18 @@ def start_session(user_message: str, user_email: str):
 #  UPDATED: CHAT SESSION (with DB restore)
 # =====================================================
 def chat_session(session_id: str, user_message: str):
+    logger.debug(f"Continuing chat session {session_id}")
     if not _is_valid_uuid(session_id):
+        logger.warning(f"Invalid session_id: {session_id}")
         raise ValueError("Invalid session_id")
 
     #  NEW: Try to restore session from database if not in memory
     if session_id not in _sessions:
+        logger.info(f"Restoring session {session_id} from database")
         db = SessionLocal()
         try:
             if not restore_session_from_db(session_id, db):
+                logger.warning(f"Session {session_id} not found or completed")
                 raise ValueError("Session not found or has been completed. Please start a new chat.")
         finally:
             db.close()
@@ -246,11 +268,13 @@ def chat_session(session_id: str, user_message: str):
         
     except IntegrityError as e:
         db.rollback()
+        logger.error(f"Failed to save messages for session {session_id}: {e}")
         print(f" Failed to save messages: {e}")
         # Continue without saving (better than crashing)
         
     except SQLAlchemyError as e:
         db.rollback()
+        logger.error(f"Database error saving messages for session {session_id}: {e}")
         print(f" Database error: {e}")
         
     finally:
@@ -258,13 +282,16 @@ def chat_session(session_id: str, user_message: str):
 
     #  Interview finished
     if interview.finished:
+        logger.info(f"Interview finished for session {session_id}")
         if session["final"] is None:
             facts = extract_facts(interview.history)
             matches = disease_engine.evaluate(facts)
 
             if matches:
                 top = matches[0]
+                logger.info(f"Disease match for session {session_id}: {top['disease']}")
             else:
+                logger.warning(f"No disease match for session {session_id}, using fallback")
                 top = {
                     "disease": "Undifferentiated Symptom Pattern",
                     "severity": "MEDIUM",
@@ -304,13 +331,16 @@ def chat_session(session_id: str, user_message: str):
                 })
                 
                 db.commit()
+                logger.info(f"Assessment saved for completed session {session_id}")
                 
             except IntegrityError as e:
                 db.rollback()
+                logger.error(f"Failed to save assessment for session {session_id}: {e}")
                 print(f" Failed to save assessment: {e}")
                 
             except SQLAlchemyError as e:
                 db.rollback()
+                logger.error(f"Database error saving assessment for session {session_id}: {e}")
                 print(f" Database error: {e}")
                 
             finally:
@@ -332,4 +362,5 @@ def chat_session(session_id: str, user_message: str):
 # =====================================================
 def reset_session(session_id: str):
     """Remove session from memory (DB record stays for history)"""
+    logger.info(f"Resetting session {session_id}")
     _sessions.pop(session_id, None)

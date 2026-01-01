@@ -4,6 +4,10 @@ import os
 import requests
 import json
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 OLLAMA_URL = os.getenv(
     "OLLAMA_URL",
     "http://localhost:11434/api/chat"
@@ -15,6 +19,7 @@ OLLAMA_MODEL = os.getenv(
 )
 
 def call_llm(messages, temperature=0.2, max_tokens=256):
+    logger.debug(f"Calling LLM with {len(messages)} messages, max_tokens={max_tokens}")
     payload = {
         "model": OLLAMA_MODEL,
         "messages": messages,
@@ -25,13 +30,17 @@ def call_llm(messages, temperature=0.2, max_tokens=256):
         "stream": True   #  Ollama streams by default
     }
 
-    resp = requests.post(
-        OLLAMA_URL,
-        json=payload,
-        stream=True,
-        timeout=300
-    )
-    resp.raise_for_status()
+    try:
+        resp = requests.post(
+            OLLAMA_URL,
+            json=payload,
+            stream=True,
+            timeout=300
+        )
+        resp.raise_for_status()
+    except requests.RequestException as e:
+        logger.error(f"LLM request failed: {e}")
+        raise
 
     final_text = []
 
@@ -47,4 +56,6 @@ def call_llm(messages, temperature=0.2, max_tokens=256):
         if data.get("done"):
             break
 
-    return "".join(final_text).strip()
+    result = "".join(final_text).strip()
+    logger.debug(f"LLM response received, length: {len(result)}")
+    return result

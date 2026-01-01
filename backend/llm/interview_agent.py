@@ -1,21 +1,29 @@
 from llm.llm_client import call_llm
 from llm.prompts import INTERVIEW_SYSTEM_PROMPT
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class MedicalInterviewAgent:
     def __init__(self, retriever):
+        logger.debug("Initializing MedicalInterviewAgent")
         self.retriever = retriever
         self.history = []
         self.finished = False
 
     def start(self, user_message: str) -> str:
+        logger.info("Starting medical interview")
         self.history.append({"role": "user", "content": user_message})
         return self._ask_next()
 
     def reply(self, user_message: str) -> str:
+        logger.debug("Processing user reply in interview")
         self.history.append({"role": "user", "content": user_message})
         return self._ask_next()
 
     def _ask_next(self) -> str:
+        logger.debug("Generating next interview question")
         query = " ".join(
             m["content"] for m in self.history if m["role"] == "user"
         )
@@ -35,6 +43,7 @@ class MedicalInterviewAgent:
         self.history.append({"role": "assistant", "content": response})
 
         if "<END_OF_INTERVIEW>" in response:
+            logger.info("Interview completed")
             self.finished = True
 
         return response

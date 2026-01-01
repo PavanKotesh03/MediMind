@@ -3,6 +3,10 @@
 from llm.llm_client import call_llm
 from llm.prompts import EXPLANATION_SYSTEM_PROMPT
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class MedicalExplanationAgent:
     def __init__(self, retriever):
@@ -14,7 +18,7 @@ class MedicalExplanationAgent:
         - Disease-based RAG if disease is known
         - Symptom-based RAG if disease is undifferentiated
         """
-
+        logger.info(f"Generating explanation for disease: {disease}")
         #  Build symptom-based query from history
         symptom_query = self._build_symptom_query(history)
 
@@ -22,9 +26,11 @@ class MedicalExplanationAgent:
         if disease.lower().startswith("undifferentiated"):
             rag_query = symptom_query
             explanation_mode = "symptom-based"
+            logger.debug("Using symptom-based RAG for undifferentiated disease")
         else:
             rag_query = disease
             explanation_mode = "disease-based"
+            logger.debug("Using disease-based RAG")
 
         #  RAG retrieval
         docs = self.retriever(rag_query, top_k=6)
@@ -60,7 +66,9 @@ Mention warning signs briefly.
             }
         ]
 
-        return call_llm(messages, max_tokens=450)
+        result = call_llm(messages, max_tokens=450)
+        logger.info("Explanation generated successfully")
+        return result
 
     def _build_symptom_query(self, history):
         """
