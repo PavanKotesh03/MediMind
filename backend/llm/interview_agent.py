@@ -5,6 +5,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class MedicalInterviewAgent:
     def __init__(self, retriever):
         logger.debug("Initializing MedicalInterviewAgent")
@@ -39,10 +40,27 @@ class MedicalInterviewAgent:
             *self.history,
         ]
 
-        response = call_llm(messages, max_tokens=120)
+        # 🔧 FIX: Call LLM and extract string content
+        response_obj = call_llm(messages, max_tokens=120)
+        
+        # Extract text from response object
+        if isinstance(response_obj, dict):
+            if "message" in response_obj and "content" in response_obj["message"]:
+                response = response_obj["message"]["content"]
+            elif "content" in response_obj:
+                response = response_obj["content"]
+            else:
+                logger.error(f"Unexpected LLM response format: {response_obj}")
+                response = str(response_obj)
+        else:
+            response = str(response_obj)
+        
+        logger.debug(f"Extracted response text: {response[:100]}...")
+        
+        # Store string content in history
         self.history.append({"role": "assistant", "content": response})
 
-        if "<END_OF_INTERVIEW>" in response:
+        if "<END_OF_INTERVIEW>" in response.upper():
             logger.info("Interview completed")
             self.finished = True
 

@@ -9,8 +9,8 @@ import { AuthService } from '../../shared/auth.service';
 })
 export class SignupComponent {
   name = '';
-  age!: number;
-  gender = '';
+  age: number | null = null;  // ✅ Add back
+  gender = '';                 // ✅ Add back
   email = '';
   password = '';
   confirmPassword = '';
@@ -65,26 +65,18 @@ export class SignupComponent {
 
     console.log('Attempting registration...', this.email.toLowerCase());
 
+    // ✅ Register with just email, password, name (backend ignores age/gender for now)
     this.authService.register(
-      this.name.trim(),
-      this.age,
-      this.gender,
       this.email.toLowerCase(),
-      this.password
+      this.password,
+      this.name.trim()
     ).subscribe({
       next: (response) => {
         console.log('Registration response:', response);
         this.isLoading = false;
 
         if (response.success && response.data) {
-          console.log('User registered:', response.data.user);
-          console.log('Token received:', response.data.access_token ? 'Yes' : 'No');
-
-          // Check if token was stored
-          const token = this.authService.getToken();
-          console.log('Token in localStorage:', token ? 'Yes' : 'No');
-
-          // Navigate to chat
+          console.log('User registered successfully');
           this.router.navigate(['/chat']);
         } else {
           this.errorMessage = response.message || 'Registration failed';
@@ -92,12 +84,8 @@ export class SignupComponent {
       },
       error: (error) => {
         console.error('Registration error:', error);
-        console.error('Error status:', error.status);
-        console.error('Error detail:', error.error);
-
         this.isLoading = false;
 
-        // Handle different error types
         if (error.status === 400) {
           this.errorMessage = error.error?.detail || 'Email already registered';
         } else if (error.status === 0) {

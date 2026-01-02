@@ -3,120 +3,105 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-interface User {
-  name: string;
+interface UserData {
   email: string;
-  age: number;
-  gender: string;
-}
-
-interface AuthResponse {
-  success: boolean;
-  message: string;
-  data?: {
-    user: User;
-    access_token: string;
-  };
+  name?: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api/auth';
+  private baseUrl = 'http://127.0.0.1:8000/api/auth';
+
+  // 🆕 IN-MEMORY TOKEN CACHE (not localStorage)
+  private tokenCache: string | null = null;
   
-  private userNameSubject = new BehaviorSubject<string>(
-    localStorage.getItem('userName') || ''
-  );
+  // User data observable
+  private userDataSubject = new BehaviorSubject<UserData | null>(null);
+  public userData$ = this.userDataSubject.asObservable();
 
-  private userDataSubject = new BehaviorSubject<User | null>(
-    this.getUserDataFromStorage()
-  );
-
-  userName$ = this.userNameSubject.asObservable();
-  userData$ = this.userDataSubject.asObservable();
-
-  constructor(private http: HttpClient) {}
-
-  // Register API call
-  register(name: string, age: number, gender: string, email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/register`, {
-      name,
-      age,
-      gender,
-      email,
-      password
-    }).pipe(
-      tap(response => {
-        console.log('Register response:', response);  // DEBUG
-        if (response.success && response.data) {
-          this.storeUserData(response.data.user, response.data.access_token);
-        }
-      })
-    );
-  }
-
-  // Login API call
-  login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, {
-      email,
-      password
-    }).pipe(
-      tap(response => {
-        console.log('Login response:', response);  // DEBUG
-        if (response.success && response.data) {
-          this.storeUserData(response.data.user, response.data.access_token);
-        }
-      })
-    );
-  }
-
-  // Store user data and JWT token
-  private storeUserData(user: User, token: string) {
-    console.log('Storing user data:', user);  // DEBUG
-    console.log('Storing token:', token);     // DEBUG
+  constructor(private http: HttpClient) {
+    // 🆕 Restore from sessionStorage on app init (survives page refresh, not browser close)
+    this.tokenCache = sessionStorage.getItem('access_token');
     
-    localStorage.setItem('userName', user.name);
-    localStorage.setItem('userData', JSON.stringify(user));
-    localStorage.setItem('access_token', token);
-    
-    this.userNameSubject.next(user.name);
-    this.userDataSubject.next(user);
+    const userData = sessionStorage.getItem('user_data');
+    if (userData) {
+      this.userDataSubject.next(JSON.parse(userData));
+    }
   }
 
-  // Get user data from localStorage
-  private getUserDataFromStorage(): User | null {
-    const userData = localStorage.getItem('userData');
-    return userData ? JSON.parse(userData) : null;
+  // =========================
+  // 🆕 TOKEN CACHE METHODS
+  // =========================
+  
+  setToken(token: string) {
+    this.tokenCache = token;
+    // Also store in sessionStorage for page refresh (cleared when browser closes)
+    sessionStorage.setItem('access_token', token);
   }
 
-  // Get current user data
-  getUserData(): User | null {
-    return this.userDataSubject.value;
-  }
-
-  // Get user email directly
-  getUserEmail(): string {
-    const user = this.getUserData();
-    return user?.email || '';
-  }
-
-  // Get JWT token
   getToken(): string | null {
-    return localStorage.getItem('access_token');
+    return this.tokenCache;
   }
 
-  // Clear user data on logout
-  clearUser() {
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userData');
-    localStorage.removeItem('access_token');
-    this.userNameSubject.next('');
+  clearToken() {
+    this.tokenCache = null;
+    sessionStorage.removeItem('access_token');
+    sessionStorage.removeItem('user_data');
+  }
+
+  // =========================
+  // AUTH APIs
+  // =========================
+
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login`, { email, password }).pipe(
+      tap((response: any) => {
+        if (response.success && response.data?.access_token) {
+          // 🆕 Store in cache
+          this.setToken(response.data.access_token);
+          
+          const userData = { email };
+          this.userDataSubject.next(userData);
+          sessionStorage.setItem('user_data', JSON.stringify(userData));
+          
+          console.log('✅ Token stored in cache');
+        }
+      })
+    );
+  }
+
+  register(email: string, password: string, name?: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/register`, { email, password, name }).pipe(
+      tap((response: any) => {
+        if (response.success && response.data?.access_token) {
+          this.setToken(response.data.access_token);
+          
+          const userData = { email, name };
+          this.userDataSubject.next(userData);
+          sessionStorage.setItem('user_data', JSON.stringify(userData));
+        }
+      })
+    );
+  }
+
+  logout() {
+    this.clearToken();
     this.userDataSubject.next(null);
+    console.log('🚪 Logged out - token cleared from cache');
   }
 
-  // Check if user is logged in
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    return this.tokenCache !== null;
+  }
+
+  clearUser() {
+    this.logout();
+  }
+
+  getUserEmail(): string | null {
+    const userData = this.userDataSubject.value;
+    return userData?.email || null;
   }
 }

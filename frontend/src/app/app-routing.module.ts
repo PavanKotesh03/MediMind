@@ -11,7 +11,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   {
-    path: 'chat',
+    path: 'chat',  // 🆕 Base chat route (new conversations)
+    component: ChatbotComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'chat/:sessionId',  // 🆕 NEW: Chat with specific session
     component: ChatbotComponent,
     canActivate: [AuthGuard]
   },

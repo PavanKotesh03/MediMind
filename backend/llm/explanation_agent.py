@@ -1,5 +1,3 @@
-# llm/explanation_agent.py
-
 from llm.llm_client import call_llm
 from llm.prompts import EXPLANATION_SYSTEM_PROMPT
 
@@ -19,10 +17,11 @@ class MedicalExplanationAgent:
         - Symptom-based RAG if disease is undifferentiated
         """
         logger.info(f"Generating explanation for disease: {disease}")
-        #  Build symptom-based query from history
+        
+        # 🔹 Build symptom-based query from history
         symptom_query = self._build_symptom_query(history)
 
-        #  Decide RAG query
+        # 🔹 Decide RAG query
         if disease.lower().startswith("undifferentiated"):
             rag_query = symptom_query
             explanation_mode = "symptom-based"
@@ -32,7 +31,7 @@ class MedicalExplanationAgent:
             explanation_mode = "disease-based"
             logger.debug("Using disease-based RAG")
 
-        #  RAG retrieval
+        # 🔹 RAG retrieval
         docs = self.retriever(rag_query, top_k=6)
         context = self._format_context(docs)
 
@@ -66,8 +65,22 @@ Mention warning signs briefly.
             }
         ]
 
-        result = call_llm(messages, max_tokens=450)
-        logger.info("Explanation generated successfully")
+        # 🔧 FIX: Call LLM and extract string content
+        result_obj = call_llm(messages, max_tokens=450)
+        
+        # Extract text from response object
+        if isinstance(result_obj, dict):
+            if "message" in result_obj and "content" in result_obj["message"]:
+                result = result_obj["message"]["content"]
+            elif "content" in result_obj:
+                result = result_obj["content"]
+            else:
+                logger.error(f"Unexpected LLM response format: {result_obj}")
+                result = str(result_obj)
+        else:
+            result = str(result_obj)
+        
+        logger.info(f"Explanation generated successfully: {len(result)} chars")
         return result
 
     def _build_symptom_query(self, history):

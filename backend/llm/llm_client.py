@@ -1,61 +1,110 @@
-# llm/llm_client.py
-
-import os
 import requests
-import json
-
 import logging
 
 logger = logging.getLogger(__name__)
 
-OLLAMA_URL = os.getenv(
-    "OLLAMA_URL",
-    "http://localhost:11434/api/chat"
-)
+# ✅ USE ONLY llama3.1:8b
+OLLAMA_URL = "http://localhost:11434/api/chat"
+MODEL_NAME = "llama3.1:8b"
 
-OLLAMA_MODEL = os.getenv(
-    "OLLAMA_MODEL_NAME",
-    "llama3.1:8b"
-)
-
-def call_llm(messages, temperature=0.2, max_tokens=256):
-    logger.debug(f"Calling LLM with {len(messages)} messages, max_tokens={max_tokens}")
-    payload = {
-        "model": OLLAMA_MODEL,
-        "messages": messages,
-        "options": {
-            "temperature": temperature,
-            "num_predict": max_tokens
-        },
-        "stream": True   #  Ollama streams by default
-    }
-
+def call_llm(messages, max_tokens=150, temperature=0.7):
+    """
+    Call Ollama LLM using /api/chat endpoint with llama3.1:8b
+    
+    Args:
+        messages: List of message dicts with 'role' and 'content'
+        max_tokens: Maximum tokens to generate
+        temperature: Sampling temperature (0.0 - 1.0)
+    
+    Returns:
+        Dict with 'message' containing 'content' key
+    """
     try:
-        resp = requests.post(
-            OLLAMA_URL,
-            json=payload,
-            stream=True,
-            timeout=300
-        )
+        # Prepare payload for Ollama chat API
+        payload = {
+            "model": MODEL_NAME,
+            "messages": messages,
+            "stream": False,
+            "options": {
+                "temperature": temperature,
+                "num_predict": max_tokens
+            }
+        }
+        
+        logger.info(f"Calling Ollama with model: {MODEL_NAME}, messages: {len(messages)}")
+        
+        # Call Ollama
+        resp = requests.post(OLLAMA_URL, json=payload, timeout=120)  # 2 min timeout
         resp.raise_for_status()
-    except requests.RequestException as e:
+        
+        result = resp.json()
+        
+        # Extract response from Ollama format
+        if "message" in result:
+            response_text = result["message"].get("content", "")
+        else:
+            logger.warning(f"Unexpected Ollama response format: {result}")
+            response_text = str(result)
+        
+        logger.info(f"LLM response received: {len(response_text)} chars")
+        
+        # Return in expected format
+        return {
+            "message": {
+                "content": response_text.strip()
+            }
+        }
+        
+    except requests.exceptions.Timeout:
+        logger.error(f"LLM request timed out after 120s with model {MODEL_NAME}")
+        raise Exception("LLM request timed out - model may be too slow")
+    
+    except requests.exceptions.HTTPError as e:
+        logger.error(f"HTTP error from Ollama: {e.response.status_code} - {e.response.text}")
+        raise Exception(f"Ollama HTTP error: {e.response.status_code}")
+    
+    except requests.exceptions.RequestException as e:
         logger.error(f"LLM request failed: {e}")
+        raise Exception(f"Failed to connect to Ollama: {e}")
+    
+    except Exception as e:
+        logger.error(f"Unexpected error calling LLM: {e}", exc_info=True)
+        raise Exception(f"LLM error: {e}")
+
+
+def call_llm_streaming(messages, max_tokens=150, temperature=0.7):
+    """
+    Call Ollama LLM with streaming support (for future use)
+    
+    Yields response chunks as they arrive
+    """
+    try:
+        payload = {
+            "model": MODEL_NAME,
+            "messages": messages,
+            "stream": True,
+            "options": {
+                "temperature": temperature,
+                "num_predict": max_tokens
+            }
+        }
+        
+        logger.info(f"Starting streaming call to Ollama with model: {MODEL_NAME}")
+        
+        resp = requests.post(OLLAMA_URL, json=payload, stream=True, timeout=120)
+        resp.raise_for_status()
+        
+        for line in resp.iter_lines():
+            if line:
+                import json
+                chunk = json.loads(line)
+                if "message" in chunk:
+                    content = chunk["message"].get("content", "")
+                    if content:
+                        yield content
+        
+        logger.info("Streaming response completed")
+        
+    except Exception as e:
+        logger.error(f"Streaming LLM error: {e}", exc_info=True)
         raise
-
-    final_text = []
-
-    for line in resp.iter_lines():
-        if not line:
-            continue
-
-        data = json.loads(line.decode("utf-8"))
-
-        if "message" in data and "content" in data["message"]:
-            final_text.append(data["message"]["content"])
-
-        if data.get("done"):
-            break
-
-    result = "".join(final_text).strip()
-    logger.debug(f"LLM response received, length: {len(result)}")
-    return result

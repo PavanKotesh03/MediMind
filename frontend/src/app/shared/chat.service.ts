@@ -1,276 +1,8 @@
-// import { Injectable } from '@angular/core';
-// import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-// import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
-// import { catchError, tap } from 'rxjs/operators';
-// import { Router } from '@angular/router';
-// import { AuthService } from './auth.service';
-
-
-// // Backend response interfaces
-// interface FinalAssessment {
-//   disease: string;
-//   severity: string;
-//   reason: string;
-//   explanation: string;
-// }
-
-
-// interface ChatResponse {
-//   session_id: string;
-//   finished: boolean;
-//   reply?: string;
-//   final?: FinalAssessment;
-// }
-
-
-// interface SessionSummary {
-//   session_id: string;
-//   title: string;
-//   status: string;
-//   created_at: string;
-//   updated_at: string;
-//   completed_at?: string;
-//   message_count: number;
-// }
-
-
-// interface MessageResponse {
-//   message_id: number;
-//   role: string;
-//   content: string;
-//   message_order: number;
-//   created_at: string;
-// }
-
-
-// interface ConversationDetail {
-//   session_id: string;
-//   title: string;
-//   status: string;
-//   created_at: string;
-//   messages: MessageResponse[];
-//   assessment?: FinalAssessment;
-// }
-
-
-// interface GroupedHistory {
-//   today: SessionSummary[];
-//   yesterday: SessionSummary[];
-//   this_week: SessionSummary[];
-//   this_month: SessionSummary[];
-//   older: SessionSummary[];
-// }
-
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ChatService {
-//   private API_URL = 'http://127.0.0.1:8000/api';
-//   private currentSessionId: string | null = null;
-//   // Public observable for reset events
-//   public resetSubject = new BehaviorSubject<boolean>(false);
-//   reset$ = this.resetSubject.asObservable();
-
-//   // History cache
-//   private historyCache: GroupedHistory | null = null;
-//   private historyCacheTime: number = 0;
-//   private CACHE_DURATION = 10000; // 10 seconds
-
-
-//   constructor(
-//     private http: HttpClient,
-//     private authService: AuthService,
-//     private router: Router
-//   ) {}
-
-
-//   // Better auth header handling
-//   private getAuthHeaders(): HttpHeaders {
-//     const token = this.authService.getToken();
-//     if (!token) {
-//       console.error('No JWT token found');
-//       this.router.navigate(['/login']);
-//       throw new Error('Authentication required');
-//     }
-//     return new HttpHeaders({
-//       'Authorization': `Bearer ${token}`,
-//       'Content-Type': 'application/json'
-//     });
-//   }
-
-
-//   // Global error handler
-//   private handleError(error: any): Observable<never> {
-//     console.error('API Error:', error);
-//     if (error.status === 401) {
-//       console.error('JWT token expired or invalid - redirecting to login');
-//       this.authService.clearUser();
-//       this.router.navigate(['/login']);
-//     }
-//     return throwError(() => error);
-//   }
-
-
-//   // =====================================================
-//   // CHAT METHODS (JWT PROTECTED)
-//   // =====================================================
-//   startInterview(message: string): Observable<ChatResponse> {
-//     const userData = this.authService.getUserData();
-//     return this.http.post<ChatResponse>(
-//       `${this.API_URL}/start`,
-//       {
-//         message: message,
-//         user_email: userData?.email || ''
-//       },
-//       { headers: this.getAuthHeaders() }
-//     ).pipe(
-//       tap(() => this.clearHistoryCache()),
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
-
-
-//   sendMessage(sessionId: string, message: string): Observable<ChatResponse> {
-//     return this.http.post<ChatResponse>(
-//       `${this.API_URL}/chat`,
-//       {
-//         session_id: sessionId,
-//         message: message
-//       },
-//       { headers: this.getAuthHeaders() }
-//     ).pipe(
-//       tap(() => this.clearHistoryCache()),
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
-
-
-//   resetChat(sessionId: string): Observable<any> {
-//     return this.http.post(
-//       `${this.API_URL}/reset`,
-//       { session_id: sessionId },
-//       { headers: this.getAuthHeaders() }
-//     ).pipe(
-//       tap(() => this.clearHistoryCache()),
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
-
-
-//   setSessionId(sessionId: string) {
-//     this.currentSessionId = sessionId;
-//   }
-
-
-//   getSessionId(): string | null {
-//     return this.currentSessionId;
-//   }
-
-
-//   clearSession() {
-//     this.currentSessionId = null;
-//     this.resetSubject.next(true);
-//     this.clearHistoryCache();
-//   }
-
-
-//   // =====================================================
-//   // HISTORY METHODS - WITH CACHING
-//   // =====================================================
-
-
-//   getHistory(userEmail: string, limit: number = 50): Observable<SessionSummary[]> {
-//     const params = new HttpParams()
-//       .set('user_email', userEmail)
-//       .set('limit', limit.toString());
-//     return this.http.get<SessionSummary[]>(
-//       `${this.API_URL}/history/`,
-//       { 
-//         params,
-//         headers: this.getAuthHeaders()
-//       }
-//     ).pipe(
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
-
-
-//   // With caching to reduce requests
-//   getGroupedHistory(userEmail: string): Observable<GroupedHistory> {
-//     // Return cached data if still valid
-//     const now = Date.now();
-//     if (this.historyCache && (now - this.historyCacheTime) < this.CACHE_DURATION) {
-//       console.log('Using cached history');
-//       return of(this.historyCache);
-//     }
-
-//     console.log('Fetching fresh history from API');
-//     const params = new HttpParams().set('user_email', userEmail);
-//     return this.http.get<GroupedHistory>(
-//       `${this.API_URL}/history/grouped`,
-//       { 
-//         params,
-//         headers: this.getAuthHeaders()
-//       }
-//     ).pipe(
-//       tap(data => {
-//         this.historyCache = data;
-//         this.historyCacheTime = Date.now();
-//         console.log('History cached');
-//       }),
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
-
-
-//   getConversation(sessionId: string, userEmail: string): Observable<ConversationDetail> {
-//     const params = new HttpParams().set('user_email', userEmail);
-//     return this.http.get<ConversationDetail>(
-//       `${this.API_URL}/history/${sessionId}`,
-//       { 
-//         params,
-//         headers: this.getAuthHeaders()
-//       }
-//     ).pipe(
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
-
-
-//   deleteConversation(sessionId: string, userEmail: string): Observable<any> {
-//     const params = new HttpParams().set('user_email', userEmail);
-//     return this.http.delete(
-//       `${this.API_URL}/history/${sessionId}`,
-//       { 
-//         params,
-//         headers: this.getAuthHeaders()
-//       }
-//     ).pipe(
-//       tap(() => this.clearHistoryCache()),
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
-
-
-//   // Clear cache manually
-//   clearHistoryCache() {
-//     this.historyCache = null;
-//     this.historyCacheTime = 0;
-//     console.log('History cache cleared');
-//   }
-
-
-//   // Force refresh history (bypasses cache)
-//   refreshHistory(userEmail: string): Observable<GroupedHistory> {
-//     this.clearHistoryCache();
-//     return this.getGroupedHistory(userEmail);
-//   }
-// }
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -278,56 +10,180 @@ import { BehaviorSubject } from 'rxjs';
 export class ChatService {
   private baseUrl = 'http://127.0.0.1:8000/api';
 
-  // session handling
-  private sessionId: string | null = null;
-
+  private sessionIdSubject = new BehaviorSubject<string | null>(null);
+  public sessionId$ = this.sessionIdSubject.asObservable();
+  
   reset$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) { }
+  private historyCache: any = null;
+  private historyCacheTime: number = 0;
+  private CACHE_DURATION = 30000;
 
-  // =========================
-  // SESSION STATE
-  // =========================
+  private conversationCache = new Map<string, any>();
+
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+    const savedSession = sessionStorage.getItem('current_session_id');
+    if (savedSession) {
+      console.log('Restoring session from storage:', savedSession);
+      this.sessionIdSubject.next(savedSession);
+    }
+  }
+
   setSessionId(id: string) {
-    this.sessionId = id;
+    console.log('Storing session ID:', id);
+    this.sessionIdSubject.next(id);
+    sessionStorage.setItem('current_session_id', id);
   }
 
   getSessionId(): string | null {
-    return this.sessionId;
+    return this.sessionIdSubject.value;
   }
 
   clearSession() {
-    this.sessionId = null;
+    console.log('Clearing session');
+    this.sessionIdSubject.next(null);
+    sessionStorage.removeItem('current_session_id');
     this.reset$.next(true);
   }
 
-  // =========================
-  // CHAT
-  // =========================
-  startInterview(message: string) {
-    return this.http.post(`${this.baseUrl}/start`, { message });
+  startInterview(message: string): Observable<any> {
+    console.log('API CALL: POST /start');
+    return this.http.post(`${this.baseUrl}/start`, { message }).pipe(
+      tap(() => this.clearCache())
+    );
   }
 
-  sendMessage(session_id: string, message: string) {
-    return this.http.post(`${this.baseUrl}/chat`, { session_id, message });
+  sendMessage(session_id: string, message: string): Observable<any> {
+    console.log('API CALL: POST /chat');
+    return this.http.post(`${this.baseUrl}/chat`, { session_id, message }).pipe(
+      tap(() => this.invalidateConversationCache(session_id))
+    );
   }
 
-  resetChat(session_id: string) {
-    return this.http.post(`${this.baseUrl}/reset`, { session_id });
+  resetChat(session_id: string): Observable<any> {
+    console.log('API CALL: POST /reset');
+    return this.http.post(`${this.baseUrl}/reset`, { session_id }).pipe(
+      tap(() => this.clearCache())
+    );
   }
 
-  // =========================
-  // HISTORY
-  // =========================
-  getGroupedHistory() {
-    return this.http.get(`${this.baseUrl}/history/grouped`);
+  sendMessageStreaming(session_id: string, message: string): Observable<any> {
+    return new Observable(observer => {
+      const token = this.authService.getToken();
+      
+      if (!token) {
+        console.error('No authentication token');
+        observer.error({ error: 'No authentication token', type: 'error' });
+        return;
+      }
+
+      const url = `${this.baseUrl}/chat/stream?session_id=${session_id}&message=${encodeURIComponent(message)}&token=${encodeURIComponent(token)}`;
+      
+      console.log('API CALL: GET /chat/stream');
+      const eventSource = new EventSource(url);
+
+      eventSource.onmessage = (event) => {
+        if (event.data === '[DONE]') {
+          console.log('Stream completed');
+          eventSource.close();
+          observer.complete();
+          this.invalidateConversationCache(session_id);
+          return;
+        }
+
+        try {
+          const data = JSON.parse(event.data);
+          
+          if (data.type === 'error') {
+            console.error('Stream error:', data.error);
+            observer.error(data);
+            eventSource.close();
+            return;
+          }
+          
+          observer.next(data);
+        } catch (e) {
+          console.error('Parse error:', e);
+        }
+      };
+
+      eventSource.onerror = (error) => {
+        console.error('SSE connection error:', error);
+        eventSource.close();
+        observer.error({ error: 'Connection failed', type: 'error' });
+      };
+
+      return () => {
+        eventSource.close();
+      };
+    });
   }
 
-  getConversation(sessionId: string) {
-    return this.http.get(`${this.baseUrl}/history/${sessionId}`);
+  getGroupedHistory(): Observable<any> {
+    const now = Date.now();
+    
+    if (this.historyCache && (now - this.historyCacheTime) < this.CACHE_DURATION) {
+      console.log('Using cached history');
+      return of(this.historyCache);
+    }
+
+    console.log('API CALL: GET /history/grouped');
+    return this.http.get(`${this.baseUrl}/history/grouped`).pipe(
+      tap((response: any) => {
+        this.historyCache = response;
+        this.historyCacheTime = Date.now();
+        console.log('History cached');
+      }),
+      catchError(error => {
+        console.error('History error:', error);
+        throw error;
+      })
+    );
   }
 
-  deleteConversation(sessionId: string) {
-    return this.http.delete(`${this.baseUrl}/history/${sessionId}`);
+  getConversation(sessionId: string): Observable<any> {
+    if (this.conversationCache.has(sessionId)) {
+      console.log('Using cached conversation:', sessionId);
+      return of(this.conversationCache.get(sessionId));
+    }
+
+    console.log('API CALL: GET /history/' + sessionId);
+    return this.http.get(`${this.baseUrl}/history/${sessionId}`).pipe(
+      tap((response: any) => {
+        this.conversationCache.set(sessionId, response);
+        console.log('Conversation cached');
+      }),
+      catchError(error => {
+        console.error('Conversation error:', error);
+        throw error;
+      })
+    );
+  }
+
+  deleteConversation(sessionId: string): Observable<any> {
+    console.log('API CALL: DELETE /history/' + sessionId);
+    return this.http.delete(`${this.baseUrl}/history/${sessionId}`).pipe(
+      tap(() => this.clearCache())
+    );
+  }
+
+  clearCache() {
+    this.historyCache = null;
+    this.historyCacheTime = 0;
+    this.conversationCache.clear();
+    console.log('Cache cleared');
+  }
+
+  invalidateConversationCache(sessionId: string) {
+    this.conversationCache.delete(sessionId);
+    this.historyCache = null;
+  }
+
+  forceRefreshHistory(): Observable<any> {
+    this.clearCache();
+    return this.getGroupedHistory();
   }
 }
