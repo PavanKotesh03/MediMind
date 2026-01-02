@@ -11,7 +11,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ChatHistoryComponent } from './components/chat-history/chat-history.component'; // ✅ Add this
+import { ChatHistoryComponent } from './components/chat-history/chat-history.component';
 
 // Services & Guards
 import { AuthGuard } from './shared/auth.guard';
@@ -28,7 +28,7 @@ import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
     SignupComponent,
     ChatbotComponent,
     NavbarComponent,
-    ChatHistoryComponent  // ✅ Add this
+    ChatHistoryComponent
   ],
   imports: [
     BrowserModule,

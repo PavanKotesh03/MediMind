@@ -27,13 +27,13 @@ export class ChatService {
   ) {
     const savedSession = sessionStorage.getItem('current_session_id');
     if (savedSession) {
-      console.log('Restoring session from storage:', savedSession);
+      console.log('SERVICE: Restored session:', savedSession);
       this.sessionIdSubject.next(savedSession);
     }
   }
 
   setSessionId(id: string) {
-    console.log('Storing session ID:', id);
+    console.log('SERVICE: Setting session ID:', id);
     this.sessionIdSubject.next(id);
     sessionStorage.setItem('current_session_id', id);
   }
@@ -43,29 +43,15 @@ export class ChatService {
   }
 
   clearSession() {
-    console.log('Clearing session');
+    console.log('SERVICE: Clearing session');
     this.sessionIdSubject.next(null);
     sessionStorage.removeItem('current_session_id');
-    this.reset$.next(true);
+    // Don't trigger reset observable - causes issues
   }
 
   startInterview(message: string): Observable<any> {
-    console.log('API CALL: POST /start');
+    console.log('SERVICE: POST /start');
     return this.http.post(`${this.baseUrl}/start`, { message }).pipe(
-      tap(() => this.clearCache())
-    );
-  }
-
-  sendMessage(session_id: string, message: string): Observable<any> {
-    console.log('API CALL: POST /chat');
-    return this.http.post(`${this.baseUrl}/chat`, { session_id, message }).pipe(
-      tap(() => this.invalidateConversationCache(session_id))
-    );
-  }
-
-  resetChat(session_id: string): Observable<any> {
-    console.log('API CALL: POST /reset');
-    return this.http.post(`${this.baseUrl}/reset`, { session_id }).pipe(
       tap(() => this.clearCache())
     );
   }
@@ -75,19 +61,20 @@ export class ChatService {
       const token = this.authService.getToken();
       
       if (!token) {
-        console.error('No authentication token');
+        console.error('SERVICE: No token');
         observer.error({ error: 'No authentication token', type: 'error' });
         return;
       }
 
       const url = `${this.baseUrl}/chat/stream?session_id=${session_id}&message=${encodeURIComponent(message)}&token=${encodeURIComponent(token)}`;
       
-      console.log('API CALL: GET /chat/stream');
+      console.log('SERVICE: GET /chat/stream');
+      
       const eventSource = new EventSource(url);
 
       eventSource.onmessage = (event) => {
         if (event.data === '[DONE]') {
-          console.log('Stream completed');
+          console.log('SERVICE: Stream done');
           eventSource.close();
           observer.complete();
           this.invalidateConversationCache(session_id);
@@ -96,9 +83,10 @@ export class ChatService {
 
         try {
           const data = JSON.parse(event.data);
+          console.log('SERVICE: Stream chunk:', data);
           
           if (data.type === 'error') {
-            console.error('Stream error:', data.error);
+            console.error('SERVICE: Stream error:', data.error);
             observer.error(data);
             eventSource.close();
             return;
@@ -106,39 +94,46 @@ export class ChatService {
           
           observer.next(data);
         } catch (e) {
-          console.error('Parse error:', e);
+          console.error('SERVICE: Parse error:', e);
         }
       };
 
       eventSource.onerror = (error) => {
-        console.error('SSE connection error:', error);
+        console.error('SERVICE: SSE error:', error);
         eventSource.close();
         observer.error({ error: 'Connection failed', type: 'error' });
       };
 
       return () => {
+        console.log('SERVICE: Closing EventSource');
         eventSource.close();
       };
     });
+  }
+
+  resetChat(session_id: string): Observable<any> {
+    console.log('SERVICE: POST /reset');
+    return this.http.post(`${this.baseUrl}/reset`, { session_id }).pipe(
+      tap(() => this.clearCache())
+    );
   }
 
   getGroupedHistory(): Observable<any> {
     const now = Date.now();
     
     if (this.historyCache && (now - this.historyCacheTime) < this.CACHE_DURATION) {
-      console.log('Using cached history');
+      console.log('SERVICE: Cache hit');
       return of(this.historyCache);
     }
 
-    console.log('API CALL: GET /history/grouped');
+    console.log('SERVICE: GET /history/grouped');
     return this.http.get(`${this.baseUrl}/history/grouped`).pipe(
       tap((response: any) => {
         this.historyCache = response;
         this.historyCacheTime = Date.now();
-        console.log('History cached');
       }),
       catchError(error => {
-        console.error('History error:', error);
+        console.error('SERVICE: History error:', error);
         throw error;
       })
     );
@@ -146,25 +141,24 @@ export class ChatService {
 
   getConversation(sessionId: string): Observable<any> {
     if (this.conversationCache.has(sessionId)) {
-      console.log('Using cached conversation:', sessionId);
+      console.log('SERVICE: Cache hit for conversation');
       return of(this.conversationCache.get(sessionId));
     }
 
-    console.log('API CALL: GET /history/' + sessionId);
+    console.log('SERVICE: GET /history/' + sessionId);
     return this.http.get(`${this.baseUrl}/history/${sessionId}`).pipe(
       tap((response: any) => {
         this.conversationCache.set(sessionId, response);
-        console.log('Conversation cached');
       }),
       catchError(error => {
-        console.error('Conversation error:', error);
+        console.error('SERVICE: Conversation error:', error);
         throw error;
       })
     );
   }
 
   deleteConversation(sessionId: string): Observable<any> {
-    console.log('API CALL: DELETE /history/' + sessionId);
+    console.log('SERVICE: DELETE /history/' + sessionId);
     return this.http.delete(`${this.baseUrl}/history/${sessionId}`).pipe(
       tap(() => this.clearCache())
     );
@@ -174,7 +168,6 @@ export class ChatService {
     this.historyCache = null;
     this.historyCacheTime = 0;
     this.conversationCache.clear();
-    console.log('Cache cleared');
   }
 
   invalidateConversationCache(sessionId: string) {

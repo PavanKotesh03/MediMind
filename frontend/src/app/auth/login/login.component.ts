@@ -34,59 +34,48 @@ export class LoginComponent {
       return;
     }
 
-    console.log('Attempting login:', this.email);
+    console.log('LOGIN: Attempting login:', this.email);
 
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
-        console.log('Login successful:', response);
+        console.log('LOGIN: Login successful');
         this.isLoading = false;
         
         if (response.success) {
-          console.log('Token stored in cache');
-          this.autoStartChatSession();
+          console.log('LOGIN: Token stored, navigating immediately');
+          this.router.navigate(['/chat']);
+          
+          // Call /start to create empty session
+          console.log('LOGIN: Creating empty session with /start');
+          this.chatService.startInterview('').subscribe({
+            next: (res: any) => {
+              const sessionId = res.data?.session_id;
+              
+              if (sessionId) {
+                console.log('LOGIN: Empty session created:', sessionId);
+                this.chatService.setSessionId(sessionId);
+                this.router.navigate(['/chat', sessionId], { replaceUrl: true });
+              }
+            },
+            error: (error) => {
+              console.error('LOGIN: Session creation failed:', error);
+            }
+          });
         } else {
           this.errorMessage = response.message || 'Login failed';
         }
       },
       error: (error) => {
-        console.error('Login error:', error);
+        console.error('LOGIN: Login error:', error);
         this.isLoading = false;
         
         if (error.status === 401) {
           this.errorMessage = 'Invalid email or password';
         } else if (error.status === 0) {
-          this.errorMessage = 'Cannot connect to server. Is the backend running?';
+          this.errorMessage = 'Cannot connect to server';
         } else {
-          this.errorMessage = error.error?.detail || 'Login failed. Please try again.';
+          this.errorMessage = error.error?.detail || 'Login failed';
         }
-      }
-    });
-  }
-
-  private autoStartChatSession() {
-    console.log('Auto-starting session on login');
-    
-    this.chatService.startInterview('').subscribe({
-      next: (res: any) => {
-        const sessionId = res.data?.session_id;
-        
-        if (sessionId) {
-          console.log('Session created:', sessionId);
-          this.chatService.setSessionId(sessionId);
-          
-          setTimeout(() => {
-            this.router.navigate(['/chat', sessionId]).then(() => {
-              console.log('Navigated to /chat/' + sessionId);
-            });
-          }, 100);
-        } else {
-          console.error('No session ID in response');
-          this.router.navigate(['/chat']);
-        }
-      },
-      error: (error) => {
-        console.error('Auto-start failed:', error);
-        this.router.navigate(['/chat']);
       }
     });
   }

@@ -6,24 +6,39 @@
     (newChatClicked)="startNewChat()">
   </app-chat-history>
 
+
   <!-- RIGHT: CHAT AREA -->
   <div class="chat-wrapper">
     <div class="chat-column">
 
+
       <div class="messages" #messagesContainer>
         <div *ngFor="let msg of messages" class="row" [class.user]="msg.role === 'user'">
 
+
           <div class="bubble" 
-               [class.loading-bubble]="msg.loading"
+               [class.loading-bubble]="msg.loading || msg.isTyping"
                [class.final-bubble]="msg.isFinal">
 
+
+            <!-- TYPING INDICATOR (Shows before streaming starts) -->
+            <ng-container *ngIf="msg.isTyping">
+              <span class="typing-text">
+                Thinking<span class="typing-dots">
+                  <span>.</span><span>.</span><span>.</span>
+                </span>
+              </span>
+            </ng-container>
+
+
             <!-- NORMAL MESSAGE -->
-            <ng-container *ngIf="!msg.loading && !msg.isFinal">
+            <ng-container *ngIf="!msg.loading && !msg.isFinal && !msg.isTyping">
               <span style="white-space: pre-wrap;">{{ msg.content }}</span>
             </ng-container>
 
+
             <!-- FINAL ASSESSMENT -->
-            <ng-container *ngIf="!msg.loading && msg.isFinal && msg.finalData">
+            <ng-container *ngIf="!msg.loading && msg.isFinal && msg.finalData && !msg.isTyping">
               <div class="final-assessment">
                 <h3>Assessment Complete</h3>
                 
@@ -51,31 +66,36 @@
               </div>
             </ng-container>
 
-            <!-- TYPING INDICATOR -->
-            <ng-container *ngIf="msg.loading">
+
+            <!-- OLD LOADING INDICATOR (Fallback) -->
+            <ng-container *ngIf="msg.loading && !msg.isTyping">
               <span class="typing">
                 <span></span><span></span><span></span>
               </span>
             </ng-container>
 
+
           </div>
         </div>
       </div>
 
+
       <!-- INPUT BOX -->
       <div class="input-box">
-        <!--  Show message for completed conversations -->
+        <!-- Show message for completed conversations -->
         <div *ngIf="conversationFinished" class="conversation-completed">
-          <p> This conversation is completed. Click "New Chat" to start fresh.</p>
+          <p>This conversation is completed. Click "New Chat" to start fresh.</p>
         </div>
 
-        <!--  Show input for active conversations -->
+
+        <!-- Show input for active conversations -->
         <ng-container *ngIf="!conversationFinished">
           <textarea
             [(ngModel)]="input"
             placeholder="Message MediMind…"
             (keydown)="handleKeydown($event)">
           </textarea>
+
 
           <button (click)="send()" 
                   [disabled]="isWaitingForResponse || !input.trim()">
@@ -84,7 +104,9 @@
         </ng-container>
       </div>
 
+
     </div>
   </div>
+
 
 </div>
