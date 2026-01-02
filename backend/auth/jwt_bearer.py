@@ -31,4 +31,4 @@ class JWTBearer(HTTPBearer):
             return email
         except Exception as e:
             logger.error(f"JWT verification failed: {str(e)}")
-            raise HTTPException(status_code=403, detail="Invalid token or expired token")
+            raise HTTPException(status_code=401, detail=f"Invalid token: {str(e)}")

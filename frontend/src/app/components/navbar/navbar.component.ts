@@ -36,28 +36,24 @@ export class NavbarComponent implements OnInit {
  
  
   newChat() {
-    const sessionId = this.chatService.getSessionId();
-    if (sessionId) {
-      // Call backend reset API
-      this.chatService.resetChat(sessionId).subscribe({
-        next: () => {
-          console.log('Chat reset successful');
-          // Clear session triggers observable
-          this.chatService.clearSession();
-        },
-        error: (err) => {
-          console.error('Reset API failed:', err);
-          // Still clear on frontend even if backend fails
-          this.chatService.clearSession();
-        }
-      });
-    } else {
-      // No active session, just trigger UI reset
-      this.chatService.clearSession();
-    }
-    this.menuOpen = false;
-    // NO NAVIGATION - Observable pattern handles the reset
+  const sessionId = this.chatService.getSessionId();
+
+  if (sessionId) {
+    this.chatService.resetChat(sessionId).subscribe({
+      next: () => {
+        console.log('Chat reset successful');
+      },
+      error: (err) => {
+        console.error('Reset API failed:', err);
+      }
+    });
+  } else {
+    this.chatService.clearSession();
   }
+
+  this.menuOpen = false;
+}
+
  
  
   logout() {

@@ -62,3 +62,499 @@
 2026-01-01 15:34:57,232 - services.history_service - INFO - Retrieved 13 chat sessions for xyz@gmail.com
 2026-01-01 15:34:57,232 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 1, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
 2026-01-01 15:34:57,234 - api.routers.history - INFO - Successfully fetched grouped history for xyz@gmail.com
+2026-01-01 20:34:38,999 - api.main - INFO - Starting model preload on app startup
+2026-01-01 20:34:39,495 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-01 20:34:44,896 - api.main - INFO - RAG models preloaded successfully
+2026-01-01 20:34:49,537 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:34:49,538 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:34:49,984 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:34:49,984 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:36:40,989 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:36:40,989 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:36:40,995 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:36:40,995 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:36:42,513 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:36:42,513 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:36:42,520 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:36:42,520 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:37:04,744 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:37:04,745 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:37:04,749 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:37:04,749 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:37:50,102 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:37:50,104 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:37:50,109 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:37:50,110 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:37:58,266 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:37:58,267 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:37:58,271 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:37:58,275 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:37:59,438 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:37:59,439 - api.routers.history - INFO - Fetching conversation 243916a6-0fbc-4652-9e54-d99f1cc9e1de for user: xyz@gmail.com
+2026-01-01 20:37:59,473 - services.history_service - INFO - Retrieved conversation 243916a6-0fbc-4652-9e54-d99f1cc9e1de with 17 messages for xyz@gmail.com
+2026-01-01 20:38:01,092 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:38:01,092 - api.routers.history - INFO - Fetching conversation 09fa26af-54d3-4fb8-a30d-06da78eea958 for user: xyz@gmail.com
+2026-01-01 20:38:01,098 - services.history_service - INFO - Retrieved conversation 09fa26af-54d3-4fb8-a30d-06da78eea958 with 15 messages for xyz@gmail.com
+2026-01-01 20:38:02,941 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:38:02,941 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-01 20:38:02,943 - api.routers.chat - INFO - Resetting chat session 09fa26af-54d3-4fb8-a30d-06da78eea958 for user: xyz@gmail.com
+2026-01-01 20:38:02,943 - services.chat_service - INFO - Resetting session 09fa26af-54d3-4fb8-a30d-06da78eea958
+2026-01-01 20:38:02,944 - api.routers.chat - INFO - Chat session 09fa26af-54d3-4fb8-a30d-06da78eea958 reset for xyz@gmail.com
+2026-01-01 20:38:02,956 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:38:02,958 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:38:02,962 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:38:02,962 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:42:59,206 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:42:59,207 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:42:59,211 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:42:59,211 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:47:59,203 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:47:59,203 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:47:59,223 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:47:59,223 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:52:59,221 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:52:59,225 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:52:59,233 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:52:59,233 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 20:57:59,217 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 20:57:59,217 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 20:57:59,224 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 20:57:59,224 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 21:02:59,210 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-01 21:02:59,214 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-01 21:02:59,223 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-01 21:02:59,223 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 3, 'yesterday': 3, 'this_week': 9, 'this_month': 0, 'older': 0}
+2026-01-01 21:16:28,446 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-01 21:16:29,479 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-01 21:16:29,969 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-01 21:16:30,412 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-01 21:16:30,714 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 403 Forbidden"
+2026-01-01 21:16:30,734 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-01 21:16:30,744 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-01 21:16:30,760 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 403 Forbidden"
+2026-01-01 21:16:30,771 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-01 21:16:30,789 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 403 Forbidden"
+2026-01-01 21:16:30,809 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 403 Forbidden"
+2026-01-01 21:16:30,818 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 403 Forbidden"
+2026-01-01 21:21:20,960 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-01 21:21:21,714 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-01 21:21:22,033 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-01 21:21:22,547 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-01 21:21:22,877 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 403 Forbidden"
+2026-01-01 21:21:22,893 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-01 21:21:22,906 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-01 21:21:22,919 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 403 Forbidden"
+2026-01-01 21:21:22,930 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-01 21:21:22,948 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 403 Forbidden"
+2026-01-01 21:21:22,972 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 403 Forbidden"
+2026-01-01 21:21:22,990 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 403 Forbidden"
+2026-01-01 21:38:03,374 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-01 21:38:03,414 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-01 21:38:03,417 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-01 21:38:03,433 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-01 21:38:03,433 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-01 21:38:03,435 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-01 21:38:03,451 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-01 21:38:03,451 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-01 21:38:03,455 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-01 21:38:03,468 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-01 21:38:03,468 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-01 21:38:03,471 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-01 21:38:03,481 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:38:03,481 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-01 21:38:03,481 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 403 Forbidden"
+2026-01-01 21:38:03,902 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-01 21:38:03,916 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:38:03,916 - api.routers.history - WARNING - JWT verification failed
+2026-01-01 21:38:03,917 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-01 21:38:03,974 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-01 21:48:30,286 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-01 21:48:30,329 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-01 21:48:30,339 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-01 21:48:30,354 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-01 21:48:30,354 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-01 21:48:30,360 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-01 21:48:30,409 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-01 21:48:30,409 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-01 21:48:30,413 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-01 21:48:30,426 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-01 21:48:30,426 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-01 21:48:30,427 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-01 21:48:30,443 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:48:30,443 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-01 21:48:30,445 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 403 Forbidden"
+2026-01-01 21:48:30,889 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:48:30,890 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-01 21:48:30,893 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-01 21:48:30,903 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:48:30,903 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-01 21:48:30,903 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-01 21:48:30,920 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:48:30,920 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-01 21:48:30,923 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 403 Forbidden"
+2026-01-01 21:48:30,933 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-01 21:48:30,949 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:48:30,949 - api.routers.history - WARNING - JWT verification failed
+2026-01-01 21:48:30,951 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-01 21:48:31,001 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-01 21:48:31,012 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:48:31,012 - api.routers.history - WARNING - JWT verification failed
+2026-01-01 21:48:31,012 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-01 21:48:31,018 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-01 21:48:31,055 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-01 21:48:31,055 - api.routers.history - WARNING - JWT verification failed
+2026-01-01 21:48:31,055 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-01 21:48:31,062 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:03:54,725 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:03:54,797 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:03:54,802 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:03:54,819 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:03:54,819 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:03:54,827 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:03:54,862 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:03:54,862 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:03:54,867 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:03:54,884 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:03:54,886 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:03:54,889 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:03:54,904 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:03:54,904 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:03:54,906 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 403 Forbidden"
+2026-01-02 11:03:55,922 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:03:55,922 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:03:55,926 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-02 11:03:55,948 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:03:55,948 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:03:55,951 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-02 11:03:55,973 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:03:55,974 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:03:55,978 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 403 Forbidden"
+2026-01-02 11:03:56,001 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:03:56,018 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:03:56,018 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:03:56,021 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:03:56,119 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:03:56,158 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:03:56,162 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:03:56,162 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:03:56,168 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:03:56,203 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:03:56,212 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:03:56,215 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:03:56,227 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:14:27,003 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:14:27,055 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:14:27,060 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:14:27,074 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:14:27,075 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:14:27,079 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:14:27,097 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:14:27,097 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:14:27,101 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:14:27,113 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:14:27,113 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:14:27,114 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:14:27,127 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:14:27,127 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:14:27,129 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 403 Forbidden"
+2026-01-02 11:14:27,701 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:14:27,701 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:14:27,706 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-02 11:14:27,721 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:14:27,721 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:14:27,725 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-02 11:14:27,735 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:14:27,740 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:14:27,740 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 403 Forbidden"
+2026-01-02 11:14:27,760 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:14:27,770 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:14:27,770 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:14:27,776 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:14:27,848 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:14:27,869 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:14:27,869 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:14:27,869 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:14:27,875 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:14:27,882 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:14:27,882 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:14:27,882 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:14:27,882 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:17:53,028 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:17:53,060 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:17:53,060 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:17:53,072 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:17:53,072 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:17:53,074 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:17:53,084 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:17:53,084 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:17:53,084 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:17:53,107 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:17:53,107 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:17:53,109 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:17:53,116 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:17:53,116 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:17:53,116 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 401 Unauthorized"
+2026-01-02 11:17:53,801 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:17:53,803 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:17:53,804 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 401 Unauthorized"
+2026-01-02 11:17:53,830 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:17:53,830 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:17:53,833 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 401 Unauthorized"
+2026-01-02 11:17:53,865 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:17:53,865 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-02 11:17:53,868 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 401 Unauthorized"
+2026-01-02 11:17:53,904 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:17:53,913 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:17:53,913 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:17:53,913 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:17:53,984 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:17:54,006 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:17:54,006 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:17:54,008 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:17:54,011 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:17:54,026 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-02 11:17:54,026 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:17:54,027 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:17:54,028 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:22:11,800 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:22:11,846 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:22:11,850 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:22:11,866 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:22:11,866 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:22:11,866 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:22:11,902 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:22:11,902 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:22:11,907 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:22:11,918 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:22:11,918 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:22:11,918 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:22:11,934 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 403 Forbidden"
+2026-01-02 11:22:12,394 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-02 11:22:12,412 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-02 11:22:12,437 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 403 Forbidden"
+2026-01-02 11:22:12,458 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:22:12,466 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:22:12,466 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:22:12,482 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:22:12,485 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:22:12,485 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:22:12,485 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:25:14,622 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:25:14,636 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:25:14,636 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:25:14,652 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:25:14,652 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:25:14,652 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:25:14,672 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:25:14,672 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:25:14,673 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:25:14,673 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:25:14,673 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:25:14,673 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:25:14,688 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 403 Forbidden"
+2026-01-02 11:25:14,946 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-02 11:25:14,967 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 403 Forbidden"
+2026-01-02 11:25:14,976 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 403 Forbidden"
+2026-01-02 11:25:14,986 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:25:14,994 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:25:14,995 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:25:15,025 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:25:15,027 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:25:15,029 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:25:15,036 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:27:05,320 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:27:05,357 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:27:05,361 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:27:05,374 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:27:05,375 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:27:05,378 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:27:05,396 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:27:05,397 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:27:05,401 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:27:05,413 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:27:05,414 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:27:05,418 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:27:05,747 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:27:06,384 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:27:06,421 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:27:06,443 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:27:06,472 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:27:06,486 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:27:06,490 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:27:06,502 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:27:06,507 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:27:06,519 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:27:06,523 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:33:31,331 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:33:31,360 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:33:31,362 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:33:31,366 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:33:31,366 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:33:31,366 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:33:31,381 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:33:31,382 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:33:31,384 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:33:31,418 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:33:31,418 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:33:31,418 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:33:31,429 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:33:31,711 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:33:31,722 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:33:31,731 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:33:31,741 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:33:31,755 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:33:31,758 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:33:31,785 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:33:31,788 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:33:31,792 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:33:31,792 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:39:08,403 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:39:08,434 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:39:08,436 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:39:08,441 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:39:08,441 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:39:08,441 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:39:08,456 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:39:08,456 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:39:08,465 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:39:08,474 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:39:08,474 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:39:08,475 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:39:08,485 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:39:08,777 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:39:08,803 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:39:08,817 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 422 Unprocessable Entity"
+2026-01-02 11:39:08,830 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:39:08,839 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:39:08,840 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:39:08,847 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:39:08,848 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:39:08,855 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:39:08,857 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,797 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:42:15,821 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:42:15,824 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,832 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:42:15,832 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:42:15,834 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,844 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:42:15,845 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:42:15,845 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,852 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:42:15,852 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:42:15,854 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,893 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,912 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,925 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,926 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,942 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,948 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:42:15,949 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,956 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:42:15,958 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:42:15,964 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:42:15,964 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,443 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:46:26,489 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:46:26,491 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,505 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-02 11:46:26,505 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-02 11:46:26,511 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,518 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-02 11:46:26,518 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 11:46:26,531 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,541 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-02 11:46:26,541 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-02 11:46:26,541 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,554 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,571 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,584 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,619 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,626 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,644 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-02 11:46:26,647 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,655 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-02 11:46:26,657 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:46:26,665 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-02 11:46:26,667 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-02 11:47:58,084 - api.main - INFO - Starting model preload on app startup
+2026-01-02 11:47:58,688 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-02 11:48:04,774 - api.main - INFO - RAG models preloaded successfully
+2026-01-02 11:48:14,658 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 11:48:14,660 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:48:14,662 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 11:48:18,933 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 11:48:18,934 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:48:18,936 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 11:48:23,603 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 11:48:23,603 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:48:23,604 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 11:48:28,605 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 11:48:28,605 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:48:28,607 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 11:51:08,966 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 11:51:08,966 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:51:08,967 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 11:53:29,249 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 11:53:29,249 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:53:29,249 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 11:53:34,692 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 11:53:34,692 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:53:34,693 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 11:58:35,261 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 11:58:35,261 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 11:58:35,261 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 12:03:35,228 - auth.jwt_handler - WARNING - Token expired
+2026-01-02 12:03:35,228 - api.routers.history - WARNING - JWT verification failed
+2026-01-02 12:03:35,228 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 12:25:01,518 - api.main - INFO - Starting model preload on app startup
+2026-01-02 12:25:01,839 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-02 12:25:05,553 - api.main - INFO - RAG models preloaded successfully
+2026-01-02 12:25:45,613 - api.main - INFO - Starting model preload on app startup
+2026-01-02 12:25:45,832 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-02 12:25:49,302 - api.main - INFO - RAG models preloaded successfully
+2026-01-02 12:36:15,898 - api.main - INFO - Starting model preload on app startup
+2026-01-02 12:36:16,216 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-02 12:36:20,649 - api.main - INFO - RAG models preloaded successfully
+2026-01-02 12:42:12,080 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 12:42:12,396 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "D:\MediMind\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-02 12:42:12,898 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 12:42:13,032 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 12:42:32,772 - services.chat_service - INFO - Starting new chat session for user: <auth.jwt_bearer.JWTBearer object at 0x00000218CD88DDF0>
+2026-01-02 12:42:32,773 - llm.interview_agent - INFO - Starting medical interview
+2026-01-02 12:43:16,283 - services.chat_service - ERROR - Database error starting session for <auth.jwt_bearer.JWTBearer object at 0x00000218CD88DDF0>: (psycopg2.ProgrammingError) can't adapt type 'JWTBearer'
+[SQL: INSERT INTO chat.sessions (session_id, user_email, title, status, completed_at) VALUES (%(session_id)s::UUID, %(user_email)s, %(title)s, %(status)s, %(completed_at)s) RETURNING chat.sessions.created_at, chat.sessions.updated_at]
+[parameters: {'session_id': UUID('d496c631-0d26-47c2-8aa4-2aa957b90259'), 'user_email': <auth.jwt_bearer.JWTBearer object at 0x00000218CD88DDF0>, 'title': 'Fever', 'status': 'active', 'completed_at': None}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2026-01-02 12:48:05,226 - api.main - INFO - Starting model preload on app startup
+2026-01-02 12:48:05,548 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-02 12:48:10,166 - api.main - INFO - RAG models preloaded successfully
+2026-01-02 12:48:30,984 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 12:48:31,323 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "D:\MediMind\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-02 12:48:31,879 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 12:48:31,911 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 12:48:36,197 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 12:48:36,632 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 12:48:36,632 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 12:48:38,331 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 12:48:38,715 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 12:48:38,715 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 12:48:45,908 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 12:48:46,293 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 12:48:46,293 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 12:50:25,690 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 12:50:26,152 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 12:50:26,152 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 12:50:37,068 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 12:50:37,440 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 12:50:37,440 - auth.jwt_handler - INFO - Access token created successfully
