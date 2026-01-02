@@ -2,7 +2,8 @@
   
   <!-- LEFT: HISTORY SIDEBAR -->
   <app-chat-history
-    (sessionSelected)="loadConversation($event)">
+    (sessionSelected)="loadConversation($event)"
+    (newChatClicked)="startNewChat()">
   </app-chat-history>
 
   <!-- RIGHT: CHAT AREA -->

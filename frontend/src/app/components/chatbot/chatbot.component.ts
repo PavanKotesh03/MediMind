@@ -32,7 +32,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   @ViewChild('messagesContainer')
   private messagesContainer!: ElementRef<HTMLDivElement>;
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService) { }
 
   // =====================================================
   // INIT
@@ -230,6 +230,6 @@ ${final.explanation}`;
   // NEW CHAT
   // =====================================================
   startNewChat() {
-    this.performReset();
+    this.chatService.clearSession();
   }
 }

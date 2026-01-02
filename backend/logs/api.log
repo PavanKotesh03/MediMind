@@ -558,3 +558,128 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-01-02 12:50:37,068 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
 2026-01-02 12:50:37,440 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
 2026-01-02 12:50:37,440 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 15:14:18,971 - api.main - INFO - Starting model preload on app startup
+2026-01-02 15:14:19,483 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-02 15:14:24,855 - api.main - INFO - RAG models preloaded successfully
+2026-01-02 15:14:40,671 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 15:14:41,216 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "D:\MediMind\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-02 15:14:42,321 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 15:14:42,406 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 15:21:27,828 - api.routers.auth - INFO - Login attempt for email: xyz@gmail.com
+2026-01-02 15:21:28,788 - services.auth_service - INFO - User xyz@gmail.com logged in successfully
+2026-01-02 15:21:28,804 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-02 15:25:49,225 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:25:49,225 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:25:49,227 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 15:25:49,446 - services.history_service - INFO - Retrieved 15 chat sessions for xyz@gmail.com
+2026-01-02 15:25:49,447 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 0, 'yesterday': 3, 'this_week': 12, 'this_month': 0, 'older': 0}
+2026-01-02 15:27:09,956 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:27:09,956 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:27:09,959 - services.chat_service - INFO - Starting new chat session for user: xyz@gmail.com
+2026-01-02 15:27:09,962 - llm.interview_agent - INFO - Starting medical interview
+2026-01-02 15:27:58,715 - services.chat_service - INFO - Chat session b818d9f2-4301-42ad-93e5-14905ad92bfa started and saved for xyz@gmail.com
+2026-01-02 15:28:09,140 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:28:09,140 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:28:30,410 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:28:30,410 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:28:57,845 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:28:57,846 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:29:15,477 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:29:15,483 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:29:29,853 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:29:29,853 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:29:52,858 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:29:52,858 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:30:10,549 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:30:10,550 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:30:25,159 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:30:25,159 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:30:30,243 - llm.interview_agent - INFO - Interview completed
+2026-01-02 15:30:30,243 - services.chat_service - INFO - Interview finished for session b818d9f2-4301-42ad-93e5-14905ad92bfa
+2026-01-02 15:30:30,243 - services.chat_service - INFO - Disease match for session b818d9f2-4301-42ad-93e5-14905ad92bfa: Uncomplicated Viral Fever
+2026-01-02 15:30:30,243 - llm.explanation_agent - INFO - Generating explanation for disease: Uncomplicated Viral Fever
+2026-01-02 15:30:49,232 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:30:49,232 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:30:49,234 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 15:30:49,244 - services.history_service - INFO - Retrieved 16 chat sessions for xyz@gmail.com
+2026-01-02 15:30:49,244 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 1, 'yesterday': 3, 'this_week': 12, 'this_month': 0, 'older': 0}
+2026-01-02 15:33:47,290 - llm.explanation_agent - INFO - Explanation generated successfully
+2026-01-02 15:33:47,379 - services.chat_service - INFO - Assessment saved for completed session b818d9f2-4301-42ad-93e5-14905ad92bfa
+2026-01-02 15:34:38,367 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:34:38,367 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:34:38,377 - services.chat_service - INFO - Resetting session b818d9f2-4301-42ad-93e5-14905ad92bfa
+2026-01-02 15:34:47,156 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:34:47,156 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:34:47,159 - api.routers.history - INFO - Fetching conversation 09fa26af-54d3-4fb8-a30d-06da78eea958 for user: xyz@gmail.com
+2026-01-02 15:34:47,293 - services.history_service - INFO - Retrieved conversation 09fa26af-54d3-4fb8-a30d-06da78eea958 with 15 messages for xyz@gmail.com
+2026-01-02 15:34:48,435 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:34:48,442 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:34:48,444 - api.routers.history - INFO - Fetching conversation 243916a6-0fbc-4652-9e54-d99f1cc9e1de for user: xyz@gmail.com
+2026-01-02 15:34:48,458 - services.history_service - INFO - Retrieved conversation 243916a6-0fbc-4652-9e54-d99f1cc9e1de with 17 messages for xyz@gmail.com
+2026-01-02 15:34:49,243 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:34:49,243 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:34:49,248 - api.routers.history - INFO - Fetching conversation b818d9f2-4301-42ad-93e5-14905ad92bfa for user: xyz@gmail.com
+2026-01-02 15:34:49,257 - services.history_service - INFO - Retrieved conversation b818d9f2-4301-42ad-93e5-14905ad92bfa with 19 messages for xyz@gmail.com
+2026-01-02 15:34:50,448 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:34:50,448 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:34:50,448 - services.chat_service - INFO - Resetting session b818d9f2-4301-42ad-93e5-14905ad92bfa
+2026-01-02 15:35:50,169 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:35:50,169 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:35:50,169 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 15:35:50,175 - services.history_service - INFO - Retrieved 16 chat sessions for xyz@gmail.com
+2026-01-02 15:35:50,175 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 1, 'yesterday': 3, 'this_week': 12, 'this_month': 0, 'older': 0}
+2026-01-02 15:35:55,910 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:35:55,914 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:35:55,928 - services.chat_service - INFO - Resetting session b818d9f2-4301-42ad-93e5-14905ad92bfa
+2026-01-02 15:35:58,186 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:35:58,186 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:35:58,186 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 15:35:58,193 - services.history_service - INFO - Retrieved 16 chat sessions for xyz@gmail.com
+2026-01-02 15:35:58,193 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 1, 'yesterday': 3, 'this_week': 12, 'this_month': 0, 'older': 0}
+2026-01-02 15:36:07,263 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:07,263 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:07,265 - api.routers.history - INFO - Fetching conversation b818d9f2-4301-42ad-93e5-14905ad92bfa for user: xyz@gmail.com
+2026-01-02 15:36:07,273 - services.history_service - INFO - Retrieved conversation b818d9f2-4301-42ad-93e5-14905ad92bfa with 19 messages for xyz@gmail.com
+2026-01-02 15:36:08,145 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:08,145 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:08,145 - api.routers.history - INFO - Fetching conversation 09fa26af-54d3-4fb8-a30d-06da78eea958 for user: xyz@gmail.com
+2026-01-02 15:36:08,155 - services.history_service - INFO - Retrieved conversation 09fa26af-54d3-4fb8-a30d-06da78eea958 with 15 messages for xyz@gmail.com
+2026-01-02 15:36:09,781 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:09,781 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:09,781 - services.chat_service - INFO - Resetting session 09fa26af-54d3-4fb8-a30d-06da78eea958
+2026-01-02 15:36:20,553 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:20,558 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:20,564 - services.chat_service - INFO - Resetting session 09fa26af-54d3-4fb8-a30d-06da78eea958
+2026-01-02 15:36:22,897 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:22,898 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:22,898 - api.routers.history - INFO - Fetching grouped history for user: xyz@gmail.com
+2026-01-02 15:36:22,907 - services.history_service - INFO - Retrieved 16 chat sessions for xyz@gmail.com
+2026-01-02 15:36:22,909 - services.history_service - INFO - Grouped history for xyz@gmail.com: {'today': 1, 'yesterday': 3, 'this_week': 12, 'this_month': 0, 'older': 0}
+2026-01-02 15:36:48,942 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:48,942 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:48,942 - api.routers.history - INFO - Fetching conversation 817edfa8-0522-48db-bac2-7e8d3a2aba11 for user: xyz@gmail.com
+2026-01-02 15:36:48,955 - services.history_service - INFO - Retrieved conversation 817edfa8-0522-48db-bac2-7e8d3a2aba11 with 13 messages for xyz@gmail.com
+2026-01-02 15:36:50,150 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:50,150 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:50,153 - services.chat_service - INFO - Resetting session 817edfa8-0522-48db-bac2-7e8d3a2aba11
+2026-01-02 15:36:51,217 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:51,217 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:51,221 - services.chat_service - INFO - Resetting session 817edfa8-0522-48db-bac2-7e8d3a2aba11
+2026-01-02 15:36:57,559 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:36:57,559 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:36:57,559 - services.chat_service - INFO - Resetting session 817edfa8-0522-48db-bac2-7e8d3a2aba11
+2026-01-02 15:37:11,571 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:37:11,571 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:37:11,571 - api.routers.history - INFO - Fetching conversation b818d9f2-4301-42ad-93e5-14905ad92bfa for user: xyz@gmail.com
+2026-01-02 15:37:11,585 - services.history_service - INFO - Retrieved conversation b818d9f2-4301-42ad-93e5-14905ad92bfa with 19 messages for xyz@gmail.com
+2026-01-02 15:37:22,017 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:37:22,017 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:37:22,017 - services.chat_service - INFO - Resetting session b818d9f2-4301-42ad-93e5-14905ad92bfa
+2026-01-02 15:37:23,483 - auth.jwt_handler - INFO - Token verified for user: xyz@gmail.com
+2026-01-02 15:37:23,483 - auth.jwt_bearer - INFO - Authenticated user: xyz@gmail.com
+2026-01-02 15:37:23,483 - services.chat_service - INFO - Resetting session b818d9f2-4301-42ad-93e5-14905ad92bfa

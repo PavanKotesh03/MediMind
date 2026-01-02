@@ -4,8 +4,8 @@
 // import { catchError, tap } from 'rxjs/operators';
 // import { Router } from '@angular/router';
 // import { AuthService } from './auth.service';
- 
- 
+
+
 // // Backend response interfaces
 // interface FinalAssessment {
 //   disease: string;
@@ -13,16 +13,16 @@
 //   reason: string;
 //   explanation: string;
 // }
- 
- 
+
+
 // interface ChatResponse {
 //   session_id: string;
 //   finished: boolean;
 //   reply?: string;
 //   final?: FinalAssessment;
 // }
- 
- 
+
+
 // interface SessionSummary {
 //   session_id: string;
 //   title: string;
@@ -32,8 +32,8 @@
 //   completed_at?: string;
 //   message_count: number;
 // }
- 
- 
+
+
 // interface MessageResponse {
 //   message_id: number;
 //   role: string;
@@ -41,8 +41,8 @@
 //   message_order: number;
 //   created_at: string;
 // }
- 
- 
+
+
 // interface ConversationDetail {
 //   session_id: string;
 //   title: string;
@@ -51,8 +51,8 @@
 //   messages: MessageResponse[];
 //   assessment?: FinalAssessment;
 // }
- 
- 
+
+
 // interface GroupedHistory {
 //   today: SessionSummary[];
 //   yesterday: SessionSummary[];
@@ -60,8 +60,8 @@
 //   this_month: SessionSummary[];
 //   older: SessionSummary[];
 // }
- 
- 
+
+
 // @Injectable({
 //   providedIn: 'root'
 // })
@@ -71,20 +71,20 @@
 //   // Public observable for reset events
 //   public resetSubject = new BehaviorSubject<boolean>(false);
 //   reset$ = this.resetSubject.asObservable();
- 
+
 //   // History cache
 //   private historyCache: GroupedHistory | null = null;
 //   private historyCacheTime: number = 0;
 //   private CACHE_DURATION = 10000; // 10 seconds
- 
- 
+
+
 //   constructor(
 //     private http: HttpClient,
 //     private authService: AuthService,
 //     private router: Router
 //   ) {}
- 
- 
+
+
 //   // Better auth header handling
 //   private getAuthHeaders(): HttpHeaders {
 //     const token = this.authService.getToken();
@@ -98,8 +98,8 @@
 //       'Content-Type': 'application/json'
 //     });
 //   }
- 
- 
+
+
 //   // Global error handler
 //   private handleError(error: any): Observable<never> {
 //     console.error('API Error:', error);
@@ -110,8 +110,8 @@
 //     }
 //     return throwError(() => error);
 //   }
- 
- 
+
+
 //   // =====================================================
 //   // CHAT METHODS (JWT PROTECTED)
 //   // =====================================================
@@ -129,8 +129,8 @@
 //       catchError(this.handleError.bind(this))
 //     );
 //   }
- 
- 
+
+
 //   sendMessage(sessionId: string, message: string): Observable<ChatResponse> {
 //     return this.http.post<ChatResponse>(
 //       `${this.API_URL}/chat`,
@@ -144,8 +144,8 @@
 //       catchError(this.handleError.bind(this))
 //     );
 //   }
- 
- 
+
+
 //   resetChat(sessionId: string): Observable<any> {
 //     return this.http.post(
 //       `${this.API_URL}/reset`,
@@ -156,30 +156,30 @@
 //       catchError(this.handleError.bind(this))
 //     );
 //   }
- 
- 
+
+
 //   setSessionId(sessionId: string) {
 //     this.currentSessionId = sessionId;
 //   }
- 
- 
+
+
 //   getSessionId(): string | null {
 //     return this.currentSessionId;
 //   }
- 
- 
+
+
 //   clearSession() {
 //     this.currentSessionId = null;
 //     this.resetSubject.next(true);
 //     this.clearHistoryCache();
 //   }
- 
- 
+
+
 //   // =====================================================
 //   // HISTORY METHODS - WITH CACHING
 //   // =====================================================
- 
- 
+
+
 //   getHistory(userEmail: string, limit: number = 50): Observable<SessionSummary[]> {
 //     const params = new HttpParams()
 //       .set('user_email', userEmail)
@@ -194,8 +194,8 @@
 //       catchError(this.handleError.bind(this))
 //     );
 //   }
- 
- 
+
+
 //   // With caching to reduce requests
 //   getGroupedHistory(userEmail: string): Observable<GroupedHistory> {
 //     // Return cached data if still valid
@@ -204,7 +204,7 @@
 //       console.log('Using cached history');
 //       return of(this.historyCache);
 //     }
- 
+
 //     console.log('Fetching fresh history from API');
 //     const params = new HttpParams().set('user_email', userEmail);
 //     return this.http.get<GroupedHistory>(
@@ -222,8 +222,8 @@
 //       catchError(this.handleError.bind(this))
 //     );
 //   }
- 
- 
+
+
 //   getConversation(sessionId: string, userEmail: string): Observable<ConversationDetail> {
 //     const params = new HttpParams().set('user_email', userEmail);
 //     return this.http.get<ConversationDetail>(
@@ -236,8 +236,8 @@
 //       catchError(this.handleError.bind(this))
 //     );
 //   }
- 
- 
+
+
 //   deleteConversation(sessionId: string, userEmail: string): Observable<any> {
 //     const params = new HttpParams().set('user_email', userEmail);
 //     return this.http.delete(
@@ -251,16 +251,16 @@
 //       catchError(this.handleError.bind(this))
 //     );
 //   }
- 
- 
+
+
 //   // Clear cache manually
 //   clearHistoryCache() {
 //     this.historyCache = null;
 //     this.historyCacheTime = 0;
 //     console.log('History cache cleared');
 //   }
- 
- 
+
+
 //   // Force refresh history (bypasses cache)
 //   refreshHistory(userEmail: string): Observable<GroupedHistory> {
 //     this.clearHistoryCache();
@@ -276,14 +276,14 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ChatService {
-  private baseUrl = '/api';
+  private baseUrl = 'http://127.0.0.1:8000/api';
 
   // session handling
   private sessionId: string | null = null;
 
   reset$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // =========================
   // SESSION STATE

@@ -20,7 +20,7 @@ export class SignupComponent {
   constructor(
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   isValidName(name: string): boolean {
     return /^[A-Za-z ]+$/.test(name.trim());
@@ -62,9 +62,9 @@ export class SignupComponent {
 
     // Call backend API
     this.isLoading = true;
-    
+
     console.log('Attempting registration...', this.email.toLowerCase());
-    
+
     this.authService.register(
       this.name.trim(),
       this.age,
@@ -75,15 +75,15 @@ export class SignupComponent {
       next: (response) => {
         console.log('Registration response:', response);
         this.isLoading = false;
-        
-        if (response.success) {
-          console.log('User registered:', response.user);
-          console.log('Token received:', response.access_token ? 'Yes' : 'No');
-          
+
+        if (response.success && response.data) {
+          console.log('User registered:', response.data.user);
+          console.log('Token received:', response.data.access_token ? 'Yes' : 'No');
+
           // Check if token was stored
           const token = this.authService.getToken();
           console.log('Token in localStorage:', token ? 'Yes' : 'No');
-          
+
           // Navigate to chat
           this.router.navigate(['/chat']);
         } else {
@@ -94,9 +94,9 @@ export class SignupComponent {
         console.error('Registration error:', error);
         console.error('Error status:', error.status);
         console.error('Error detail:', error.error);
-        
+
         this.isLoading = false;
-        
+
         // Handle different error types
         if (error.status === 400) {
           this.errorMessage = error.error?.detail || 'Email already registered';

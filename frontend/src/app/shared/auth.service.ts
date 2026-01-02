@@ -13,8 +13,10 @@ interface User {
 interface AuthResponse {
   success: boolean;
   message: string;
-  user: User | null;
-  access_token?: string;  // ✅ MUST HAVE THIS
+  data?: {
+    user: User;
+    access_token: string;
+  };
 }
 
 @Injectable({
@@ -47,8 +49,8 @@ export class AuthService {
     }).pipe(
       tap(response => {
         console.log('Register response:', response);  // DEBUG
-        if (response.success && response.user && response.access_token) {
-          this.storeUserData(response.user, response.access_token);
+        if (response.success && response.data) {
+          this.storeUserData(response.data.user, response.data.access_token);
         }
       })
     );
@@ -62,8 +64,8 @@ export class AuthService {
     }).pipe(
       tap(response => {
         console.log('Login response:', response);  // DEBUG
-        if (response.success && response.user && response.access_token) {
-          this.storeUserData(response.user, response.access_token);
+        if (response.success && response.data) {
+          this.storeUserData(response.data.user, response.data.access_token);
         }
       })
     );
