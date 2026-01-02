@@ -61,3 +61,40 @@ def login_user(db: Session, email: str, password: str) -> dict:
         "age": user.age,
         "gender": user.gender
     }
+
+def register_oauth_user(db: Session, email: str, name: str) -> dict:
+    """Register or Get existing user from OAuth"""
+    logger.debug(f"Processing OAuth login for: {email}")
+    
+    # Check if user exists
+    existing_user = db.query(User).filter(User.email == email).first()
+    
+    if existing_user:
+        logger.info(f"OAuth: User {email} already exists, logging in")
+        return {
+            "name": existing_user.name,
+            "email": existing_user.email,
+            "age": existing_user.age,
+            "gender": existing_user.gender
+        }
+    
+    # Create new user with dummy values for missing fields
+    logger.info(f"OAuth: Registering new user {email}")
+    new_user = User(
+        name=name,
+        email=email,
+        age=0,  # Default for OAuth
+        gender="Other",  # Default for OAuth
+        password_hash="oauth_user_no_password" # Unusable password
+    )
+    
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    
+    return {
+        "name": new_user.name,
+        "email": new_user.email,
+        "age": new_user.age,
+        "gender": new_user.gender
+    }

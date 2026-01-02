@@ -1,24 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AuthGuard } from './shared/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
-import { AuthGuard } from './shared/auth.guard';
+
+import { LoginSuccessComponent } from './auth/login-success/login-success.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/chat', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'login-success', component: LoginSuccessComponent },
   { path: 'signup', component: SignupComponent },
-  { 
-    path: 'chat', 
+  {
+    path: 'chat',  // 🆕 Base chat route (new conversations)
     component: ChatbotComponent,
     canActivate: [AuthGuard]
   },
-  { 
-    path: 'chat/:sessionId', 
+  {
+    path: 'chat/:sessionId',  // 🆕 NEW: Chat with specific session
     component: ChatbotComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({

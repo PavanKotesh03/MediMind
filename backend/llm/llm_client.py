@@ -3,18 +3,17 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Use only llama3.1:8b
+# ✅ USE ONLY llama3.1:8b
 OLLAMA_URL = "http://localhost:11434/api/chat"
 MODEL_NAME = "llama3.1:8b"
 
-
-def call_llm(messages, max_tokens=300, temperature=0.2):
+def call_llm(messages, max_tokens=150, temperature=0.7):
     """
     Call Ollama LLM using /api/chat endpoint with llama3.1:8b
     
     Args:
         messages: List of message dicts with 'role' and 'content'
-        max_tokens: Maximum tokens to generate (increased to 450 for detailed explanations)
+        max_tokens: Maximum tokens to generate
         temperature: Sampling temperature (0.0 - 1.0)
     
     Returns:
@@ -34,8 +33,8 @@ def call_llm(messages, max_tokens=300, temperature=0.2):
         
         logger.info(f"Calling Ollama with model: {MODEL_NAME}, messages: {len(messages)}")
         
-        # Call Ollama with increased timeout (3 minutes for explanation generation)
-        resp = requests.post(OLLAMA_URL, json=payload, timeout=180)
+        # Call Ollama
+        resp = requests.post(OLLAMA_URL, json=payload, timeout=300)  # 5 min timeout for slow CPUs
         resp.raise_for_status()
         
         result = resp.json()
@@ -57,7 +56,7 @@ def call_llm(messages, max_tokens=300, temperature=0.2):
         }
         
     except requests.exceptions.Timeout:
-        logger.error(f"LLM request timed out after 180s with model {MODEL_NAME}")
+        logger.error(f"LLM request timed out after 120s with model {MODEL_NAME}")
         raise Exception("LLM request timed out - model may be too slow")
     
     except requests.exceptions.HTTPError as e:
@@ -73,7 +72,7 @@ def call_llm(messages, max_tokens=300, temperature=0.2):
         raise Exception(f"LLM error: {e}")
 
 
-def call_llm_streaming(messages, max_tokens=150, temperature=0.2):
+def call_llm_streaming(messages, max_tokens=150, temperature=0.7):
     """
     Call Ollama LLM with streaming support (for future use)
     
@@ -92,12 +91,12 @@ def call_llm_streaming(messages, max_tokens=150, temperature=0.2):
         
         logger.info(f"Starting streaming call to Ollama with model: {MODEL_NAME}")
         
-        resp = requests.post(OLLAMA_URL, json=payload, stream=True, timeout=180)
+        resp = requests.post(OLLAMA_URL, json=payload, stream=True, timeout=300)
         resp.raise_for_status()
         
-        import json
         for line in resp.iter_lines():
             if line:
+                import json
                 chunk = json.loads(line)
                 if "message" in chunk:
                     content = chunk["message"].get("content", "")

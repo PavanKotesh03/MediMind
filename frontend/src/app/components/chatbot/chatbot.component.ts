@@ -4,8 +4,7 @@ import {
   ViewChild,
   ElementRef,
   AfterViewChecked,
-  OnDestroy,
-  ChangeDetectorRef
+  OnDestroy
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChatService } from '../../shared/chat.service';
@@ -17,7 +16,6 @@ interface Message {
   loading?: boolean;
   isFinal?: boolean;
   finalData?: any;
-  isTyping?: boolean;
 }
 
 @Component({
@@ -32,16 +30,9 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
   conversationFinished = false;
   isWaitingForResponse = false;
   isViewingHistory = false;
-  
-  currentStreamingMessage: string = '';
-  isStreaming = false;
-  
-  private processingFinalAssessment = false;
-  private finalAssessmentTimeout: any = null;
 
   private sessionSubscription?: Subscription;
-  private routeSubscription?: Subscription;
-  private scrollNeeded = false;
+  private resetSubscription?: Subscription;
 
   @ViewChild('messagesContainer')
   private messagesContainer!: ElementRef<HTMLDivElement>;
@@ -49,106 +40,127 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
   constructor(
     private chatService: ChatService,
     private route: ActivatedRoute,
-    private router: Router,
-    private cdr: ChangeDetectorRef
+    private router: Router
   ) { }
 
   ngOnInit() {
-    console.log('COMPONENT: ngOnInit');
-    
-    // Initialize with welcome message
-    this.resetToWelcome();
+    this.messages.push({
+      role: 'assistant',
+      content: 'Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.'
+    });
 
-    // Listen to session changes from service
-    this.sessionSubscription = this.chatService.sessionId$.subscribe(sessionId => {
-      if (sessionId && sessionId !== this.sessionId) {
-        console.log('COMPONENT: Session updated from service:', sessionId);
-        this.handleSessionChange(sessionId);
+    this.route.params.subscribe(params => {
+      const urlSessionId = params['sessionId'];
+
+      if (urlSessionId) {
+        console.log('URL has session ID:', urlSessionId);
+
+        this.sessionId = urlSessionId;
+        this.chatService.setSessionId(urlSessionId);
+
+        console.log('Session ID set to:', this.sessionId);
+
+        this.chatService.getConversation(urlSessionId).subscribe({
+          next: (res: any) => {
+            const conversation = res.data;
+
+            this.messages = conversation.messages
+              .map((msg: any) => ({
+                role: msg.role,
+                content: this.cleanText(msg.content)
+              }))
+              .filter((m: Message) => m.content);
+
+            if (conversation.assessment) {
+              this.messages.push({
+                role: 'assistant',
+                content: '',
+                isFinal: true,
+                finalData: conversation.assessment
+              });
+            }
+
+            this.sessionId = urlSessionId;
+            this.conversationFinished = conversation.status === 'completed';
+            this.isViewingHistory = conversation.status === 'completed';
+
+            this.chatService.setSessionId(urlSessionId);
+          },
+          error: () => {
+            // Handle error or new session logic
+          }
+        });
+      } else {
+        // ... existing logic ...
+        const serviceSessionId = this.chatService.getSessionId();
+        if (serviceSessionId) {
+          this.sessionId = serviceSessionId;
+          this.router.navigate(['/chat', serviceSessionId], { replaceUrl: true });
+        } else {
+          this.initializeSession();
+        }
       }
     });
 
-    // Listen to route parameter changes (important for detecting new chat clicks)
-    this.routeSubscription = this.route.params.subscribe(params => {
-      const urlSessionId = params['sessionId'];
-      
-      console.log('COMPONENT: Route changed, sessionId:', urlSessionId);
-      
-      if (urlSessionId && urlSessionId !== this.sessionId) {
-        this.handleSessionChange(urlSessionId);
-      } else if (!urlSessionId) {
-        // No session in URL - check service
-        const serviceSessionId = this.chatService.getSessionId();
-        if (serviceSessionId) {
-          console.log('COMPONENT: Using service session:', serviceSessionId);
-          this.router.navigate(['/chat', serviceSessionId], { replaceUrl: true });
-        }
+    this.resetSubscription = this.chatService.reset$.subscribe(reset => {
+      if (reset) {
+        this.performReset();
+      }
+    });
+
+    this.sessionSubscription = this.chatService.sessionId$.subscribe(sessionId => {
+      if (sessionId && sessionId !== this.sessionId) {
+        this.sessionId = sessionId;
       }
     });
   }
 
   ngAfterViewChecked() {
-    if (this.scrollNeeded) {
-      this.scrollToBottom();
-      this.scrollNeeded = false;
-    }
+    this.scrollToBottom();
+  }
+
+  loadConversation(sessionId: string) {
+    this.chatService.getConversation(sessionId).subscribe({
+      next: (res: any) => {
+        const conversation = res.data;
+
+        this.messages = conversation.messages
+          .map((msg: any) => ({
+            role: msg.role,
+            content: this.cleanText(msg.content)
+          }))
+          .filter((m: Message) => m.content);
+
+        // REMOVED POLLING LOGIC HERE
+
+        if (conversation.assessment) {
+          this.messages.push({
+            role: 'assistant',
+            content: '',
+            isFinal: true,
+            finalData: conversation.assessment
+          });
+        }
+
+        this.sessionId = sessionId;
+        this.conversationFinished = conversation.status === 'completed';
+        this.isViewingHistory = conversation.status === 'completed';
+
+        this.chatService.setSessionId(sessionId);
+
+        this.router.navigate(['/chat', sessionId], { replaceUrl: true });
+      },
+      error: (error: any) => {
+        console.error('Error loading conversation:', error);
+        alert('Failed to load conversation');
+      }
+    });
   }
 
   ngOnDestroy() {
+    // ✅ FIXED: Unsubscribe to prevent duplicates/leaks
     this.sessionSubscription?.unsubscribe();
-    this.routeSubscription?.unsubscribe();
-    
-    if (this.finalAssessmentTimeout) {
-      clearTimeout(this.finalAssessmentTimeout);
-    }
-  }
-
-  private resetToWelcome() {
-    this.messages = [{
-      role: 'assistant',
-      content: 'Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.'
-    }];
-    this.conversationFinished = false;
-    this.isWaitingForResponse = false;
-    this.isViewingHistory = false;
-    this.isStreaming = false;
-    this.currentStreamingMessage = '';
-    this.input = '';
-  }
-
-  private handleSessionChange(newSessionId: string) {
-    console.log('COMPONENT: Handling session change to:', newSessionId);
-    
-    this.sessionId = newSessionId;
-    this.chatService.setSessionId(newSessionId);
-    
-    // Check if this is an existing conversation or new one
-    this.chatService.getConversation(newSessionId).subscribe({
-      next: (res: any) => {
-        const conversation = res.data;
-        
-        const hasRealMessages = conversation.messages && 
-                               conversation.messages.length > 0 &&
-                               conversation.messages.some((m: any) => 
-                                 m.role === 'user' && m.content.trim() !== ''
-                               );
-        
-        if (hasRealMessages) {
-          console.log('COMPONENT: Loading existing conversation');
-          this.loadConversation(newSessionId);
-        } else {
-          console.log('COMPONENT: New empty session, showing welcome');
-          this.resetToWelcome();
-          this.scrollNeeded = true;
-          this.cdr.detectChanges();
-        }
-      },
-      error: () => {
-        console.log('COMPONENT: Fresh session, showing welcome');
-        this.resetToWelcome();
-        this.scrollNeeded = true;
-        this.cdr.detectChanges();
-      }
-    });
+    this.resetSubscription?.unsubscribe();
   }
 
   private scrollToBottom(): void {
@@ -185,164 +197,60 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
     const userMessage = this.input.trim();
 
     this.messages.push({ role: 'user', content: userMessage });
-    this.scrollNeeded = true;
 
-    const streamingMsg: Message = {
+    const loadingMsg: Message = {
       role: 'assistant',
-      content: 'Thinking...',
-      loading: false,
-      isTyping: true
+      content: '',
+      loading: true
     };
-    this.messages.push(streamingMsg);
+    this.messages.push(loadingMsg);
 
     this.input = '';
     this.isWaitingForResponse = true;
-    this.isStreaming = true;
-    this.currentStreamingMessage = '';
-    this.processingFinalAssessment = false;
-    this.cdr.detectChanges();
-
-    console.log('COMPONENT: Sending message via STREAMING API');
-    console.log('COMPONENT: sessionId:', this.sessionId);
 
     if (this.sessionId) {
-      console.log('COMPONENT: Using streaming API (saves to DB automatically)');
-      this.sendWithStreaming(userMessage, streamingMsg);
+      this.chatService.sendMessage(this.sessionId, userMessage).subscribe({
+        next: (res: any) => {
+          const response = res.data;
+          this.handleResponse(response, loadingMsg);
+          this.isWaitingForResponse = false;
+        },
+        error: (error: any) => {
+          this.handleError(error, loadingMsg);
+          this.isWaitingForResponse = false;
+        }
+      });
     } else {
-      console.error('COMPONENT: No session ID - user must click New Chat or login first');
-      streamingMsg.isTyping = false;
-      streamingMsg.content = 'Error: No session available. Please click "New Chat" button.';
-      this.isWaitingForResponse = false;
-      this.isStreaming = false;
-      this.cdr.detectChanges();
+      this.chatService.startInterview(userMessage).subscribe({
+        next: (res: any) => {
+          const response = res.data;
+          this.handleResponse(response, loadingMsg);
+
+          this.sessionId = response.session_id;
+          this.chatService.setSessionId(response.session_id);
+
+          this.router.navigate(['/chat', response.session_id], { replaceUrl: true });
+
+          this.isWaitingForResponse = false;
+        },
+        error: (error: any) => {
+          this.handleError(error, loadingMsg);
+          this.isWaitingForResponse = false;
+        }
+      });
     }
   }
 
-  private sendWithStreaming(message: string, streamingMsg: Message) {
-  console.log('COMPONENT: Starting stream - DB save happens automatically');
-  
-  let firstChunkReceived = false;
-  let streamComplete = false;
-  let finalAssessmentData: any = null;
-  let finalExplanationText = '';
-  
-  this.finalAssessmentTimeout = setTimeout(() => {
-    if (this.processingFinalAssessment && !streamComplete) {
-      console.warn('COMPONENT: Final assessment timeout - completing anyway');
-      this.completeFinalAssessment(streamingMsg);
-    }
-  }, 30000);
-  
-  this.chatService.sendMessageStreaming(this.sessionId!, message).subscribe({
-    next: (chunk: any) => {
-      console.log('COMPONENT: Received chunk:', chunk);
-      
-      if (!firstChunkReceived && chunk.type === 'text') {
-        streamingMsg.isTyping = false;
-        streamingMsg.content = '';
-        firstChunkReceived = true;
-      }
-      
-      if (chunk.type === 'text') {
-        // Regular conversation streaming
-        let cleanContent = chunk.content.replace(/<END_OF_INTERVIEW>/gi, '');
-        this.currentStreamingMessage += cleanContent;
-        streamingMsg.content = this.currentStreamingMessage;
-        this.scrollNeeded = true;
-        this.cdr.detectChanges();
-        
-      } else if (chunk.type === 'final_header') {
-        // Received final assessment header (disease, severity, reason)
-        console.log('COMPONENT: Received final assessment header');
-        this.processingFinalAssessment = true;
-        this.conversationFinished = true;
-        
-        // Clear conversation message
-        this.currentStreamingMessage = '';
-        streamingMsg.content = '';
-        streamingMsg.isTyping = false;
-        
-        // Store header data
-        finalAssessmentData = chunk.data;
-        finalExplanationText = '';
-        
-        // Create final assessment structure
-        streamingMsg.isFinal = true;
-        streamingMsg.finalData = {
-          disease: finalAssessmentData.disease,
-          severity: finalAssessmentData.severity,
-          reason: finalAssessmentData.reason,
-          explanation: '' // Will be filled by streaming
-        };
-        
-        this.scrollNeeded = true;
-        this.cdr.detectChanges();
-        
-      } else if (chunk.type === 'final_text') {
-        // Stream explanation text word by word
-        if (streamingMsg.finalData) {
-          finalExplanationText += chunk.content;
-          streamingMsg.finalData.explanation = finalExplanationText;
-          this.scrollNeeded = true;
-          this.cdr.detectChanges();
-        }
-        
-      } else if (chunk.type === 'final_complete') {
-        // Final assessment streaming complete
-        console.log('COMPONENT: Final assessment streaming complete');
-        this.processingFinalAssessment = false;
-        
-      } else if (chunk.type === 'error') {
-        console.log('COMPONENT: Error chunk received:', chunk);
-        streamingMsg.isTyping = false;
-        streamingMsg.content = 'Error: ' + (chunk.error || 'An error occurred');
-        this.scrollNeeded = true;
-        this.cdr.detectChanges();
-      }
-    },
-    complete: () => {
-      console.log('COMPONENT: Stream complete - message saved to DB');
-      streamComplete = true;
-      streamingMsg.isTyping = false;
-      this.isWaitingForResponse = false;
-      this.isStreaming = false;
-      this.currentStreamingMessage = '';
-      
-      if (this.finalAssessmentTimeout) {
-        clearTimeout(this.finalAssessmentTimeout);
-        this.finalAssessmentTimeout = null;
-      }
-      
-      this.cdr.detectChanges();
-    },
-    error: (error: any) => {
-      console.error('COMPONENT: Stream error:', error);
-      streamComplete = true;
-      streamingMsg.isTyping = false;
-      streamingMsg.content = 'An error occurred. Please try again.';
-      this.isWaitingForResponse = false;
-      this.isStreaming = false;
-      this.currentStreamingMessage = '';
-      
-      if (this.finalAssessmentTimeout) {
-        clearTimeout(this.finalAssessmentTimeout);
-        this.finalAssessmentTimeout = null;
-      }
-      
-      this.scrollNeeded = true;
-      this.cdr.detectChanges();
-    }
-  });
-}
+  private handleResponse(response: any, loadingMsg: Message) {
+    loadingMsg.loading = false;
 
-
-  private completeFinalAssessment(streamingMsg: Message) {
-    if (streamingMsg.finalData) {
+    if (response.finished && response.final) {
       this.conversationFinished = true;
-      streamingMsg.isFinal = true;
-      streamingMsg.content = this.formatFinalAssessment(streamingMsg.finalData);
-      this.scrollNeeded = true;
-      this.cdr.detectChanges();
+      loadingMsg.isFinal = true;
+      loadingMsg.finalData = response.final;
+      loadingMsg.content = this.formatFinalAssessment(response.final);
+    } else {
+      loadingMsg.content = this.cleanText(response.reply || 'Please continue...');
     }
   }
 
@@ -357,105 +265,52 @@ Explanation:
 ${final.explanation}`;
   }
 
-  loadConversation(sessionId: string) {
-  this.chatService.getConversation(sessionId).subscribe({
-    next: (res: any) => {
-      const conversation = res.data;
+  private handleError(error: any, loadingMsg: Message) {
+    loadingMsg.loading = false;
+    loadingMsg.content = 'An error occurred. Please try again.';
+  }
 
-      // Check if first message is already a welcome message
-      const firstMsg = conversation.messages?.[0];
-      const hasWelcome = firstMsg && 
-                        firstMsg.role === 'assistant' && 
-                        firstMsg.content.includes('MediMind');
+  private isInitializing = false;
 
-      if (hasWelcome) {
-        // Use existing messages including welcome
-        this.messages = conversation.messages
-          .map((msg: any) => ({
-            role: msg.role,
-            content: this.cleanText(msg.content)
-          }))
-          .filter((m: Message) => m.content);
-      } else {
-        // Add welcome message first, then conversation
-        this.messages = [{
-          role: 'assistant',
-          content: 'Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.'
-        }];
-
-        const conversationMessages = conversation.messages
-          .map((msg: any) => ({
-            role: msg.role,
-            content: this.cleanText(msg.content)
-          }))
-          .filter((m: Message) => m.content);
-        
-        this.messages.push(...conversationMessages);
+  private performReset() {
+    this.messages = [
+      {
+        role: 'assistant',
+        content: 'Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.'
       }
+    ];
 
-      if (conversation.assessment) {
-        this.messages.push({
-          role: 'assistant',
-          content: '',
-          isFinal: true,
-          finalData: conversation.assessment
-        });
-      }
-
-      this.sessionId = sessionId;
-      this.conversationFinished = conversation.status === 'completed';
-      this.isViewingHistory = conversation.status === 'completed';
-
-      this.chatService.setSessionId(sessionId);
-      
-      this.scrollNeeded = true;
-      this.cdr.detectChanges();
-    },
-    error: (error: any) => {
-      console.error('Error loading conversation:', error);
-      alert('Failed to load conversation');
-    }
-  });
-}
-
-
-  startNewChat() {
-    console.log('COMPONENT: Starting new chat - calling /start API');
-    
-    // Clear any pending timeouts first
-    if (this.finalAssessmentTimeout) {
-      clearTimeout(this.finalAssessmentTimeout);
-      this.finalAssessmentTimeout = null;
-    }
-    
-    // Reset UI state immediately
     this.sessionId = null;
-    this.resetToWelcome();
-    
-    // First clear the session in service
-    this.chatService.clearSession();
-    
-    // Then call /start API to create new session
-    this.chatService.startInterview('').subscribe({
+    this.conversationFinished = false;
+    this.isWaitingForResponse = false;
+    this.isViewingHistory = false;
+
+    this.initializeSession();
+  }
+
+  private initializeSession() {
+    if (this.isInitializing) return;
+    this.isInitializing = true;
+
+    this.chatService.startInterview().subscribe({
       next: (res: any) => {
-        const newSessionId = res.data?.session_id;
-        
-        if (newSessionId) {
-          console.log('COMPONENT: New empty session created via /start:', newSessionId);
-          this.sessionId = newSessionId;
-          this.chatService.setSessionId(newSessionId);
-          this.router.navigate(['/chat', newSessionId], { replaceUrl: true });
-        } else {
-          console.error('COMPONENT: No session_id in response');
-          alert('Failed to create session. Please try again.');
+        this.isInitializing = false;
+        if (res.success && res.data) {
+          console.log('Session initialized:', res.data.session_id);
+          this.sessionId = res.data.session_id;
+          this.chatService.setSessionId(this.sessionId!);
+
+          this.router.navigate(['/chat', this.sessionId], { replaceUrl: true });
         }
       },
-      error: (error) => {
-        console.error('COMPONENT: Failed to create new session:', error);
-        alert('Failed to start new chat. Please try again.');
+      error: (err) => {
+        this.isInitializing = false;
+        console.error('Failed to initialize session:', err);
       }
     });
-    
-    this.cdr.detectChanges();
+  }
+
+  startNewChat() {
+    this.chatService.clearSession();
   }
 }

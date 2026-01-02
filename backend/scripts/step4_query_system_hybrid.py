@@ -229,12 +229,6 @@ if __name__ == "__main__":
             print(f"[{i}] {r['text'][:300]}")
             print("-" * 60)
 
-def retrieve_medical_context(query: str, top_k: int = 6) -> List[Dict]:
-    """
-    Wrapper function for easy import by other modules.
-    This is what explanation_agent.py should use.
-    """
-    return hybrid_search(query)[:top_k]
 
 # step4_query_system_hybrid.py - WITH DIAGNOSIS/TREATMENT FILTERING
 # import chromadb

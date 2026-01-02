@@ -16,7 +16,7 @@ export class AuthService {
 
   // 🆕 IN-MEMORY TOKEN CACHE (not localStorage)
   private tokenCache: string | null = null;
-  
+
   // User data observable
   private userDataSubject = new BehaviorSubject<UserData | null>(null);
   public userData$ = this.userDataSubject.asObservable();
@@ -24,7 +24,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
     // 🆕 Restore from sessionStorage on app init (survives page refresh, not browser close)
     this.tokenCache = sessionStorage.getItem('access_token');
-    
+
     const userData = sessionStorage.getItem('user_data');
     if (userData) {
       this.userDataSubject.next(JSON.parse(userData));
@@ -34,11 +34,16 @@ export class AuthService {
   // =========================
   // 🆕 TOKEN CACHE METHODS
   // =========================
-  
+
   setToken(token: string) {
     this.tokenCache = token;
     // Also store in sessionStorage for page refresh (cleared when browser closes)
     sessionStorage.setItem('access_token', token);
+  }
+
+  setUserData(data: UserData) {
+    this.userDataSubject.next(data);
+    sessionStorage.setItem('user_data', JSON.stringify(data));
   }
 
   getToken(): string | null {
@@ -61,11 +66,11 @@ export class AuthService {
         if (response.success && response.data?.access_token) {
           // 🆕 Store in cache
           this.setToken(response.data.access_token);
-          
+
           const userData = { email };
           this.userDataSubject.next(userData);
           sessionStorage.setItem('user_data', JSON.stringify(userData));
-          
+
           console.log('✅ Token stored in cache');
         }
       })
@@ -77,7 +82,7 @@ export class AuthService {
       tap((response: any) => {
         if (response.success && response.data?.access_token) {
           this.setToken(response.data.access_token);
-          
+
           const userData = { email, name };
           this.userDataSubject.next(userData);
           sessionStorage.setItem('user_data', JSON.stringify(userData));

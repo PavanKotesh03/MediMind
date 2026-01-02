@@ -11,7 +11,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ChatHistoryComponent } from './components/chat-history/chat-history.component';
+import { ChatHistoryComponent } from './components/chat-history/chat-history.component'; // ✅ Add this
 
 // Services & Guards
 import { AuthGuard } from './shared/auth.guard';
@@ -20,6 +20,7 @@ import { ChatService } from './shared/chat.service';
 
 // Interceptor
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
+import { LoginSuccessComponent } from './auth/login-success/login-success.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
     SignupComponent,
     ChatbotComponent,
     NavbarComponent,
-    ChatHistoryComponent
+    ChatHistoryComponent,
+    LoginSuccessComponent  // ✅ Add this
   ],
   imports: [
     BrowserModule,

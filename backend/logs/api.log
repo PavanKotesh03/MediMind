@@ -21484,3 +21484,12 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-01-02 23:41:40,688 - llm.llm_client - INFO - LLM response received: 135 chars
 2026-01-02 23:41:42,737 - services.chat_service - INFO - Assistant reply saved to DB for session 616052cf-9a12-4a6f-8fd3-c79ff48e9c03
 2026-01-02 23:41:42,737 - api.routers.chat - INFO - Stream completed for 616052cf-9a12-4a6f-8fd3-c79ff48e9c03
+2026-01-02 23:47:04,724 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-02 23:47:04,724 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-02 23:47:04,730 - api.routers.history - INFO - Fetching conversation 616052cf-9a12-4a6f-8fd3-c79ff48e9c03 for user: shashi@gmail.com
+2026-01-02 23:47:04,731 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-02 23:47:04,746 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-02 23:47:04,749 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-02 23:47:04,820 - services.history_service - INFO - Retrieved conversation 616052cf-9a12-4a6f-8fd3-c79ff48e9c03 with 5 messages for shashi@gmail.com
+2026-01-02 23:47:05,164 - services.history_service - INFO - Retrieved 50 chat sessions for shashi@gmail.com
+2026-01-02 23:47:05,165 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 50, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}

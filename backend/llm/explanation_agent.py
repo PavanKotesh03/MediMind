@@ -1,5 +1,6 @@
 from llm.llm_client import call_llm
 from llm.prompts import EXPLANATION_SYSTEM_PROMPT
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -17,10 +18,10 @@ class MedicalExplanationAgent:
         """
         logger.info(f"Generating explanation for disease: {disease}")
         
-        # Build symptom-based query from history
+        # 🔹 Build symptom-based query from history
         symptom_query = self._build_symptom_query(history)
 
-        # Decide RAG query
+        # 🔹 Decide RAG query
         if disease.lower().startswith("undifferentiated"):
             rag_query = symptom_query
             explanation_mode = "symptom-based"
@@ -30,7 +31,7 @@ class MedicalExplanationAgent:
             explanation_mode = "disease-based"
             logger.debug("Using disease-based RAG")
 
-        # RAG retrieval
+        # 🔹 RAG retrieval
         docs = self.retriever(rag_query, top_k=6)
         context = self._format_context(docs)
 
@@ -64,7 +65,7 @@ Mention warning signs briefly.
             }
         ]
 
-        # Call LLM and extract content
+        # 🔧 FIX: Call LLM and extract string content
         result_obj = call_llm(messages, max_tokens=450)
         
         # Extract text from response object

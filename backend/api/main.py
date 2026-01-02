@@ -64,8 +64,18 @@ async def prompt_injection_handler(request: Request, exc: PromptInjectionError):
 
 
 # =====================================================
-# CORS
+# CORS & SESSION
 # =====================================================
+from starlette.middleware.sessions import SessionMiddleware
+import os
+
+# Session Middleware (Required for OAuth)
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=os.getenv("SECRET_KEY", "your-secret-key"),
+    max_age=3600  # 1 hour
+)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:4200"],

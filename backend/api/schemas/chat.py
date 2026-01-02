@@ -7,7 +7,7 @@ from datetime import datetime
 # START INTERVIEW - REMOVE user_email (comes from JWT)
 # =====================================================
 class StartRequest(BaseModel):
-    message: str  # Only message - email comes from JWT token
+    message: Optional[str] = None  # Only message - email comes from JWT token
 
 
 # =====================================================

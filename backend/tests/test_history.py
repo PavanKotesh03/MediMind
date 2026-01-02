@@ -5,7 +5,13 @@ def test_get_grouped_history(client, monkeypatch):
     monkeypatch.setattr(
         history_router,
         "get_grouped_history",
-        lambda db, email: {"today": []},
+        lambda db, email: {
+            "today": [],
+            "yesterday": [],
+            "this_week": [],
+            "this_month": [],
+            "older": [],
+        },
     )
 
     response = client.get(

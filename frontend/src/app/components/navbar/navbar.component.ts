@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.authService.userData$.subscribe(userData => {
       if (userData) {
+        // ✅ FIXED: Handle undefined name, fallback to email
         this.userName = userData.name || userData.email || 'User';
       }
     });
@@ -31,43 +32,29 @@ export class NavbarComponent implements OnInit {
   }
 
   newChat() {
-    console.log('NAVBAR: New Chat clicked');
-    
-    // Clear current session
-    this.chatService.clearSession();
-    
-    // Call /start API to create new session
-    this.chatService.startInterview('').subscribe({
-      next: (res: any) => {
-        console.log('NAVBAR: Start API response:', res);
-        
-        const newSessionId = res.data?.session_id;
-        
-        if (newSessionId) {
-          console.log('NAVBAR: New session created:', newSessionId);
-          this.chatService.setSessionId(newSessionId);
-          
-          // Navigate WITHOUT reloading - component will handle it
-          this.router.navigate(['/chat', newSessionId], { 
-            replaceUrl: true,
-            skipLocationChange: false
-          });
-        } else {
-          console.error('NAVBAR: No session_id in response');
-          alert('Failed to create new chat session');
+    const sessionId = this.chatService.getSessionId();
+
+    if (sessionId) {
+      this.chatService.resetChat(sessionId).subscribe({
+        next: () => {
+          console.log('Chat reset successful');
+          this.chatService.clearSession();
+        },
+        error: (err) => {
+          console.error('Reset API failed:', err);
+          // Clear anyway
+          this.chatService.clearSession();
         }
-      },
-      error: (err) => {
-        console.error('NAVBAR: Failed to create session:', err);
-        alert('Failed to start new chat. Please try again.');
-      }
-    });
+      });
+    } else {
+      this.chatService.clearSession();
+    }
 
     this.menuOpen = false;
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.clearUser();
     this.chatService.clearSession();
     this.router.navigate(['/login']);
     this.menuOpen = false;

@@ -1,18 +1,17 @@
 .history-sidebar {
   width: 260px;
-  height: 100vh;
   background: #ffffff;
   color: #1f2937;
   display: flex;
   flex-direction: column;
   border-right: 1px solid #e5e7eb;
-  overflow: hidden;
 }
+
+/* REMOVED: .sidebar-header and .btn-new-chat styles */
 
 .history-container {
   flex: 1;
   overflow-y: auto;
-  overflow-x: hidden;
   padding: 8px;
   background: #ffffff;
 }
@@ -118,7 +117,7 @@
   background: #ffffff;
 }
 
-/* Scrollbar styling - Chrome/Safari */
+/* Scrollbar styling */
 .history-container::-webkit-scrollbar {
   width: 6px;
 }
@@ -134,10 +133,4 @@
 
 .history-container::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
-}
-
-/* Firefox scrollbar support */
-.history-container {
-  scrollbar-width: thin;
-  scrollbar-color: #d1d5db #f9fafb;
 }

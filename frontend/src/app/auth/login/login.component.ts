@@ -34,49 +34,35 @@ export class LoginComponent {
       return;
     }
 
-    console.log('LOGIN: Attempting login:', this.email);
+    console.log('Attempting login:', this.email);
 
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
-        console.log('LOGIN: Login successful');
+        console.log('Login successful:', response);
         this.isLoading = false;
-        
+
         if (response.success) {
-          console.log('LOGIN: Token stored, navigating immediately');
+          console.log('Token stored in cache');
+          console.log('Token stored in cache');
           this.router.navigate(['/chat']);
-          
-          // Call /start to create empty session
-          console.log('LOGIN: Creating empty session with /start');
-          this.chatService.startInterview('').subscribe({
-            next: (res: any) => {
-              const sessionId = res.data?.session_id;
-              
-              if (sessionId) {
-                console.log('LOGIN: Empty session created:', sessionId);
-                this.chatService.setSessionId(sessionId);
-                this.router.navigate(['/chat', sessionId], { replaceUrl: true });
-              }
-            },
-            error: (error) => {
-              console.error('LOGIN: Session creation failed:', error);
-            }
-          });
         } else {
           this.errorMessage = response.message || 'Login failed';
         }
       },
       error: (error) => {
-        console.error('LOGIN: Login error:', error);
+        console.error('Login error:', error);
         this.isLoading = false;
-        
+
         if (error.status === 401) {
           this.errorMessage = 'Invalid email or password';
         } else if (error.status === 0) {
-          this.errorMessage = 'Cannot connect to server';
+          this.errorMessage = 'Cannot connect to server. Is the backend running?';
         } else {
-          this.errorMessage = error.error?.detail || 'Login failed';
+          this.errorMessage = error.error?.detail || 'Login failed. Please try again.';
         }
       }
     });
   }
+
+
 }

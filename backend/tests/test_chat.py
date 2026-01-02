@@ -9,6 +9,7 @@ def test_start_chat(client, monkeypatch):
     )
 
     response = client.post("/api/start", json={"message": "Fever"})
+    assert response.status_code == 200, response.text
     body = response.json()
 
     assert body["success"] is True
@@ -26,6 +27,7 @@ def test_chat_continue(client, monkeypatch):
         "/api/chat",
         json={"session_id": "s1", "message": "2 days"},
     )
+    assert response.status_code == 200, response.text
 
     body = response.json()
     assert body["data"]["finished"] is False
@@ -50,6 +52,7 @@ def test_chat_finish(client, monkeypatch):
         "/api/chat",
         json={"session_id": "s1", "message": "Yes"},
     )
+    assert response.status_code == 200, response.text
 
     body = response.json()
     assert body["data"]["finished"] is True
@@ -66,5 +69,6 @@ def test_reset_chat(client, monkeypatch):
         "/api/reset",
         json={"session_id": "s1"},
     )
+    assert response.status_code == 200, response.text
 
     assert response.json()["success"] is True

@@ -3,19 +3,9 @@
     <h2>MediMind</h2>
     <p class="subtitle">Login to your account</p>
 
-    <input
-      type="email"
-      placeholder="Email"
-      [(ngModel)]="email"
-      [disabled]="isLoading"
-    />
+    <input type="email" placeholder="Email" [(ngModel)]="email" [disabled]="isLoading" />
 
-    <input
-      type="password"
-      placeholder="Password"
-      [(ngModel)]="password"
-      [disabled]="isLoading"
-    />
+    <input type="password" placeholder="Password" [(ngModel)]="password" [disabled]="isLoading" />
 
     <div class="error-popup" *ngIf="errorMessage">
       {{ errorMessage }}
@@ -24,6 +14,12 @@
     <button (click)="login()" [disabled]="isLoading">
       {{ isLoading ? 'Logging in...' : 'Login' }}
     </button>
+
+    <div class="divider">OR</div>
+
+    <a href="http://localhost:8000/api/auth/google/login" class="google-btn">
+      Sign in with Google
+    </a>
 
     <p class="link-text">
       New user?
