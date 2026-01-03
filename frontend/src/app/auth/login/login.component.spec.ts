@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import { AuthService } from '../../shared/auth.service';
-import { ChatService } from '../../shared/chat.service';
+import { AuthService } from 'src/app/shared/auth.service';
+import { ChatService } from 'src/app/shared/chat.service';
 import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick, discardPeriodicTasks } from '@angular/core/testing';
 import { ChatHistoryComponent } from './chat-history.component';
-import { ChatService } from '../../shared/chat.service';
+import { ChatService } from 'src/app/shared/chat.service';
 import { BehaviorSubject, of, throwError } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 

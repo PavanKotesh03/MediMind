@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignupComponent } from './signup.component';
-import { AuthService } from '../../shared/auth.service';
+import { AuthService } from 'src/app/shared/auth.service';
 import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { FormsModule, NgForm } from '@angular/forms';

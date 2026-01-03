@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ChatbotComponent } from './chatbot.component';
-import { ChatService } from '../../shared/chat.service';
+import { ChatService } from 'src/app/shared/chat.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, throwError, BehaviorSubject } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';

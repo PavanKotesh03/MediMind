@@ -7,7 +7,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChatService } from '../../shared/chat.service';
+import { ChatService } from 'src/app/shared/chat.service';
 import { Subscription } from 'rxjs';
 
 interface Message {

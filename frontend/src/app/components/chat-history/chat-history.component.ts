@@ -171,7 +171,7 @@
 
 
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { ChatService } from '../../shared/chat.service';
+import { ChatService } from 'src/app/shared/chat.service';
 import { Subscription } from 'rxjs';
 
 interface SessionSummary {

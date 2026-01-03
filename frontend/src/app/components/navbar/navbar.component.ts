@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../shared/auth.service';
-import { ChatService } from '../../shared/chat.service';
+import { AuthService } from 'src/app/shared/auth.service';
+import { ChatService } from 'src/app/shared/chat.service';
 
 @Component({
   selector: 'app-navbar',

@@ -3,19 +3,19 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { AuthService } from '../../shared/auth.service';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
-    const isAuthEndpoint = request.url.includes('/auth/login') || 
-                          request.url.includes('/auth/register');
+    const isAuthEndpoint = request.url.includes('/auth/login') ||
+      request.url.includes('/auth/register');
 
     if (token && !isAuthEndpoint) {
       request = request.clone({

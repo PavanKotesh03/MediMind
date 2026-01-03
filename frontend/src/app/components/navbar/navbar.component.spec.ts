@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavbarComponent } from './navbar.component';
-import { AuthService } from '../../shared/auth.service';
-import { ChatService } from '../../shared/chat.service';
+import { AuthService } from 'src/app/shared/auth.service';
+import { ChatService } from 'src/app/shared/chat.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, of, throwError } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
