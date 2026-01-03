@@ -13,6 +13,10 @@ export class ChatService {
     private sessionIdSubject = new BehaviorSubject<string | null>(null);
     public sessionId$ = this.sessionIdSubject.asObservable();
 
+    // 🆕 Sidebar State
+    private sidebarSubject = new BehaviorSubject<boolean>(false);
+    public sidebarOpen$ = this.sidebarSubject.asObservable();
+
     reset$ = new Subject<boolean>();
 
     private historyCache: any = null;
@@ -47,6 +51,10 @@ export class ChatService {
         this.sessionIdSubject.next(null);
         sessionStorage.removeItem('current_session_id');
         this.reset$.next(true);
+    }
+
+    toggleSidebar() {
+        this.sidebarSubject.next(!this.sidebarSubject.value);
     }
 
     startInterview(message?: string): Observable<any> {

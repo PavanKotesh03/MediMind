@@ -101,7 +101,7 @@ def restore_session_from_db(session_id: str, db: DBSession) -> bool:
                 })
         
         # Recreate interview agent with history
-        interview = MedicalInterviewAgent(retriever)
+        interview = MedicalInterviewAgent()
         interview.history = conversation_history
         interview.finished = False  # Will continue interview
         
@@ -131,7 +131,7 @@ def start_session(user_message: str | None, user_email: str):
     logger.info(f"Starting new chat session for user: {user_email}")
     
     session_id = uuid.uuid4()
-    interview = MedicalInterviewAgent(retriever)
+    interview = MedicalInterviewAgent()
     
     # CASE 1: Start with specific message (Legacy support / optional)
     if user_message:

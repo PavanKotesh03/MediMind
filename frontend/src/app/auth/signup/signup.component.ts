@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
+import { NgForm } from '@angular/forms'; // Import NgForm
 
 @Component({
   selector: 'app-signup',
@@ -8,13 +9,18 @@ import { AuthService } from '../../shared/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  name = '';
-  age: number | null = null;  // ✅ Add back
-  gender = '';                 // ✅ Add back
+  firstName = '';
+  lastName = '';
+  age: number | null = null;
+  gender = '';
   email = '';
   password = '';
   confirmPassword = '';
-  errorMessage = '';
+
+  errors = {
+    general: ''
+  };
+
   isLoading = false;
 
   constructor(
@@ -22,41 +28,20 @@ export class SignupComponent {
     private authService: AuthService
   ) { }
 
-  isValidName(name: string): boolean {
-    return /^[A-Za-z ]+$/.test(name.trim());
-  }
+  signup(form: NgForm) {
+    // Reset general error
+    this.errors.general = '';
 
-  signup() {
-    this.errorMessage = '';
+    // If form is invalid or passwords don't match, touch all fields to show errors
+    if (form.invalid || this.password !== this.confirmPassword) {
+      Object.keys(form.controls).forEach(key => {
+        form.controls[key].markAsTouched();
+      });
 
-    // Validations
-    if (!this.name || !this.isValidName(this.name)) {
-      this.errorMessage = 'Please enter a valid name (letters only)';
-      return;
-    }
-
-    if (!this.age || this.age <= 0 || this.age >= 120) {
-      this.errorMessage = 'Please enter a valid age';
-      return;
-    }
-
-    if (!this.gender) {
-      this.errorMessage = 'Please select a gender';
-      return;
-    }
-
-    if (!this.email || !this.email.includes('@')) {
-      this.errorMessage = 'Please enter a valid email';
-      return;
-    }
-
-    if (!this.password || this.password.length < 6) {
-      this.errorMessage = 'Password must be at least 6 characters';
-      return;
-    }
-
-    if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'Passwords do not match';
+      // Special case for password mismatch manual check
+      if (this.password !== this.confirmPassword && form.controls['confirmPassword']) {
+        form.controls['confirmPassword'].markAsTouched();
+      }
       return;
     }
 
@@ -65,11 +50,13 @@ export class SignupComponent {
 
     console.log('Attempting registration...', this.email.toLowerCase());
 
-    // ✅ Register with just email, password, name (backend ignores age/gender for now)
     this.authService.register(
       this.email.toLowerCase(),
       this.password,
-      this.name.trim()
+      this.firstName.trim(),
+      this.lastName.trim(),
+      this.age || 0,
+      this.gender
     ).subscribe({
       next: (response) => {
         console.log('Registration response:', response);
@@ -79,7 +66,7 @@ export class SignupComponent {
           console.log('User registered successfully');
           this.router.navigate(['/chat']);
         } else {
-          this.errorMessage = response.message || 'Registration failed';
+          this.errors.general = response.message || 'Registration failed';
         }
       },
       error: (error) => {
@@ -87,13 +74,13 @@ export class SignupComponent {
         this.isLoading = false;
 
         if (error.status === 400) {
-          this.errorMessage = error.error?.detail || 'Email already registered';
+          this.errors.general = error.error?.detail || 'Email already registered';
         } else if (error.status === 0) {
-          this.errorMessage = 'Cannot connect to server. Is the backend running?';
+          this.errors.general = 'Cannot connect to server. Is the backend running?';
         } else if (error.status === 500) {
-          this.errorMessage = 'Server error. Please check backend logs.';
+          this.errors.general = 'Server error. Please check backend logs.';
         } else {
-          this.errorMessage = error.error?.detail || 'Registration failed. Please try again.';
+          this.errors.general = error.error?.detail || 'Registration failed. Please try again.';
         }
       }
     });

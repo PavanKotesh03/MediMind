@@ -13,10 +13,15 @@
   background: #f7f7f8;
 }
 
+/* SIDEBAR WRAPPER (Desktop) */
+.sidebar-wrapper {
+  height: 100%;
+}
+
 /* CENTERED CHAT COLUMN */
 .chat-column {
   width: 100%;
-  max-width: 720px;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -59,8 +64,10 @@
 
 /* USER BUBBLE */
 .row.user .bubble {
-  background: lightgreen;
-  color: black;
+  background: #10a37f;
+  /* Open AI / Medical Green */
+  color: white;
+  /* White text against dark green */
   border: none;
 }
 
@@ -260,4 +267,43 @@ button:disabled {
 
 .messages::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
+}
+
+/* ============================
+   MOBILE RESPONSIVENESS
+============================ */
+@media (max-width: 768px) {
+  .chat-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* SIDEBAR WRAPPER */
+  .sidebar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: white;
+  }
+
+  /* CHAT WRAPPER */
+  .chat-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* HELPER CLASS TO HIDE */
+  .mobile-hidden {
+    display: none !important;
+  }
+
+  /* Make sidebar full width on mobile */
+  ::ng-deep app-chat-history .history-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+  }
 }

@@ -6,7 +6,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def register_user(db: Session, name: str, age: int, gender: str, email: str, password: str) -> dict:
+def register_user(db: Session, first_name: str, last_name: str, age: int, gender: str, email: str, password: str) -> dict:
     """Register a new user"""
     logger.debug(f"Attempting to register user: {email}")
     # Check if user exists
@@ -20,7 +20,8 @@ def register_user(db: Session, name: str, age: int, gender: str, email: str, pas
     
     # Create user
     new_user = User(
-        name=name,
+        first_name=first_name,
+        last_name=last_name,
         age=age,
         gender=gender,
         email=email,
@@ -33,7 +34,7 @@ def register_user(db: Session, name: str, age: int, gender: str, email: str, pas
     
     logger.info(f"User {email} registered successfully")
     return {
-        "name": new_user.name,
+        "name": f"{new_user.first_name} {new_user.last_name}",
         "email": new_user.email,
         "age": new_user.age,
         "gender": new_user.gender
@@ -56,7 +57,7 @@ def login_user(db: Session, email: str, password: str) -> dict:
     
     logger.info(f"User {email} logged in successfully")
     return {
-        "name": user.name,
+        "name": f"{user.first_name} {user.last_name}",
         "email": user.email,
         "age": user.age,
         "gender": user.gender
@@ -72,7 +73,7 @@ def register_oauth_user(db: Session, email: str, name: str) -> dict:
     if existing_user:
         logger.info(f"OAuth: User {email} already exists, logging in")
         return {
-            "name": existing_user.name,
+            "name": f"{existing_user.first_name} {existing_user.last_name}",
             "email": existing_user.email,
             "age": existing_user.age,
             "gender": existing_user.gender
@@ -80,8 +81,15 @@ def register_oauth_user(db: Session, email: str, name: str) -> dict:
     
     # Create new user with dummy values for missing fields
     logger.info(f"OAuth: Registering new user {email}")
+    
+    # Simple split for name
+    parts = name.split()
+    first_name = parts[0] if parts else "User"
+    last_name = " ".join(parts[1:]) if len(parts) > 1 else ""
+
     new_user = User(
-        name=name,
+        first_name=first_name,
+        last_name=last_name,
         email=email,
         age=0,  # Default for OAuth
         gender="Other",  # Default for OAuth
@@ -93,7 +101,7 @@ def register_oauth_user(db: Session, email: str, name: str) -> dict:
     db.refresh(new_user)
     
     return {
-        "name": new_user.name,
+        "name": f"{new_user.first_name} {new_user.last_name}",
         "email": new_user.email,
         "age": new_user.age,
         "gender": new_user.gender

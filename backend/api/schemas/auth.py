@@ -2,7 +2,8 @@ from pydantic import BaseModel
 from typing import Optional
 
 class RegisterRequest(BaseModel):
-    name: str
+    first_name: str
+    last_name: str
     age: int
     gender: str
     email: str

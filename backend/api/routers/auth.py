@@ -17,7 +17,8 @@ router = APIRouter()
 # REQUEST SCHEMAS
 # =====================================================
 class UserRegister(BaseModel):
-    name: str
+    first_name: str
+    last_name: str
     age: int
     gender: str
     email: EmailStr
@@ -47,7 +48,8 @@ def register(user_data: UserRegister, db: Session = Depends(get_db)):
     try:
         user = register_user(
             db,
-            name=user_data.name,
+            first_name=user_data.first_name,
+            last_name=user_data.last_name,
             age=user_data.age,
             gender=user_data.gender,
             email=user_data.email,

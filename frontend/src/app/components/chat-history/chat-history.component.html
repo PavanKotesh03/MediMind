@@ -1,22 +1,24 @@
 <div class="history-sidebar">
-  
+
   <!-- REMOVED: New Chat button (it's in navbar) -->
-  
+
   <div class="history-container" *ngIf="!isLoading">
-    
+
     <!-- Today -->
     <div class="history-group" *ngIf="groupedHistory.today.length > 0">
       <h4 class="group-title">Today</h4>
-      <div *ngFor="let session of groupedHistory.today"
-           class="history-item"
-           [class.active]="activeSessionId === session.session_id"
-           (click)="selectSession(session.session_id)">
+      <div *ngFor="let session of groupedHistory.today" class="history-item"
+        [class.active]="activeSessionId === session.session_id" (click)="selectSession(session.session_id)">
         <div class="item-content">
           <p class="item-title">{{ session.title }}</p>
           <span class="item-time">{{ formatDate(session.created_at) }}</span>
         </div>
-        <button class="btn-delete" (click)="deleteSession(session.session_id, $event)">
-          🗑️
+        <button class="btn-delete" title="Delete Chat" (click)="deleteSession(session.session_id, $event)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
         </button>
       </div>
     </div>
@@ -24,10 +26,8 @@
     <!-- Yesterday -->
     <div class="history-group" *ngIf="groupedHistory.yesterday.length > 0">
       <h4 class="group-title">Yesterday</h4>
-      <div *ngFor="let session of groupedHistory.yesterday"
-           class="history-item"
-           [class.active]="activeSessionId === session.session_id"
-           (click)="selectSession(session.session_id)">
+      <div *ngFor="let session of groupedHistory.yesterday" class="history-item"
+        [class.active]="activeSessionId === session.session_id" (click)="selectSession(session.session_id)">
         <div class="item-content">
           <p class="item-title">{{ session.title }}</p>
           <span class="item-time">{{ formatDate(session.created_at) }}</span>
@@ -41,10 +41,8 @@
     <!-- This Week -->
     <div class="history-group" *ngIf="groupedHistory.this_week.length > 0">
       <h4 class="group-title">Previous 7 Days</h4>
-      <div *ngFor="let session of groupedHistory.this_week"
-           class="history-item"
-           [class.active]="activeSessionId === session.session_id"
-           (click)="selectSession(session.session_id)">
+      <div *ngFor="let session of groupedHistory.this_week" class="history-item"
+        [class.active]="activeSessionId === session.session_id" (click)="selectSession(session.session_id)">
         <div class="item-content">
           <p class="item-title">{{ session.title }}</p>
           <span class="item-time">{{ formatDate(session.created_at) }}</span>
@@ -58,10 +56,8 @@
     <!-- This Month -->
     <div class="history-group" *ngIf="groupedHistory.this_month.length > 0">
       <h4 class="group-title">Previous 30 Days</h4>
-      <div *ngFor="let session of groupedHistory.this_month"
-           class="history-item"
-           [class.active]="activeSessionId === session.session_id"
-           (click)="selectSession(session.session_id)">
+      <div *ngFor="let session of groupedHistory.this_month" class="history-item"
+        [class.active]="activeSessionId === session.session_id" (click)="selectSession(session.session_id)">
         <div class="item-content">
           <p class="item-title">{{ session.title }}</p>
           <span class="item-time">{{ formatDate(session.created_at) }}</span>
@@ -75,10 +71,8 @@
     <!-- Older -->
     <div class="history-group" *ngIf="groupedHistory.older.length > 0">
       <h4 class="group-title">Older</h4>
-      <div *ngFor="let session of groupedHistory.older"
-           class="history-item"
-           [class.active]="activeSessionId === session.session_id"
-           (click)="selectSession(session.session_id)">
+      <div *ngFor="let session of groupedHistory.older" class="history-item"
+        [class.active]="activeSessionId === session.session_id" (click)="selectSession(session.session_id)">
         <div class="item-content">
           <p class="item-title">{{ session.title }}</p>
           <span class="item-time">{{ formatDate(session.created_at) }}</span>

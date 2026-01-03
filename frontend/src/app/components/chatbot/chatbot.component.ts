@@ -27,6 +27,9 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
   messages: Message[] = [];
   input = '';
   sessionId: string | null = null;
+  isLoading = false;
+  isSidebarOpen = false; // Mobile Sidebar State
+
   conversationFinished = false;
   isWaitingForResponse = false;
   isViewingHistory = false;
@@ -44,6 +47,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
   ) { }
 
   ngOnInit() {
+    // 1. Subscribe to Sidebar State (Mobile)
+    this.chatService.sidebarOpen$.subscribe(isOpen => {
+      this.isSidebarOpen = isOpen;
+    });
+
     this.messages.push({
       role: 'assistant',
       content: 'Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.'
@@ -140,6 +148,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
             isFinal: true,
             finalData: conversation.assessment
           });
+        }
+
+        // Close sidebar on mobile after selection
+        if (this.isSidebarOpen) {
+          this.chatService.toggleSidebar();
         }
 
         this.sessionId = sessionId;

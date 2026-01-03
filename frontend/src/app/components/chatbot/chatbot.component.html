@@ -1,21 +1,19 @@
 <div class="chat-container">
-  
+
   <!-- LEFT: HISTORY SIDEBAR -->
-  <app-chat-history
-    (sessionSelected)="loadConversation($event)"
-    (newChatClicked)="startNewChat()">
-  </app-chat-history>
+  <div class="sidebar-wrapper" [class.mobile-hidden]="!isSidebarOpen">
+    <app-chat-history (sessionSelected)="loadConversation($event)" (newChatClicked)="startNewChat()">
+    </app-chat-history>
+  </div>
 
   <!-- RIGHT: CHAT AREA -->
-  <div class="chat-wrapper">
+  <div class="chat-wrapper" [class.mobile-hidden]="isSidebarOpen">
     <div class="chat-column">
 
       <div class="messages" #messagesContainer>
         <div *ngFor="let msg of messages" class="row" [class.user]="msg.role === 'user'">
 
-          <div class="bubble" 
-               [class.loading-bubble]="msg.loading"
-               [class.final-bubble]="msg.isFinal">
+          <div class="bubble" [class.loading-bubble]="msg.loading" [class.final-bubble]="msg.isFinal">
 
             <!-- NORMAL MESSAGE -->
             <ng-container *ngIf="!msg.loading && !msg.isFinal">
@@ -26,24 +24,24 @@
             <ng-container *ngIf="!msg.loading && msg.isFinal && msg.finalData">
               <div class="final-assessment">
                 <h3>Assessment Complete</h3>
-                
+
                 <div class="assessment-item">
                   <strong>Condition:</strong> {{ msg.finalData.disease }}
                 </div>
-                
+
                 <div class="assessment-item">
-                  <strong>Severity:</strong> 
+                  <strong>Severity:</strong>
                   <span [class.severity-high]="msg.finalData.severity === 'HIGH'"
-                        [class.severity-medium]="msg.finalData.severity === 'MEDIUM'"
-                        [class.severity-emergency]="msg.finalData.severity === 'EMERGENCY'">
+                    [class.severity-medium]="msg.finalData.severity === 'MEDIUM'"
+                    [class.severity-emergency]="msg.finalData.severity === 'EMERGENCY'">
                     {{ msg.finalData.severity }}
                   </span>
                 </div>
-                
+
                 <div class="assessment-item">
                   <strong>Reason:</strong> {{ msg.finalData.reason }}
                 </div>
-                
+
                 <div class="assessment-explanation">
                   <strong>Medical Explanation:</strong>
                   <p>{{ msg.finalData.explanation }}</p>
@@ -71,14 +69,10 @@
 
         <!--  Show input for active conversations -->
         <ng-container *ngIf="!conversationFinished">
-          <textarea
-            [(ngModel)]="input"
-            placeholder="Message MediMind…"
-            (keydown)="handleKeydown($event)">
+          <textarea [(ngModel)]="input" placeholder="Please enter your symptoms" (keydown)="handleKeydown($event)">
           </textarea>
 
-          <button (click)="send()" 
-                  [disabled]="isWaitingForResponse || !input.trim()">
+          <button (click)="send()" [disabled]="isWaitingForResponse || !input.trim()">
             ➤
           </button>
         </ng-container>

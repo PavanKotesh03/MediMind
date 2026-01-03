@@ -67,7 +67,10 @@ export class AuthService {
           // 🆕 Store in cache
           this.setToken(response.data.access_token);
 
-          const userData = { email };
+          // Fix: Capture name from backend response
+          const name = response.data.user?.name || '';
+          const userData = { email, name };
+
           this.userDataSubject.next(userData);
           sessionStorage.setItem('user_data', JSON.stringify(userData));
 
@@ -77,13 +80,21 @@ export class AuthService {
     );
   }
 
-  register(email: string, password: string, name?: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, { email, password, name }).pipe(
+  register(email: string, password: string, firstName: string, lastName: string, age: number, gender: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/register`, {
+      email,
+      password,
+      first_name: firstName,
+      last_name: lastName,
+      age: age,
+      gender: gender
+    }).pipe(
       tap((response: any) => {
         if (response.success && response.data?.access_token) {
           this.setToken(response.data.access_token);
 
-          const userData = { email, name };
+          const fullName = `${firstName} ${lastName}`;
+          const userData = { email, name: fullName };
           this.userDataSubject.next(userData);
           sessionStorage.setItem('user_data', JSON.stringify(userData));
         }

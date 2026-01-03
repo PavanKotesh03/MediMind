@@ -3,56 +3,90 @@
     <h2>MediMind</h2>
     <p class="subtitle">Create your account</p>
 
-    <input
-      type="text"
-      placeholder="Name"
-      [(ngModel)]="name"
-      [disabled]="isLoading"
-    />
+    <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
 
-    <input
-      type="number"
-      placeholder="Age"
-      [(ngModel)]="age"
-      min="1"
-      [disabled]="isLoading"
-    />
+      <!-- FIRST NAME -->
+      <div class="form-field">
+        <input type="text" name="firstName" placeholder="Enter your first name" [(ngModel)]="firstName" required
+          pattern="^[A-Za-z ]+$" #firstNameRef="ngModel" [disabled]="isLoading"
+          [class.error-border]="firstNameRef.invalid && firstNameRef.touched" />
+        <div class="error-text" *ngIf="firstNameRef.invalid && firstNameRef.touched">
+          <span *ngIf="firstNameRef.errors?.['required']">First name is required</span>
+          <span *ngIf="firstNameRef.errors?.['pattern']">Please enter a valid first name (letters only)</span>
+        </div>
+      </div>
 
-    <select [(ngModel)]="gender" [disabled]="isLoading">
-      <option value="" disabled selected>Gender</option>
-      <option>Male</option>
-      <option>Female</option>
-      <option>Other</option>
-    </select>
+      <!-- LAST NAME -->
+      <div class="form-field">
+        <input type="text" name="lastName" placeholder="Enter your last name" [(ngModel)]="lastName" required
+          pattern="^[A-Za-z ]+$" #lastNameRef="ngModel" [disabled]="isLoading"
+          [class.error-border]="lastNameRef.invalid && lastNameRef.touched" />
+        <div class="error-text" *ngIf="lastNameRef.invalid && lastNameRef.touched">
+          <span *ngIf="lastNameRef.errors?.['required']">Last name is required</span>
+          <span *ngIf="lastNameRef.errors?.['pattern']">Please enter a valid last name (letters only)</span>
+        </div>
+      </div>
 
-    <input
-      type="email"
-      placeholder="Email"
-      [(ngModel)]="email"
-      [disabled]="isLoading"
-    />
+      <!-- AGE & GENDER ROW -->
+      <div class="row-group">
+        <div class="form-field">
+          <input type="number" name="age" placeholder="Enter your age" [(ngModel)]="age" required min="1" max="120"
+            #ageRef="ngModel" [disabled]="isLoading" />
+          <div class="error-text" *ngIf="ageRef.invalid && ageRef.touched">
+            Please enter a valid age
+          </div>
+        </div>
 
-    <input
-      type="password"
-      placeholder="Password"
-      [(ngModel)]="password"
-      [disabled]="isLoading"
-    />
+        <div class="form-field">
+          <select name="gender" [(ngModel)]="gender" required #genderRef="ngModel" [disabled]="isLoading">
+            <option value="" disabled selected>Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+          <div class="error-text" *ngIf="genderRef.invalid && genderRef.touched">
+            Please select a gender
+          </div>
+        </div>
+      </div>
 
-    <input
-      type="password"
-      placeholder="Confirm Password"
-      [(ngModel)]="confirmPassword"
-      [disabled]="isLoading"
-    />
+      <!-- EMAIL -->
+      <div class="form-field">
+        <input type="email" name="email" placeholder="Enter your email" [(ngModel)]="email" required email
+          #emailRef="ngModel" [disabled]="isLoading" />
+        <div class="error-text" *ngIf="emailRef.invalid && emailRef.touched">
+          Please enter a valid email
+        </div>
+      </div>
 
-    <div class="error-popup" *ngIf="errorMessage">
-      {{ errorMessage }}
-    </div>
+      <!-- PASSWORD -->
+      <div class="form-field">
+        <input type="password" name="password" placeholder="Enter your password" [(ngModel)]="password" required
+          minlength="6" #passwordRef="ngModel" [disabled]="isLoading" />
+        <div class="error-text" *ngIf="passwordRef.invalid && passwordRef.touched">
+          Password must be at least 6 characters
+        </div>
+      </div>
 
-    <button (click)="signup()" [disabled]="isLoading">
-      {{ isLoading ? 'Creating Account...' : 'Sign Up' }}
-    </button>
+      <!-- CONFIRM PASSWORD -->
+      <div class="form-field">
+        <input type="password" name="confirmPassword" placeholder="Confirm your password" [(ngModel)]="confirmPassword"
+          required #confirmPasswordRef="ngModel" [disabled]="isLoading" />
+        <div class="error-text" *ngIf="confirmPasswordRef.touched && password !== confirmPassword">
+          Passwords do not match
+        </div>
+      </div>
+
+      <!-- General Error (Server side) -->
+      <div class="error-popup" *ngIf="errors.general">
+        {{ errors.general }}
+      </div>
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Creating Account...' : 'Sign Up' }}
+      </button>
+
+    </form>
 
     <p class="link-text">
       Already have an account?

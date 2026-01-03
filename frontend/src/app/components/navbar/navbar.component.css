@@ -1,18 +1,19 @@
 .navbar {
-height: 60px;
-background: #ffffff;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 0 20px;
-box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  height: 60px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .right {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 14px; /* spacing between New Chat & icon */
+  gap: 14px;
+  /* spacing between New Chat & icon */
 }
 
 /* NEW CHAT BUTTON */
@@ -32,20 +33,38 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .logo {
-width: 35px;
-margin-right: 10px;
+  width: 35px;
+  margin-right: 10px;
 }
 
 
+/* MENU BUTTON (Mobile Only) */
+.menu-btn {
+  display: none;
+  /* Hidden by default */
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  color: #374151;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+  }
+}
+
 .title {
-font-size: 22px;
-font-weight: 600;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 
 .left {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .right {
@@ -73,7 +92,7 @@ align-items: center;
   width: 160px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   z-index: 1000;
 }
@@ -88,16 +107,19 @@ align-items: center;
   background: #f7f7f8;
 }
 
-.user-name {
-  font-weight: 600;
-  cursor: default;
-}
-
-.dropdown-divider {
-  height: 1px;
-  background: #e5e7eb;
-}
-
-.logout {
+/* LOGOUT BUTTON */
+.logout-btn {
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid #dc2626;
+  background: white;
   color: #dc2626;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  color: white;
 }

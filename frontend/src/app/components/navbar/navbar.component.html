@@ -1,37 +1,33 @@
 <nav class="navbar">
   <div class="left">
+    <!-- MOBILE MENU BTN -->
+    <button class="menu-btn" (click)="toggleSidebar()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
     <img src="assets/chatbot.png" class="logo" />
     <span class="title">MediMind</span>
+
+    <!--  NEW CHAT (Moved to Left) -->
+    <button class="new-chat-btn" (click)="newChat()" style="margin-left: 20px;">
+      New Chat
+    </button>
   </div>
 
   <!-- RIGHT SECTION -->
   <div class="right" *ngIf="userName">
 
-    <!--  NEW CHAT (LEFT OF USER ICON) -->
-    <button class="new-chat-btn" (click)="newChat()">
-      New Chat
+    <!-- USER NAME -->
+    <span class="user-name-display">{{ userName }}</span>
+
+    <!-- LOGOUT BUTTON -->
+    <button class="logout-btn" (click)="logout()">
+      Logout
     </button>
-
-    <!-- USER ICON -->
-    <div class="user-menu" (click)="toggleMenu()">
-      <img
-        src="assets/user.png"
-        alt="User"
-        class="user-icon"
-      />
-    </div>
-
-    <!-- DROPDOWN -->
-    <div class="dropdown" *ngIf="menuOpen">
-      <div class="dropdown-item user-name">
-        {{ userName }}
-      </div>
-
-      <div class="dropdown-divider"></div>
-
-      <div class="dropdown-item logout" (click)="logout()">
-        Logout
-      </div>
-    </div>
   </div>
 </nav>

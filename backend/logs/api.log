@@ -21493,3 +21493,968 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-01-02 23:47:04,820 - services.history_service - INFO - Retrieved conversation 616052cf-9a12-4a6f-8fd3-c79ff48e9c03 with 5 messages for shashi@gmail.com
 2026-01-02 23:47:05,164 - services.history_service - INFO - Retrieved 50 chat sessions for shashi@gmail.com
 2026-01-02 23:47:05,165 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 50, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 16:44:01,890 - api.main - INFO - Starting model preload on app startup
+2026-01-03 16:44:02,278 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-03 16:44:07,259 - api.main - INFO - RAG models preloaded successfully
+2026-01-03 17:03:55,450 - api.routers.auth - INFO - Initiating Google Login with redirect_uri: http://localhost:8000/api/auth/google/callback
+2026-01-03 17:03:56,583 - httpx - INFO - HTTP Request: GET https://accounts.google.com/.well-known/openid-configuration "HTTP/1.1 200 OK"
+2026-01-03 17:04:48,918 - api.routers.auth - INFO - Registration attempt for email: madara@gmail.com
+2026-01-03 17:04:49,177 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\MahammadSahil.Shaik\Downloads\MediMind JWT Final By Shashi\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-03 17:04:49,628 - services.auth_service - INFO - User madara@gmail.com registered successfully
+2026-01-03 17:04:49,669 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-03 17:04:49,690 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:04:49,690 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:04:49,692 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:04:49,795 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:04:49,795 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:04:49,796 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:04:49,859 - services.history_service - INFO - Retrieved 0 chat sessions for madara@gmail.com
+2026-01-03 17:04:49,860 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 0, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:04:59,562 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:04:59,562 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:04:59,563 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:05:02,069 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:05:02,069 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:05:02,070 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:07:38,621 - api.main - INFO - Starting model preload on app startup
+2026-01-03 17:07:38,929 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-03 17:07:42,380 - api.main - INFO - RAG models preloaded successfully
+2026-01-03 17:07:58,985 - api.routers.auth - INFO - Login attempt for email: madara@gmail.com
+2026-01-03 17:07:59,217 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\MahammadSahil.Shaik\Downloads\MediMind JWT Final By Shashi\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-03 17:07:59,628 - services.auth_service - INFO - User madara@gmail.com logged in successfully
+2026-01-03 17:07:59,668 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-03 17:07:59,691 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:07:59,694 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:07:59,698 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:07:59,701 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:07:59,703 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:07:59,703 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:07:59,781 - services.chat_service - INFO - Chat session 45eb5be5-e662-4ea4-8f22-9df4f1869632 started and saved for madara@gmail.com
+2026-01-03 17:07:59,794 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:07:59,794 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:07:59,795 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:07:59,827 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 1 messages for madara@gmail.com
+2026-01-03 17:07:59,901 - services.history_service - INFO - Retrieved 1 chat sessions for madara@gmail.com
+2026-01-03 17:07:59,902 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 1, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:07:59,908 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:07:59,908 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:07:59,908 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:07:59,911 - services.history_service - INFO - Retrieved 1 chat sessions for madara@gmail.com
+2026-01-03 17:07:59,911 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 1, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:08:25,025 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:08:25,025 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:08:25,029 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 17:08:28,213 - llm.llm_client - ERROR - HTTP error from Ollama: 500 - {"error":"model requires more system memory (4.8 GiB) than is available (4.8 GiB)"}
+2026-01-03 17:08:33,661 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:08:33,665 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:08:33,669 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 4
+2026-01-03 17:09:16,331 - llm.llm_client - INFO - LLM response received: 32 chars
+2026-01-03 17:09:16,339 - services.chat_service - INFO - Updating session 45eb5be5-e662-4ea4-8f22-9df4f1869632 title to: fever
+2026-01-03 17:09:29,510 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:09:29,510 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:09:29,510 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 6
+2026-01-03 17:09:37,593 - llm.llm_client - INFO - LLM response received: 89 chars
+2026-01-03 17:09:41,145 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:09:41,146 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:09:41,146 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 8
+2026-01-03 17:09:46,173 - llm.llm_client - INFO - LLM response received: 26 chars
+2026-01-03 17:10:13,812 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:10:13,812 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:10:13,812 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 10
+2026-01-03 17:10:19,759 - llm.llm_client - INFO - LLM response received: 69 chars
+2026-01-03 17:10:33,340 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:10:33,341 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:10:33,342 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 12
+2026-01-03 17:10:39,995 - llm.llm_client - INFO - LLM response received: 70 chars
+2026-01-03 17:10:42,060 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:10:42,061 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:10:42,062 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 14
+2026-01-03 17:10:55,476 - llm.llm_client - INFO - LLM response received: 195 chars
+2026-01-03 17:11:03,463 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:11:03,464 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:11:03,465 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 16
+2026-01-03 17:11:09,258 - llm.llm_client - INFO - LLM response received: 59 chars
+2026-01-03 17:11:14,373 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:11:14,374 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:11:14,374 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 18
+2026-01-03 17:11:21,989 - llm.llm_client - INFO - LLM response received: 109 chars
+2026-01-03 17:11:26,929 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:11:26,930 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:11:26,931 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 20
+2026-01-03 17:11:31,663 - llm.llm_client - INFO - LLM response received: 18 chars
+2026-01-03 17:11:31,664 - llm.interview_agent - INFO - Interview completed
+2026-01-03 17:11:31,665 - services.chat_service - INFO - Interview finished for session 45eb5be5-e662-4ea4-8f22-9df4f1869632
+2026-01-03 17:11:31,665 - services.chat_service - INFO - Disease match for session 45eb5be5-e662-4ea4-8f22-9df4f1869632: Uncomplicated Viral Fever
+2026-01-03 17:11:31,665 - llm.explanation_agent - INFO - Generating explanation for disease: Uncomplicated Viral Fever
+2026-01-03 17:11:35,259 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 17:12:59,802 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:12:59,802 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:12:59,805 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:12:59,810 - services.history_service - INFO - Retrieved 1 chat sessions for madara@gmail.com
+2026-01-03 17:12:59,810 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 1, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:14:17,156 - llm.llm_client - INFO - LLM response received: 1308 chars
+2026-01-03 17:14:17,157 - llm.explanation_agent - INFO - Explanation generated successfully: 1308 chars
+2026-01-03 17:14:17,176 - services.chat_service - INFO - Assessment saved for completed session 45eb5be5-e662-4ea4-8f22-9df4f1869632
+2026-01-03 17:14:30,997 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:14:30,997 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:14:31,004 - services.chat_service - INFO - Resetting session 45eb5be5-e662-4ea4-8f22-9df4f1869632
+2026-01-03 17:14:31,009 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:14:31,009 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:14:31,013 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:14:31,015 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:14:31,015 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:14:31,015 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:14:31,015 - services.chat_service - INFO - Chat session ded81313-afba-4e46-bc6b-fbb01689f6aa started and saved for madara@gmail.com
+2026-01-03 17:14:31,015 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:14:31,015 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:14:31,034 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:14:31,034 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:14:31,034 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 17:14:31,038 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 1 messages for madara@gmail.com
+2026-01-03 17:14:41,782 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:14:41,782 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:14:41,782 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 17:14:51,315 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:14:51,315 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:14:51,315 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:14:51,315 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 17:15:03,183 - llm.llm_client - INFO - LLM response received: 46 chars
+2026-01-03 17:15:03,184 - services.chat_service - INFO - Updating session ded81313-afba-4e46-bc6b-fbb01689f6aa title to: Cough
+2026-01-03 17:15:10,520 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:15:10,520 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:15:10,520 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 5
+2026-01-03 17:15:17,790 - llm.llm_client - INFO - LLM response received: 68 chars
+2026-01-03 17:15:41,367 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:15:41,367 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:15:41,367 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 7
+2026-01-03 17:15:52,473 - llm.llm_client - INFO - LLM response received: 148 chars
+2026-01-03 17:16:54,936 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:16:54,936 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:16:54,936 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 9
+2026-01-03 17:17:05,600 - llm.llm_client - INFO - LLM response received: 140 chars
+2026-01-03 17:17:59,804 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:17:59,804 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:17:59,806 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:17:59,811 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:17:59,812 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:18:20,398 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:18:20,398 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:18:20,399 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 11
+2026-01-03 17:18:29,252 - llm.llm_client - INFO - LLM response received: 106 chars
+2026-01-03 17:18:38,943 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:18:38,944 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:18:38,944 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 13
+2026-01-03 17:18:48,198 - llm.llm_client - INFO - LLM response received: 103 chars
+2026-01-03 17:18:50,572 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:18:50,573 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:18:50,573 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 15
+2026-01-03 17:18:57,449 - llm.llm_client - INFO - LLM response received: 69 chars
+2026-01-03 17:19:02,953 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:19:02,955 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:19:02,955 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 17
+2026-01-03 17:19:07,647 - llm.llm_client - INFO - LLM response received: 18 chars
+2026-01-03 17:19:07,648 - llm.interview_agent - INFO - Interview completed
+2026-01-03 17:19:07,648 - services.chat_service - INFO - Interview finished for session ded81313-afba-4e46-bc6b-fbb01689f6aa
+2026-01-03 17:19:07,648 - services.chat_service - WARNING - No disease match for session ded81313-afba-4e46-bc6b-fbb01689f6aa, using fallback
+2026-01-03 17:19:07,648 - llm.explanation_agent - INFO - Generating explanation for disease: Undifferentiated Symptom Pattern
+2026-01-03 17:19:10,209 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 17:22:48,125 - llm.llm_client - INFO - LLM response received: 1838 chars
+2026-01-03 17:22:48,127 - llm.explanation_agent - INFO - Explanation generated successfully: 1838 chars
+2026-01-03 17:22:48,137 - services.chat_service - INFO - Assessment saved for completed session ded81313-afba-4e46-bc6b-fbb01689f6aa
+2026-01-03 17:22:54,051 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:22:54,054 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:22:54,054 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 17:22:54,060 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 17:22:59,799 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:22:59,799 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:22:59,799 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:22:59,806 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:22:59,807 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:33:11,734 - api.main - INFO - Starting model preload on app startup
+2026-01-03 17:33:12,011 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-03 17:33:15,005 - api.main - INFO - RAG models preloaded successfully
+2026-01-03 17:33:22,621 - api.routers.auth - INFO - Login attempt for email: madara@gmail.com
+2026-01-03 17:33:22,827 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\MahammadSahil.Shaik\Downloads\MediMind JWT Final By Shashi\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-03 17:33:23,211 - services.auth_service - INFO - User madara@gmail.com logged in successfully
+2026-01-03 17:33:23,241 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-03 17:33:23,264 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:33:23,264 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:33:23,266 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:33:23,270 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:33:23,270 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:33:23,272 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:33:23,314 - services.chat_service - INFO - Chat session 76323824-32f8-4f6f-9533-e9c178c9d042 started and saved for madara@gmail.com
+2026-01-03 17:33:23,331 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:33:23,332 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:33:23,333 - api.routers.history - INFO - Fetching conversation 76323824-32f8-4f6f-9533-e9c178c9d042 for user: madara@gmail.com
+2026-01-03 17:33:23,382 - services.history_service - INFO - Retrieved conversation 76323824-32f8-4f6f-9533-e9c178c9d042 with 1 messages for madara@gmail.com
+2026-01-03 17:33:23,455 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 17:33:23,455 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:33:23,460 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:33:23,460 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:33:23,466 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:33:23,470 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 17:33:23,471 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:33:32,625 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:33:32,625 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:33:32,626 - api.routers.history - INFO - Deleting conversation 76323824-32f8-4f6f-9533-e9c178c9d042 for user: madara@gmail.com
+2026-01-03 17:33:32,627 - services.history_service - INFO - Deleting conversation 76323824-32f8-4f6f-9533-e9c178c9d042 for user: madara@gmail.com
+2026-01-03 17:33:32,637 - services.history_service - INFO - Conversation 76323824-32f8-4f6f-9533-e9c178c9d042 deleted for madara@gmail.com
+2026-01-03 17:33:32,653 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:33:32,653 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:33:32,653 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:33:32,654 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:33:32,654 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:36:46,146 - api.main - INFO - Starting model preload on app startup
+2026-01-03 17:36:46,395 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-03 17:36:49,239 - api.main - INFO - RAG models preloaded successfully
+2026-01-03 17:37:03,007 - api.routers.auth - INFO - Login attempt for email: madara@gmail.com
+2026-01-03 17:37:03,291 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\MahammadSahil.Shaik\Downloads\MediMind JWT Final By Shashi\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-03 17:37:03,711 - services.auth_service - INFO - User madara@gmail.com logged in successfully
+2026-01-03 17:37:03,746 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-03 17:37:03,764 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:03,764 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:03,767 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:37:03,771 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:03,771 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:03,772 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:37:03,818 - services.chat_service - INFO - Chat session 78b32326-28c1-4f38-a577-c981cb87a7e4 started and saved for madara@gmail.com
+2026-01-03 17:37:03,829 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:03,830 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:03,832 - api.routers.history - INFO - Fetching conversation 78b32326-28c1-4f38-a577-c981cb87a7e4 for user: madara@gmail.com
+2026-01-03 17:37:03,880 - services.history_service - INFO - Retrieved conversation 78b32326-28c1-4f38-a577-c981cb87a7e4 with 1 messages for madara@gmail.com
+2026-01-03 17:37:03,971 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 17:37:03,971 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:37:03,976 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:03,977 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:03,978 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:37:03,982 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 17:37:03,983 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:37:16,856 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:16,856 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:16,856 - api.routers.history - INFO - Deleting conversation 78b32326-28c1-4f38-a577-c981cb87a7e4 for user: madara@gmail.com
+2026-01-03 17:37:16,856 - services.history_service - INFO - Deleting conversation 78b32326-28c1-4f38-a577-c981cb87a7e4 for user: madara@gmail.com
+2026-01-03 17:37:16,866 - services.history_service - INFO - Conversation 78b32326-28c1-4f38-a577-c981cb87a7e4 deleted for madara@gmail.com
+2026-01-03 17:37:16,882 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:16,882 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:16,882 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:37:16,882 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:37:16,882 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:37:18,481 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:18,482 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:18,484 - services.chat_service - INFO - Resetting session 78b32326-28c1-4f38-a577-c981cb87a7e4
+2026-01-03 17:37:18,491 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:18,491 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:18,492 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:37:18,492 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:18,492 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:18,496 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:37:18,498 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:37:18,499 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:37:18,513 - services.chat_service - INFO - Chat session a63d2237-4708-4922-84cc-8af952801e32 started and saved for madara@gmail.com
+2026-01-03 17:37:18,520 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:18,521 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:18,521 - api.routers.history - INFO - Fetching conversation a63d2237-4708-4922-84cc-8af952801e32 for user: madara@gmail.com
+2026-01-03 17:37:18,525 - services.history_service - INFO - Retrieved conversation a63d2237-4708-4922-84cc-8af952801e32 with 1 messages for madara@gmail.com
+2026-01-03 17:37:20,727 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:20,727 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:20,729 - services.chat_service - INFO - Resetting session a63d2237-4708-4922-84cc-8af952801e32
+2026-01-03 17:37:20,735 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:20,736 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:20,736 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 17:37:20,736 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:20,736 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:20,736 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:37:20,744 - services.chat_service - INFO - Chat session 1ecfabf8-15de-4680-8149-047eaa87db80 started and saved for madara@gmail.com
+2026-01-03 17:37:20,746 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 17:37:20,746 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:37:20,753 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:20,754 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:20,755 - api.routers.history - INFO - Fetching conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:37:20,759 - services.history_service - INFO - Retrieved conversation 1ecfabf8-15de-4680-8149-047eaa87db80 with 1 messages for madara@gmail.com
+2026-01-03 17:37:22,113 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:22,114 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:22,115 - api.routers.history - INFO - Fetching conversation a63d2237-4708-4922-84cc-8af952801e32 for user: madara@gmail.com
+2026-01-03 17:37:22,117 - services.history_service - INFO - Retrieved conversation a63d2237-4708-4922-84cc-8af952801e32 with 1 messages for madara@gmail.com
+2026-01-03 17:37:24,459 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:24,459 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:24,463 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 17:37:24,468 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 17:37:28,548 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:37:28,548 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:37:28,548 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:37:28,557 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 17:40:35,691 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:40:35,691 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:40:35,691 - api.routers.history - INFO - Fetching conversation a63d2237-4708-4922-84cc-8af952801e32 for user: madara@gmail.com
+2026-01-03 17:40:35,691 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:40:35,691 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:40:35,691 - services.history_service - INFO - Retrieved conversation a63d2237-4708-4922-84cc-8af952801e32 with 1 messages for madara@gmail.com
+2026-01-03 17:40:35,691 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:40:35,706 - services.history_service - INFO - Retrieved 4 chat sessions for madara@gmail.com
+2026-01-03 17:40:35,706 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:40:50,059 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:40:50,059 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:40:50,059 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:40:50,059 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 17:43:08,453 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:43:08,453 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:43:08,453 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:43:08,457 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:43:08,457 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:43:08,457 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:43:08,457 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 17:43:08,461 - services.history_service - INFO - Retrieved 4 chat sessions for madara@gmail.com
+2026-01-03 17:43:08,462 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:43:46,048 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:43:46,049 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:43:46,050 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:43:46,050 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:43:46,052 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:43:46,052 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:43:46,055 - services.history_service - INFO - Retrieved 4 chat sessions for madara@gmail.com
+2026-01-03 17:43:46,056 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:43:46,057 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 17:47:15,729 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:47:15,729 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:47:15,731 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:47:15,732 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:47:15,733 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:47:15,734 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:47:15,736 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 17:47:15,736 - services.history_service - INFO - Retrieved 4 chat sessions for madara@gmail.com
+2026-01-03 17:47:15,737 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:47:28,561 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:47:28,561 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:47:28,561 - api.routers.history - INFO - Fetching conversation a63d2237-4708-4922-84cc-8af952801e32 for user: madara@gmail.com
+2026-01-03 17:47:28,572 - services.history_service - INFO - Retrieved conversation a63d2237-4708-4922-84cc-8af952801e32 with 1 messages for madara@gmail.com
+2026-01-03 17:47:31,095 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:47:31,095 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:47:31,096 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 17:47:31,096 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 17:47:34,244 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:47:34,245 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:47:34,245 - api.routers.history - INFO - Fetching conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:47:34,245 - services.history_service - INFO - Retrieved conversation 1ecfabf8-15de-4680-8149-047eaa87db80 with 1 messages for madara@gmail.com
+2026-01-03 17:47:45,810 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:47:45,810 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:47:45,811 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:47:45,811 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:47:45,812 - api.routers.history - INFO - Fetching conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:47:45,812 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:47:45,814 - services.history_service - INFO - Retrieved 4 chat sessions for madara@gmail.com
+2026-01-03 17:47:45,816 - services.history_service - INFO - Retrieved conversation 1ecfabf8-15de-4680-8149-047eaa87db80 with 1 messages for madara@gmail.com
+2026-01-03 17:47:45,816 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:48:05,273 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:48:05,273 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:48:05,276 - api.routers.history - INFO - Fetching conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:48:05,280 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:48:05,280 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:48:05,282 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:48:05,282 - services.history_service - INFO - Retrieved conversation 1ecfabf8-15de-4680-8149-047eaa87db80 with 1 messages for madara@gmail.com
+2026-01-03 17:48:05,286 - services.history_service - INFO - Retrieved 4 chat sessions for madara@gmail.com
+2026-01-03 17:48:05,286 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:48:07,409 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:48:07,411 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:48:07,412 - api.routers.history - INFO - Fetching conversation a63d2237-4708-4922-84cc-8af952801e32 for user: madara@gmail.com
+2026-01-03 17:48:07,416 - services.history_service - INFO - Retrieved conversation a63d2237-4708-4922-84cc-8af952801e32 with 1 messages for madara@gmail.com
+2026-01-03 17:48:08,511 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:48:08,512 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:48:08,513 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 17:48:08,514 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 17:48:15,618 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:48:15,618 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:48:15,618 - api.routers.history - INFO - Deleting conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:48:15,618 - services.history_service - INFO - Deleting conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:48:15,622 - services.history_service - INFO - Conversation 1ecfabf8-15de-4680-8149-047eaa87db80 deleted for madara@gmail.com
+2026-01-03 17:48:15,630 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:48:15,630 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:48:15,630 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:48:15,630 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 17:48:15,630 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:48:18,853 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:48:18,853 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:48:18,854 - api.routers.history - INFO - Deleting conversation a63d2237-4708-4922-84cc-8af952801e32 for user: madara@gmail.com
+2026-01-03 17:48:18,855 - services.history_service - INFO - Deleting conversation a63d2237-4708-4922-84cc-8af952801e32 for user: madara@gmail.com
+2026-01-03 17:48:18,856 - services.history_service - INFO - Conversation a63d2237-4708-4922-84cc-8af952801e32 deleted for madara@gmail.com
+2026-01-03 17:48:18,863 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:48:18,863 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:48:18,863 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:48:18,863 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:48:18,863 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:53:06,219 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:06,219 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:06,219 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:53:06,222 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:53:06,223 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:53:46,049 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:46,051 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:46,051 - api.routers.history - INFO - Fetching conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:53:46,054 - services.history_service - WARNING - Conversation 1ecfabf8-15de-4680-8149-047eaa87db80 not found for user madara@gmail.com
+2026-01-03 17:53:46,055 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:46,055 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:46,059 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:53:46,063 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:53:46,064 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:53:47,586 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:47,587 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:47,587 - api.routers.history - INFO - Fetching conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:53:47,588 - services.history_service - WARNING - Conversation 1ecfabf8-15de-4680-8149-047eaa87db80 not found for user madara@gmail.com
+2026-01-03 17:53:47,592 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:47,592 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:47,593 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:53:47,597 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:53:47,597 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:53:51,138 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:51,139 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:51,140 - api.routers.history - INFO - Fetching conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:53:51,142 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:51,143 - services.history_service - WARNING - Conversation 1ecfabf8-15de-4680-8149-047eaa87db80 not found for user madara@gmail.com
+2026-01-03 17:53:51,143 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:51,145 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:53:51,149 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:53:51,149 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:53:53,107 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:53,109 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:53,110 - api.routers.history - INFO - Fetching conversation 1ecfabf8-15de-4680-8149-047eaa87db80 for user: madara@gmail.com
+2026-01-03 17:53:53,110 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:53:53,112 - services.history_service - WARNING - Conversation 1ecfabf8-15de-4680-8149-047eaa87db80 not found for user madara@gmail.com
+2026-01-03 17:53:53,113 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:53:53,114 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:53:53,117 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:53:53,117 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:54:37,431 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:54:37,431 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:54:37,431 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:54:37,440 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 17:58:01,004 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:58:01,004 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:58:01,004 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 17:58:01,004 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 17:58:01,006 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 17:58:01,007 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 17:58:01,012 - services.history_service - INFO - Retrieved 2 chat sessions for madara@gmail.com
+2026-01-03 17:58:01,012 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 17:58:01,016 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 18:00:51,373 - api.routers.auth - INFO - Login attempt for email: madara@gmail.com
+2026-01-03 18:00:51,829 - services.auth_service - INFO - User madara@gmail.com logged in successfully
+2026-01-03 18:00:51,829 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-03 18:00:51,859 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:00:51,859 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:00:51,861 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:00:51,865 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:00:51,866 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:00:51,867 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:00:51,868 - services.chat_service - INFO - Chat session ddf652c5-2cca-4778-b97c-2d943baacbaa started and saved for madara@gmail.com
+2026-01-03 18:00:51,870 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 18:00:51,870 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:00:51,884 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:00:51,884 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:00:51,885 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:00:51,887 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:00:51,887 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:00:51,888 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 18:00:51,888 - api.routers.history - INFO - Fetching conversation ddf652c5-2cca-4778-b97c-2d943baacbaa for user: madara@gmail.com
+2026-01-03 18:00:51,888 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:00:51,894 - services.history_service - INFO - Retrieved conversation ddf652c5-2cca-4778-b97c-2d943baacbaa with 1 messages for madara@gmail.com
+2026-01-03 18:00:56,935 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:00:56,935 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:00:56,935 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 18:00:56,935 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 18:00:58,601 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:00:58,601 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:00:58,604 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 18:00:58,609 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 18:03:25,326 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:03:25,326 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:03:25,327 - api.routers.history - INFO - Fetching conversation ddf652c5-2cca-4778-b97c-2d943baacbaa for user: madara@gmail.com
+2026-01-03 18:03:25,331 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:03:25,331 - services.history_service - INFO - Retrieved conversation ddf652c5-2cca-4778-b97c-2d943baacbaa with 1 messages for madara@gmail.com
+2026-01-03 18:03:25,331 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:03:25,331 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:03:25,335 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 18:03:25,335 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:06:02,723 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:06:02,723 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:06:02,723 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 18:06:02,733 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 18:06:27,397 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:06:27,397 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:06:27,399 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:06:27,399 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:06:27,400 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 18:06:27,400 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:06:27,406 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 18:06:27,406 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 18:06:27,406 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:06:43,509 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:06:43,509 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:06:43,509 - api.routers.history - INFO - Fetching conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 for user: madara@gmail.com
+2026-01-03 18:06:43,509 - services.history_service - INFO - Retrieved conversation 45eb5be5-e662-4ea4-8f22-9df4f1869632 with 19 messages for madara@gmail.com
+2026-01-03 18:07:10,020 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:07:10,020 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:07:10,020 - api.routers.history - INFO - Fetching conversation ddf652c5-2cca-4778-b97c-2d943baacbaa for user: madara@gmail.com
+2026-01-03 18:07:10,020 - services.history_service - INFO - Retrieved conversation ddf652c5-2cca-4778-b97c-2d943baacbaa with 1 messages for madara@gmail.com
+2026-01-03 18:07:29,580 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:07:29,583 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:07:29,585 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:07:32,054 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:07:32,054 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:07:32,059 - services.chat_service - INFO - Resetting session ddf652c5-2cca-4778-b97c-2d943baacbaa
+2026-01-03 18:07:32,069 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:07:32,069 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:07:32,069 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:07:32,069 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:07:32,069 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:07:32,069 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:07:32,078 - services.history_service - INFO - Retrieved 3 chat sessions for madara@gmail.com
+2026-01-03 18:07:32,080 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:07:32,082 - services.chat_service - INFO - Chat session 482731a4-aae9-4be9-a631-6e906f55c4b1 started and saved for madara@gmail.com
+2026-01-03 18:07:32,092 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:07:32,092 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:07:32,092 - api.routers.history - INFO - Fetching conversation 482731a4-aae9-4be9-a631-6e906f55c4b1 for user: madara@gmail.com
+2026-01-03 18:07:32,095 - services.history_service - INFO - Retrieved conversation 482731a4-aae9-4be9-a631-6e906f55c4b1 with 1 messages for madara@gmail.com
+2026-01-03 18:07:33,559 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:07:33,559 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:07:33,559 - api.routers.history - INFO - Fetching conversation ddf652c5-2cca-4778-b97c-2d943baacbaa for user: madara@gmail.com
+2026-01-03 18:07:33,559 - services.history_service - INFO - Retrieved conversation ddf652c5-2cca-4778-b97c-2d943baacbaa with 1 messages for madara@gmail.com
+2026-01-03 18:07:43,120 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:07:43,121 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:07:43,123 - services.chat_service - INFO - Restoring session ddf652c5-2cca-4778-b97c-2d943baacbaa from database
+2026-01-03 18:07:43,127 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:08:09,259 - llm.llm_client - INFO - LLM response received: 189 chars
+2026-01-03 18:08:09,260 - services.chat_service - INFO - Updating session ddf652c5-2cca-4778-b97c-2d943baacbaa title to: Hi
+2026-01-03 18:08:12,049 - llm.llm_client - INFO - LLM response received: 48 chars
+2026-01-03 18:08:12,050 - services.chat_service - INFO - Updating session ddf652c5-2cca-4778-b97c-2d943baacbaa title to: back pain
+2026-01-03 18:08:27,569 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:08:27,570 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:08:27,571 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 5
+2026-01-03 18:08:38,519 - llm.llm_client - INFO - LLM response received: 127 chars
+2026-01-03 18:08:59,759 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:08:59,760 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:08:59,760 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 7
+2026-01-03 18:09:10,461 - llm.llm_client - INFO - LLM response received: 170 chars
+2026-01-03 18:09:17,742 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:09:17,742 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:09:17,743 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 18:09:17,759 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 18:09:19,038 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:09:19,038 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:09:19,041 - api.routers.history - INFO - Fetching conversation ddf652c5-2cca-4778-b97c-2d943baacbaa for user: madara@gmail.com
+2026-01-03 18:09:19,043 - services.history_service - INFO - Retrieved conversation ddf652c5-2cca-4778-b97c-2d943baacbaa with 9 messages for madara@gmail.com
+2026-01-03 18:09:35,435 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:09:35,436 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:09:35,437 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 9
+2026-01-03 18:09:43,426 - llm.llm_client - INFO - LLM response received: 97 chars
+2026-01-03 18:09:56,809 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:09:56,809 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:09:56,809 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 11
+2026-01-03 18:10:06,799 - llm.llm_client - INFO - LLM response received: 134 chars
+2026-01-03 18:10:24,193 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:10:24,193 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:10:24,193 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 13
+2026-01-03 18:10:33,497 - llm.llm_client - INFO - LLM response received: 123 chars
+2026-01-03 18:11:14,016 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:11:14,016 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:11:14,016 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 15
+2026-01-03 18:11:24,935 - llm.llm_client - INFO - LLM response received: 160 chars
+2026-01-03 18:11:27,388 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:11:27,388 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:11:27,388 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:11:27,397 - services.history_service - INFO - Retrieved 4 chat sessions for madara@gmail.com
+2026-01-03 18:11:27,397 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:11:39,780 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:11:39,781 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:11:39,781 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 17
+2026-01-03 18:11:50,578 - llm.llm_client - INFO - LLM response received: 156 chars
+2026-01-03 18:12:27,511 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:12:27,511 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:12:27,511 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 19
+2026-01-03 18:12:38,549 - llm.llm_client - INFO - LLM response received: 170 chars
+2026-01-03 18:42:26,272 - api.main - INFO - Starting model preload on app startup
+2026-01-03 18:42:26,645 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-03 18:42:31,079 - api.main - INFO - RAG models preloaded successfully
+2026-01-03 18:42:51,657 - api.routers.auth - INFO - Login attempt for email: madara@gmail.com
+2026-01-03 18:42:52,072 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\MahammadSahil.Shaik\Downloads\MediMind JWT Final By Shashi\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-03 18:42:53,109 - services.auth_service - INFO - User madara@gmail.com logged in successfully
+2026-01-03 18:42:53,183 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-03 18:42:53,216 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:42:53,216 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:42:53,225 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:42:53,233 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:42:53,236 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:42:53,236 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:42:53,314 - services.chat_service - INFO - Chat session ea07c59a-8343-469b-be3c-86924655a9c5 started and saved for madara@gmail.com
+2026-01-03 18:42:53,337 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:42:53,337 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:42:53,339 - api.routers.history - INFO - Fetching conversation ea07c59a-8343-469b-be3c-86924655a9c5 for user: madara@gmail.com
+2026-01-03 18:42:53,416 - services.history_service - INFO - Retrieved conversation ea07c59a-8343-469b-be3c-86924655a9c5 with 1 messages for madara@gmail.com
+2026-01-03 18:42:53,531 - services.history_service - INFO - Retrieved 5 chat sessions for madara@gmail.com
+2026-01-03 18:42:53,536 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:42:53,547 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:42:53,547 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:42:53,547 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:42:53,547 - services.history_service - INFO - Retrieved 5 chat sessions for madara@gmail.com
+2026-01-03 18:42:53,547 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:42:58,221 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:42:58,221 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:42:58,221 - api.routers.history - INFO - Fetching conversation 482731a4-aae9-4be9-a631-6e906f55c4b1 for user: madara@gmail.com
+2026-01-03 18:42:58,252 - services.history_service - INFO - Retrieved conversation 482731a4-aae9-4be9-a631-6e906f55c4b1 with 1 messages for madara@gmail.com
+2026-01-03 18:43:05,874 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:43:05,875 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:43:05,875 - api.routers.history - INFO - Fetching conversation ddf652c5-2cca-4778-b97c-2d943baacbaa for user: madara@gmail.com
+2026-01-03 18:43:05,886 - services.history_service - INFO - Retrieved conversation ddf652c5-2cca-4778-b97c-2d943baacbaa with 21 messages for madara@gmail.com
+2026-01-03 18:43:49,809 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:43:49,809 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:43:49,815 - services.chat_service - INFO - Restoring session 482731a4-aae9-4be9-a631-6e906f55c4b1 from database
+2026-01-03 18:43:49,824 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:44:35,291 - llm.llm_client - INFO - LLM response received: 46 chars
+2026-01-03 18:44:35,294 - services.chat_service - INFO - Updating session 482731a4-aae9-4be9-a631-6e906f55c4b1 title to: headache
+2026-01-03 18:44:40,060 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:44:40,063 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:44:40,064 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 5
+2026-01-03 18:44:47,574 - llm.llm_client - INFO - LLM response received: 79 chars
+2026-01-03 18:45:49,162 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:45:49,163 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:45:49,165 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 7
+2026-01-03 18:45:58,379 - llm.llm_client - INFO - LLM response received: 103 chars
+2026-01-03 18:46:10,003 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:46:10,004 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:46:10,005 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 9
+2026-01-03 18:46:19,171 - llm.llm_client - INFO - LLM response received: 99 chars
+2026-01-03 18:46:35,684 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:46:35,686 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:46:35,686 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 11
+2026-01-03 18:46:44,507 - llm.llm_client - INFO - LLM response received: 96 chars
+2026-01-03 18:46:58,347 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:46:58,348 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:46:58,353 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 13
+2026-01-03 18:47:07,606 - llm.llm_client - INFO - LLM response received: 91 chars
+2026-01-03 18:47:44,268 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:47:44,269 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:47:44,270 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 15
+2026-01-03 18:47:53,347 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:47:53,349 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:47:53,351 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:47:53,356 - services.history_service - INFO - Retrieved 5 chat sessions for madara@gmail.com
+2026-01-03 18:47:53,358 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:47:54,770 - llm.llm_client - INFO - LLM response received: 138 chars
+2026-01-03 18:48:15,306 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:48:15,310 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:48:15,312 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 17
+2026-01-03 18:48:25,306 - llm.llm_client - INFO - LLM response received: 129 chars
+2026-01-03 18:48:44,870 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:48:44,871 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:48:44,873 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 19
+2026-01-03 18:48:50,427 - llm.llm_client - INFO - LLM response received: 18 chars
+2026-01-03 18:48:50,429 - llm.interview_agent - INFO - Interview completed
+2026-01-03 18:48:50,439 - services.chat_service - INFO - Interview finished for session 482731a4-aae9-4be9-a631-6e906f55c4b1
+2026-01-03 18:48:50,445 - services.chat_service - WARNING - No disease match for session 482731a4-aae9-4be9-a631-6e906f55c4b1, using fallback
+2026-01-03 18:48:50,445 - llm.explanation_agent - INFO - Generating explanation for disease: Undifferentiated Symptom Pattern
+2026-01-03 18:48:58,503 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:50:19,804 - llm.llm_client - INFO - LLM response received: 1113 chars
+2026-01-03 18:50:19,806 - llm.explanation_agent - INFO - Explanation generated successfully: 1113 chars
+2026-01-03 18:50:19,840 - services.chat_service - INFO - Assessment saved for completed session 482731a4-aae9-4be9-a631-6e906f55c4b1
+2026-01-03 18:50:37,966 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:50:37,968 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:50:37,968 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:50:43,115 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:50:43,115 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:50:43,119 - services.chat_service - INFO - Resetting session ea07c59a-8343-469b-be3c-86924655a9c5
+2026-01-03 18:50:43,127 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:50:43,127 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:50:43,129 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:50:43,138 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:50:43,138 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:50:43,144 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:50:43,146 - services.history_service - INFO - Retrieved 5 chat sessions for madara@gmail.com
+2026-01-03 18:50:43,146 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:50:43,172 - services.chat_service - INFO - Chat session 34a1124b-35f9-4098-a43e-a37afb5ffe81 started and saved for madara@gmail.com
+2026-01-03 18:50:43,190 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:50:43,192 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:50:43,194 - api.routers.history - INFO - Fetching conversation 34a1124b-35f9-4098-a43e-a37afb5ffe81 for user: madara@gmail.com
+2026-01-03 18:50:43,202 - services.history_service - INFO - Retrieved conversation 34a1124b-35f9-4098-a43e-a37afb5ffe81 with 1 messages for madara@gmail.com
+2026-01-03 18:50:45,331 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:50:45,331 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:50:45,331 - api.routers.history - INFO - Fetching conversation ea07c59a-8343-469b-be3c-86924655a9c5 for user: madara@gmail.com
+2026-01-03 18:50:45,336 - services.history_service - INFO - Retrieved conversation ea07c59a-8343-469b-be3c-86924655a9c5 with 1 messages for madara@gmail.com
+2026-01-03 18:50:51,080 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:50:51,083 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:50:51,086 - services.chat_service - INFO - Restoring session ea07c59a-8343-469b-be3c-86924655a9c5 from database
+2026-01-03 18:50:51,089 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:51:05,547 - llm.llm_client - INFO - LLM response received: 47 chars
+2026-01-03 18:51:05,549 - services.chat_service - INFO - Updating session ea07c59a-8343-469b-be3c-86924655a9c5 title to: nose bleed
+2026-01-03 18:51:08,556 - llm.llm_client - INFO - LLM response received: 29 chars
+2026-01-03 18:51:08,559 - services.chat_service - INFO - Updating session ea07c59a-8343-469b-be3c-86924655a9c5 title to: Nose bleed
+2026-01-03 18:51:13,417 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:13,417 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:13,420 - services.chat_service - INFO - Resetting session ea07c59a-8343-469b-be3c-86924655a9c5
+2026-01-03 18:51:13,429 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:13,432 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:13,433 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:51:13,441 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:13,443 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:13,445 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:51:13,450 - services.history_service - INFO - Retrieved 6 chat sessions for madara@gmail.com
+2026-01-03 18:51:13,452 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:51:13,455 - services.chat_service - INFO - Chat session 190032a9-c0a1-4799-aa2a-5e53693d21ab started and saved for madara@gmail.com
+2026-01-03 18:51:13,476 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:13,479 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:13,480 - api.routers.history - INFO - Fetching conversation 190032a9-c0a1-4799-aa2a-5e53693d21ab for user: madara@gmail.com
+2026-01-03 18:51:13,485 - services.history_service - INFO - Retrieved conversation 190032a9-c0a1-4799-aa2a-5e53693d21ab with 1 messages for madara@gmail.com
+2026-01-03 18:51:14,812 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:14,812 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:14,812 - api.routers.history - INFO - Fetching conversation 34a1124b-35f9-4098-a43e-a37afb5ffe81 for user: madara@gmail.com
+2026-01-03 18:51:14,812 - services.history_service - INFO - Retrieved conversation 34a1124b-35f9-4098-a43e-a37afb5ffe81 with 1 messages for madara@gmail.com
+2026-01-03 18:51:16,468 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:16,468 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:16,471 - api.routers.history - INFO - Fetching conversation ea07c59a-8343-469b-be3c-86924655a9c5 for user: madara@gmail.com
+2026-01-03 18:51:16,481 - services.history_service - INFO - Retrieved conversation ea07c59a-8343-469b-be3c-86924655a9c5 with 5 messages for madara@gmail.com
+2026-01-03 18:51:22,465 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:22,466 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:22,469 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:51:32,177 - llm.llm_client - INFO - LLM response received: 121 chars
+2026-01-03 18:51:32,180 - services.chat_service - INFO - Updating session 34a1124b-35f9-4098-a43e-a37afb5ffe81 title to: Stress
+2026-01-03 18:51:34,997 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:35,000 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:35,002 - services.chat_service - INFO - Resetting session 34a1124b-35f9-4098-a43e-a37afb5ffe81
+2026-01-03 18:51:35,012 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:35,012 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:35,014 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:51:35,019 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:35,023 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:35,023 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:51:35,023 - services.chat_service - INFO - Chat session b6718b0b-ddaa-4de5-aa34-ea0e9755e5fe started and saved for madara@gmail.com
+2026-01-03 18:51:35,029 - services.history_service - INFO - Retrieved 8 chat sessions for madara@gmail.com
+2026-01-03 18:51:35,029 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 8, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:51:35,044 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:35,046 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:35,047 - api.routers.history - INFO - Fetching conversation b6718b0b-ddaa-4de5-aa34-ea0e9755e5fe for user: madara@gmail.com
+2026-01-03 18:51:35,052 - services.history_service - INFO - Retrieved conversation b6718b0b-ddaa-4de5-aa34-ea0e9755e5fe with 1 messages for madara@gmail.com
+2026-01-03 18:51:36,918 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:36,918 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:36,918 - api.routers.history - INFO - Fetching conversation 190032a9-c0a1-4799-aa2a-5e53693d21ab for user: madara@gmail.com
+2026-01-03 18:51:36,934 - services.history_service - INFO - Retrieved conversation 190032a9-c0a1-4799-aa2a-5e53693d21ab with 1 messages for madara@gmail.com
+2026-01-03 18:51:54,697 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:51:54,699 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:51:54,702 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:52:00,441 - llm.llm_client - INFO - LLM response received: 46 chars
+2026-01-03 18:52:00,445 - services.chat_service - INFO - Updating session 190032a9-c0a1-4799-aa2a-5e53693d21ab title to: Feeling dizzy
+2026-01-03 18:52:53,354 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:52:53,356 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:52:53,356 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:52:53,365 - services.history_service - INFO - Retrieved 8 chat sessions for madara@gmail.com
+2026-01-03 18:52:53,365 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 8, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:53:18,129 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:18,129 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:18,134 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:53:25,248 - llm.llm_client - INFO - LLM response received: 66 chars
+2026-01-03 18:53:25,250 - services.chat_service - INFO - Updating session b6718b0b-ddaa-4de5-aa34-ea0e9755e5fe title to: Hair loss
+2026-01-03 18:53:46,570 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:46,570 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:46,574 - services.chat_service - INFO - Resetting session b6718b0b-ddaa-4de5-aa34-ea0e9755e5fe
+2026-01-03 18:53:46,586 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:46,586 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:46,586 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:46,586 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:53:46,586 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:46,600 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:53:46,609 - services.history_service - INFO - Retrieved 8 chat sessions for madara@gmail.com
+2026-01-03 18:53:46,609 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 8, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:53:46,615 - services.chat_service - INFO - Chat session 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a started and saved for madara@gmail.com
+2026-01-03 18:53:46,629 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:46,631 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:46,633 - api.routers.history - INFO - Fetching conversation 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a for user: madara@gmail.com
+2026-01-03 18:53:46,641 - services.history_service - INFO - Retrieved conversation 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a with 1 messages for madara@gmail.com
+2026-01-03 18:53:51,089 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:51,091 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:51,091 - services.chat_service - INFO - Resetting session 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a
+2026-01-03 18:53:51,100 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:51,101 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:51,102 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:53:51,103 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:51,103 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:51,103 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:53:51,103 - services.chat_service - INFO - Chat session f80fcc0e-95e6-4bf5-803b-47a5bbf30384 started and saved for madara@gmail.com
+2026-01-03 18:53:51,120 - services.history_service - INFO - Retrieved 10 chat sessions for madara@gmail.com
+2026-01-03 18:53:51,120 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 10, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:53:51,131 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:51,134 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:51,134 - api.routers.history - INFO - Fetching conversation f80fcc0e-95e6-4bf5-803b-47a5bbf30384 for user: madara@gmail.com
+2026-01-03 18:53:51,142 - services.history_service - INFO - Retrieved conversation f80fcc0e-95e6-4bf5-803b-47a5bbf30384 with 1 messages for madara@gmail.com
+2026-01-03 18:53:52,579 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:53:52,579 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:53:52,580 - api.routers.history - INFO - Fetching conversation 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a for user: madara@gmail.com
+2026-01-03 18:53:52,587 - services.history_service - INFO - Retrieved conversation 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a with 1 messages for madara@gmail.com
+2026-01-03 18:54:01,144 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:01,146 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:01,148 - services.chat_service - INFO - Restoring session 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a from database
+2026-01-03 18:54:01,155 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:54:06,977 - llm.llm_client - INFO - LLM response received: 45 chars
+2026-01-03 18:54:06,979 - services.chat_service - INFO - Updating session 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a title to: Leg pain
+2026-01-03 18:54:10,738 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:10,738 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:10,738 - api.routers.history - INFO - Fetching conversation 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a for user: madara@gmail.com
+2026-01-03 18:54:10,753 - services.history_service - INFO - Retrieved conversation 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a with 3 messages for madara@gmail.com
+2026-01-03 18:54:23,482 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:23,483 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:23,485 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:54:35,255 - llm.llm_client - INFO - LLM response received: 148 chars
+2026-01-03 18:54:35,257 - services.chat_service - INFO - Updating session f80fcc0e-95e6-4bf5-803b-47a5bbf30384 title to: Neck Pain
+2026-01-03 18:54:40,095 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:40,097 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:40,100 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:40,100 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:40,104 - api.routers.history - INFO - Fetching conversation f80fcc0e-95e6-4bf5-803b-47a5bbf30384 for user: madara@gmail.com
+2026-01-03 18:54:40,107 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:54:40,114 - services.history_service - INFO - Retrieved 10 chat sessions for madara@gmail.com
+2026-01-03 18:54:40,114 - services.history_service - INFO - Retrieved conversation f80fcc0e-95e6-4bf5-803b-47a5bbf30384 with 3 messages for madara@gmail.com
+2026-01-03 18:54:40,114 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 10, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:54:45,169 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:45,169 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:45,170 - services.chat_service - INFO - Resetting session f80fcc0e-95e6-4bf5-803b-47a5bbf30384
+2026-01-03 18:54:45,179 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:45,179 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:45,183 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 18:54:45,187 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:45,191 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:45,194 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:54:45,197 - services.chat_service - INFO - Chat session 0a26d762-c414-4091-b024-06332c9f445e started and saved for madara@gmail.com
+2026-01-03 18:54:45,203 - services.history_service - INFO - Retrieved 11 chat sessions for madara@gmail.com
+2026-01-03 18:54:45,203 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 11, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:54:45,213 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:45,214 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:45,214 - api.routers.history - INFO - Fetching conversation 0a26d762-c414-4091-b024-06332c9f445e for user: madara@gmail.com
+2026-01-03 18:54:45,220 - services.history_service - INFO - Retrieved conversation 0a26d762-c414-4091-b024-06332c9f445e with 1 messages for madara@gmail.com
+2026-01-03 18:54:56,425 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:54:56,427 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:54:56,429 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 18:55:02,289 - llm.llm_client - INFO - LLM response received: 46 chars
+2026-01-03 18:55:02,291 - services.chat_service - INFO - Updating session 0a26d762-c414-4091-b024-06332c9f445e title to: Knee Pain
+2026-01-03 18:57:28,815 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:57:28,815 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:57:28,815 - api.routers.history - INFO - Fetching conversation 0a26d762-c414-4091-b024-06332c9f445e for user: madara@gmail.com
+2026-01-03 18:57:28,815 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:57:28,815 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:57:28,824 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 18:57:28,852 - services.history_service - INFO - Retrieved 11 chat sessions for madara@gmail.com
+2026-01-03 18:57:28,853 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 11, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 18:57:28,866 - services.history_service - INFO - Retrieved conversation 0a26d762-c414-4091-b024-06332c9f445e with 3 messages for madara@gmail.com
+2026-01-03 18:58:03,936 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 18:58:03,946 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 18:58:03,947 - api.routers.history - INFO - Fetching conversation ded81313-afba-4e46-bc6b-fbb01689f6aa for user: madara@gmail.com
+2026-01-03 18:58:03,951 - services.history_service - INFO - Retrieved conversation ded81313-afba-4e46-bc6b-fbb01689f6aa with 17 messages for madara@gmail.com
+2026-01-03 19:52:48,185 - api.main - INFO - Starting model preload on app startup
+2026-01-03 19:52:48,455 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-03 19:52:51,413 - api.main - INFO - RAG models preloaded successfully
+2026-01-03 19:53:02,913 - api.routers.auth - INFO - Login attempt for email: madara@gmail.com
+2026-01-03 19:53:03,178 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\MahammadSahil.Shaik\Downloads\MediMind JWT Final By Shashi\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-03 19:53:03,574 - services.auth_service - INFO - User madara@gmail.com logged in successfully
+2026-01-03 19:53:03,631 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-03 19:53:03,653 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:03,653 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:03,656 - services.chat_service - INFO - Starting new chat session for user: madara@gmail.com
+2026-01-03 19:53:03,660 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:03,661 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:03,661 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 19:53:03,722 - services.chat_service - INFO - Chat session af759bf1-f526-470b-a52a-c14164c3e1d0 started and saved for madara@gmail.com
+2026-01-03 19:53:03,737 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:03,737 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:03,739 - api.routers.history - INFO - Fetching conversation af759bf1-f526-470b-a52a-c14164c3e1d0 for user: madara@gmail.com
+2026-01-03 19:53:03,784 - services.history_service - INFO - Retrieved conversation af759bf1-f526-470b-a52a-c14164c3e1d0 with 1 messages for madara@gmail.com
+2026-01-03 19:53:03,857 - services.history_service - INFO - Retrieved 12 chat sessions for madara@gmail.com
+2026-01-03 19:53:03,857 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 12, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 19:53:03,876 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:03,877 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:03,877 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 19:53:03,885 - services.history_service - INFO - Retrieved 12 chat sessions for madara@gmail.com
+2026-01-03 19:53:03,886 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 12, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 19:53:06,023 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:06,023 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:06,024 - api.routers.history - INFO - Fetching conversation 0a26d762-c414-4091-b024-06332c9f445e for user: madara@gmail.com
+2026-01-03 19:53:06,026 - services.history_service - INFO - Retrieved conversation 0a26d762-c414-4091-b024-06332c9f445e with 3 messages for madara@gmail.com
+2026-01-03 19:53:07,060 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:07,060 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:07,060 - api.routers.history - INFO - Fetching conversation f80fcc0e-95e6-4bf5-803b-47a5bbf30384 for user: madara@gmail.com
+2026-01-03 19:53:07,060 - services.history_service - INFO - Retrieved conversation f80fcc0e-95e6-4bf5-803b-47a5bbf30384 with 3 messages for madara@gmail.com
+2026-01-03 19:53:08,426 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:08,426 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:08,426 - api.routers.history - INFO - Fetching conversation 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a for user: madara@gmail.com
+2026-01-03 19:53:08,431 - services.history_service - INFO - Retrieved conversation 09c12766-5d1a-4f37-ad6e-6ef9d69cde5a with 3 messages for madara@gmail.com
+2026-01-03 19:53:09,821 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:09,821 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:09,824 - api.routers.history - INFO - Fetching conversation 482731a4-aae9-4be9-a631-6e906f55c4b1 for user: madara@gmail.com
+2026-01-03 19:53:09,826 - services.history_service - INFO - Retrieved conversation 482731a4-aae9-4be9-a631-6e906f55c4b1 with 19 messages for madara@gmail.com
+2026-01-03 19:53:50,026 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:53:50,028 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:53:50,030 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 19:54:24,061 - llm.llm_client - INFO - LLM response received: 97 chars
+2026-01-03 19:54:24,062 - services.chat_service - INFO - Updating session af759bf1-f526-470b-a52a-c14164c3e1d0 title to: hi
+2026-01-03 19:54:42,695 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:54:42,696 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:54:42,696 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 5
+2026-01-03 19:54:53,993 - llm.llm_client - INFO - LLM response received: 167 chars
+2026-01-03 19:55:15,759 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:55:15,759 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:55:15,759 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 7
+2026-01-03 19:55:22,678 - llm.llm_client - INFO - LLM response received: 81 chars
+2026-01-03 19:55:52,118 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:55:52,132 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:55:52,133 - api.routers.history - INFO - Fetching conversation ddf652c5-2cca-4778-b97c-2d943baacbaa for user: madara@gmail.com
+2026-01-03 19:55:52,135 - services.history_service - INFO - Retrieved conversation ddf652c5-2cca-4778-b97c-2d943baacbaa with 21 messages for madara@gmail.com
+2026-01-03 19:56:14,704 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:56:14,705 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:56:14,705 - services.chat_service - INFO - Restoring session ddf652c5-2cca-4778-b97c-2d943baacbaa from database
+2026-01-03 19:56:14,708 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 23
+2026-01-03 19:57:06,747 - llm.llm_client - INFO - LLM response received: 182 chars
+2026-01-03 19:57:25,009 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:57:25,010 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:57:25,011 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 25
+2026-01-03 19:57:42,897 - llm.llm_client - INFO - LLM response received: 291 chars
+2026-01-03 19:58:03,744 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:58:03,744 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:58:03,745 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-03 19:58:03,750 - services.history_service - INFO - Retrieved 12 chat sessions for madara@gmail.com
+2026-01-03 19:58:03,750 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 12, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-03 19:58:36,526 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-03 19:58:36,527 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-03 19:58:36,527 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 27
+2026-01-03 19:58:57,238 - llm.llm_client - INFO - LLM response received: 326 chars
+2026-01-03 19:58:57,239 - llm.interview_agent - INFO - Interview completed
+2026-01-03 19:58:57,241 - services.chat_service - INFO - Interview finished for session ddf652c5-2cca-4778-b97c-2d943baacbaa
+2026-01-03 19:58:57,241 - services.chat_service - WARNING - No disease match for session ddf652c5-2cca-4778-b97c-2d943baacbaa, using fallback
+2026-01-03 19:58:57,241 - llm.explanation_agent - INFO - Generating explanation for disease: Undifferentiated Symptom Pattern
+2026-01-03 19:59:00,361 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-03 20:00:21,106 - llm.llm_client - INFO - LLM response received: 1154 chars
+2026-01-03 20:00:21,106 - llm.explanation_agent - INFO - Explanation generated successfully: 1154 chars
+2026-01-03 20:00:21,114 - services.chat_service - INFO - Assessment saved for completed session ddf652c5-2cca-4778-b97c-2d943baacbaa

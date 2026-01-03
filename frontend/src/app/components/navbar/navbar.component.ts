@@ -16,19 +16,24 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private chatService: ChatService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.authService.userData$.subscribe(userData => {
       if (userData) {
-        // ✅ FIXED: Handle undefined name, fallback to email
-        this.userName = userData.name || userData.email || 'User';
+        // Extract first name
+        const fullName = userData.name || userData.email || 'User';
+        this.userName = fullName.split(' ')[0];
       }
     });
   }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
+  }
+
+  toggleSidebar() {
+    this.chatService.toggleSidebar();
   }
 
   newChat() {
