@@ -7,9 +7,8 @@ logger = logging.getLogger(__name__)
 
 
 class MedicalInterviewAgent:
-    def __init__(self, retriever):
+    def __init__(self):
         logger.debug("Initializing MedicalInterviewAgent")
-        self.retriever = retriever
         self.history = []
         self.finished = False
 

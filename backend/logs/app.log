@@ -1,0 +1,12 @@
+2026-01-03 12:27:21,341 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: intfloat/e5-small-v2
+2026-01-03 12:27:31,122 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-01-03 12:27:31,591 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2026-01-03 12:27:31,591 - __main__ - INFO - Starting Medical Assistant application
+2026-01-03 12:30:22,168 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: intfloat/e5-small-v2
+2026-01-03 12:30:31,393 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2026-01-03 12:30:31,901 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2026-01-03 12:30:31,901 - __main__ - INFO - Starting Medical Assistant application
+2026-01-03 12:30:37,826 - __main__ - INFO - Starting interview phase
+2026-01-03 12:30:37,826 - llm.interview_agent - INFO - Starting medical interview
+2026-01-03 12:30:37,826 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 2
+2026-01-03 12:31:12,265 - llm.llm_client - INFO - LLM response received: 152 chars

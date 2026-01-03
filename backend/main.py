@@ -48,7 +48,7 @@ def retriever(query, top_k=5):
 
 def main():
     logger.info("Starting Medical Assistant application")
-    interview = MedicalInterviewAgent(retriever)
+    interview = MedicalInterviewAgent()
     explanation_agent = MedicalExplanationAgent(retriever)
     disease_engine = DiseasePatternEngine()
 
@@ -76,7 +76,7 @@ def main():
 
     print("\n================ FINAL ASSESSMENT ================\n")
 
-    # 🔒 SAFE FALLBACK IF NO DISEASE PATTERN MATCHES
+    #  SAFE FALLBACK IF NO DISEASE PATTERN MATCHES
     if not matches:
         logger.warning("No disease pattern matches found, using fallback")
         top = {
@@ -92,10 +92,10 @@ def main():
     print("Severity          :", top["severity"])
     print("Reason            :", top["reason"])
 
-    # 🚨 EMERGENCY SHORT-CIRCUIT 🚨
+    #  EMERGENCY SHORT-CIRCUIT 
     if top["severity"] == "EMERGENCY":
         logger.critical("Emergency condition detected")
-        print("\n🚨 EMERGENCY WARNING 🚨")
+        print("\n EMERGENCY WARNING ")
         print("This condition may be serious or life-threatening.")
         print("Please seek immediate medical care.")
         return
