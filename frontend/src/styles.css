@@ -1,15 +1,58 @@
-html, body {
+/* GLOBAL VARIABLES */
+:root {
+  /* Colors */
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --primary-glow: rgba(16, 185, 129, 0.4);
+  --accent: #ec4899;
+  /* Pink accent just in case */
+
+  /* Glassmorphism Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --blur-amount: 20px;
+
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Prevent browser-level scroll */
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+  overflow: hidden;
+  font-family: var(--font-body);
+  background: #f0fdf4;
+  /* Very light green hint base */
+  color: #1f2937;
+}
+
+/* MESH GRADIENT BACKGROUND */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background:
+    radial-gradient(at 0% 0%, hsla(152, 100%, 93%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(190, 100%, 93%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(338, 100%, 96%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(245, 100%, 96%, 1) 0px, transparent 50%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 * {
   box-sizing: border-box;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Material Overrides */
+.mat-typography {
+  font-family: var(--font-body) !important;
+}

@@ -226,7 +226,6 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
         next: (res: any) => {
           const response = res.data;
           this.handleResponse(response, loadingMsg);
-          this.isWaitingForResponse = false;
         },
         error: (error: any) => {
           this.handleError(error, loadingMsg);
@@ -243,8 +242,6 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
           this.chatService.setSessionId(response.session_id);
 
           this.router.navigate(['/chat', response.session_id], { replaceUrl: true });
-
-          this.isWaitingForResponse = false;
         },
         error: (error: any) => {
           this.handleError(error, loadingMsg);
@@ -262,9 +259,29 @@ export class ChatbotComponent implements OnInit, AfterViewChecked, OnDestroy {
       loadingMsg.isFinal = true;
       loadingMsg.finalData = response.final;
       loadingMsg.content = this.formatFinalAssessment(response.final);
+      this.isWaitingForResponse = false;
     } else {
-      loadingMsg.content = this.cleanText(response.reply || 'Please continue...');
+      const text = this.cleanText(response.reply || 'Please continue...');
+      this.typeWriterEffect(loadingMsg, text);
     }
+  }
+
+  private typeWriterEffect(messageObj: Message, fullText: string) {
+    messageObj.content = '';
+    let i = 0;
+    const speed = 20; // Typespeed in ms
+
+    const type = () => {
+      if (i < fullText.length) {
+        messageObj.content += fullText.charAt(i);
+        i++;
+        this.scrollToBottom();
+        setTimeout(type, speed);
+      } else {
+        this.isWaitingForResponse = false;
+      }
+    };
+    type();
   }
 
   private formatFinalAssessment(final: any): string {
