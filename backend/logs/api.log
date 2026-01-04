@@ -22910,3 +22910,92 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-01-04 18:13:24,183 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
 2026-01-04 18:13:24,186 - services.history_service - INFO - Retrieved 7 chat sessions for madara@gmail.com
 2026-01-04 18:13:24,189 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-04 19:56:31,875 - llm.explanation_agent - INFO - Generating explanation for disease: Uncomplicated Viral Fever
+2026-01-04 19:56:31,876 - llm.explanation_agent - INFO - Explanation generated successfully: 80 chars
+2026-01-04 19:56:31,877 - llm.interview_agent - INFO - Starting medical interview
+2026-01-04 19:56:31,877 - llm.interview_agent - INFO - Interview completed
+2026-01-04 19:56:31,916 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 422 Unprocessable Entity"
+2026-01-04 19:56:32,275 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 422 Unprocessable Entity"
+2026-01-04 19:56:32,287 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-04 19:56:32,321 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 19:56:32,323 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,348 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-04 19:56:32,348 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-04 19:56:32,350 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,356 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,364 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,371 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,378 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,388 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,393 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-04 19:56:32,395 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,403 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-04 19:56:32,404 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-04 19:56:32,407 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-04 19:56:32,411 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-04 19:59:20,428 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 19:59:20,462 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 19:59:20,462 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 19:59:20,478 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 19:59:20,478 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-04 19:59:20,478 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 19:59:20,494 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-04 19:59:20,495 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 19:59:20,497 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 19:59:20,504 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-04 19:59:20,504 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-04 19:59:20,508 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 20:00:18,300 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 20:00:18,338 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 20:00:18,343 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 20:00:18,360 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 20:00:18,362 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-04 20:00:18,364 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 20:00:18,379 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-04 20:00:18,379 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 20:00:18,379 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 20:00:18,392 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-04 20:00:18,392 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-04 20:00:18,394 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 20:00:28,912 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 20:00:28,925 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 20:00:28,925 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 20:00:28,949 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 20:00:28,949 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-04 20:00:28,949 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 20:00:28,961 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-04 20:00:28,961 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 20:00:28,965 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 20:00:28,965 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-04 20:00:28,965 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-04 20:00:28,973 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 20:01:28,521 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 20:01:28,569 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 20:01:28,579 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,375 - llm.explanation_agent - INFO - Generating explanation for disease: Uncomplicated Viral Fever
+2026-01-04 20:02:42,375 - llm.explanation_agent - INFO - Explanation generated successfully: 80 chars
+2026-01-04 20:02:42,378 - llm.interview_agent - INFO - Starting medical interview
+2026-01-04 20:02:42,378 - llm.interview_agent - INFO - Interview completed
+2026-01-04 20:02:42,441 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 20:02:42,481 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 20:02:42,486 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,504 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-04 20:02:42,504 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-04 20:02:42,508 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,527 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-04 20:02:42,527 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-04 20:02:42,534 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,544 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-04 20:02:42,544 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-04 20:02:42,549 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,564 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,579 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,592 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,607 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,621 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,627 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-04 20:02:42,635 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,649 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-04 20:02:42,654 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-04 20:02:42,663 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-04 20:02:42,663 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"

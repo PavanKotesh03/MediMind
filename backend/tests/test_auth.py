@@ -16,7 +16,8 @@ def test_register_success(client, monkeypatch):
     response = client.post(
         "/api/auth/register",
         json={
-            "name": "Test User",
+            "first_name": "Test",
+            "last_name": "User",
             "age": 25,
             "gender": "male",
             "email": "test@example.com",
@@ -39,7 +40,8 @@ def test_register_failure(client, monkeypatch):
     response = client.post(
         "/api/auth/register",
         json={
-            "name": "Test",
+            "first_name": "Test",
+            "last_name": "User",
             "age": 25,
             "gender": "male",
             "email": "test@example.com",
