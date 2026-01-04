@@ -75,7 +75,7 @@ describe('ChatbotComponent', () => {
     expect(component.sessionId).toBe(sessionId);
   });
 
-  it('should send a message and handle response', () => {
+  it('should send a message and handle response', fakeAsync(() => {
     component.input = 'Hello';
     chatServiceSpy.startInterview.and.returnValue(of({
       data: {
@@ -88,10 +88,14 @@ describe('ChatbotComponent', () => {
 
     expect(component.messages.some(m => m.content === 'Hello')).toBeTrue();
     expect(chatServiceSpy.startInterview).toHaveBeenCalled();
+
+    // Advance time to allow typewriter effect to complete
+    tick(1000); // Wait enough time for the typing to finish
+
     // After response
     expect(component.messages.some(m => m.content === 'Hi there')).toBeTrue();
     expect(component.isLoading).toBeFalse();
-  });
+  }));
 
   it('should not send empty message', () => {
     chatServiceSpy.sendMessage.calls.reset();
