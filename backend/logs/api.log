@@ -23971,3 +23971,198 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-01-05 14:55:06,705 - services.history_service - INFO - Retrieved 10 chat sessions for shashi@gmail.com
 2026-01-05 14:55:06,705 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 10, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
 2026-01-05 14:55:06,975 - services.history_service - INFO - Retrieved conversation 1321c643-8abd-4056-a216-10bc9a308baf with 1 messages for shashi@gmail.com
+2026-01-05 17:46:32,745 - api.main - INFO - Starting model preload on app startup
+2026-01-05 17:46:33,068 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 17:46:36,331 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 17:47:07,007 - api.routers.auth - INFO - Login attempt for email: madara@gmail.com
+2026-01-05 17:47:07,384 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\MahammadSahil.Shaik\Downloads\MediMind JWT Final By Shashi\MediMind\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-05 17:47:07,782 - services.auth_service - INFO - User madara@gmail.com logged in successfully
+2026-01-05 17:47:07,819 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-05 17:47:07,910 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:07,910 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:07,915 - services.chat_service - INFO - Starting new streaming chat session for user: madara@gmail.com
+2026-01-05 17:47:08,019 - services.chat_service - INFO - Streaming session dae41147-10b6-4a78-8d23-9e4a8f7aa641 saved to database
+2026-01-05 17:47:08,026 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:08,026 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:08,026 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-05 17:47:08,034 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:08,034 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:08,040 - api.routers.history - INFO - Fetching conversation dae41147-10b6-4a78-8d23-9e4a8f7aa641 for user: madara@gmail.com
+2026-01-05 17:47:08,071 - services.history_service - INFO - Retrieved 8 chat sessions for madara@gmail.com
+2026-01-05 17:47:08,072 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 4, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-05 17:47:08,079 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:08,079 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:08,080 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-05 17:47:08,084 - services.history_service - INFO - Retrieved 8 chat sessions for madara@gmail.com
+2026-01-05 17:47:08,084 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 4, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-05 17:47:08,282 - services.history_service - INFO - Retrieved conversation dae41147-10b6-4a78-8d23-9e4a8f7aa641 with 1 messages for madara@gmail.com
+2026-01-05 17:47:17,305 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:17,305 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:17,305 - api.routers.history - INFO - Fetching conversation 7b327453-3c80-4a73-9815-df2ebc35671a for user: madara@gmail.com
+2026-01-05 17:47:17,322 - services.history_service - INFO - Retrieved conversation 7b327453-3c80-4a73-9815-df2ebc35671a with 21 messages for madara@gmail.com
+2026-01-05 17:47:30,675 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:30,675 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:30,677 - services.chat_service - INFO - Streaming chat for session dae41147-10b6-4a78-8d23-9e4a8f7aa641
+2026-01-05 17:47:30,677 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:47:33,859 - llm.llm_client - ERROR - HTTP error during streaming: 500
+2026-01-05 17:47:33,859 - api.routers.chat - ERROR - Streaming chat error: Ollama streaming error: 500
+2026-01-05 17:47:40,890 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:40,891 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:40,893 - services.chat_service - INFO - Resetting session dae41147-10b6-4a78-8d23-9e4a8f7aa641
+2026-01-05 17:47:40,900 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:40,901 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:40,902 - services.chat_service - INFO - Starting new streaming chat session for user: madara@gmail.com
+2026-01-05 17:47:40,925 - services.chat_service - INFO - Streaming session e98a9fea-45ac-44aa-a05f-219989b146fa saved to database
+2026-01-05 17:47:40,927 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:40,928 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:40,928 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-05 17:47:40,932 - services.history_service - INFO - Retrieved 9 chat sessions for madara@gmail.com
+2026-01-05 17:47:40,932 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 3, 'yesterday': 4, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-05 17:47:40,932 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:40,932 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:40,932 - api.routers.history - INFO - Fetching conversation e98a9fea-45ac-44aa-a05f-219989b146fa for user: madara@gmail.com
+2026-01-05 17:47:40,940 - services.history_service - INFO - Retrieved conversation e98a9fea-45ac-44aa-a05f-219989b146fa with 1 messages for madara@gmail.com
+2026-01-05 17:47:57,689 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:47:57,689 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:47:57,691 - services.chat_service - INFO - Streaming chat for session e98a9fea-45ac-44aa-a05f-219989b146fa
+2026-01-05 17:47:57,691 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:48:00,815 - llm.llm_client - ERROR - HTTP error during streaming: 500
+2026-01-05 17:48:00,815 - api.routers.chat - ERROR - Streaming chat error: Ollama streaming error: 500
+2026-01-05 17:48:04,807 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:48:04,808 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:48:04,808 - api.routers.history - INFO - Deleting conversation dae41147-10b6-4a78-8d23-9e4a8f7aa641 for user: madara@gmail.com
+2026-01-05 17:48:04,808 - services.history_service - INFO - Deleting conversation dae41147-10b6-4a78-8d23-9e4a8f7aa641 for user: madara@gmail.com
+2026-01-05 17:48:04,818 - services.history_service - INFO - Conversation dae41147-10b6-4a78-8d23-9e4a8f7aa641 deleted for madara@gmail.com
+2026-01-05 17:48:04,831 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:48:04,831 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:48:04,831 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-05 17:48:04,838 - services.history_service - INFO - Retrieved 8 chat sessions for madara@gmail.com
+2026-01-05 17:48:04,838 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 2, 'yesterday': 4, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-05 17:48:31,594 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:48:31,595 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:48:31,596 - services.chat_service - INFO - Streaming chat for session e98a9fea-45ac-44aa-a05f-219989b146fa
+2026-01-05 17:48:31,598 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:49:16,978 - llm.llm_client - INFO - Streaming completed. Total tokens: 165
+2026-01-05 17:49:17,731 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:17,737 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:17,748 - api.routers.history - INFO - Deleting conversation 7b327453-3c80-4a73-9815-df2ebc35671a for user: madara@gmail.com
+2026-01-05 17:49:17,748 - services.history_service - INFO - Deleting conversation 7b327453-3c80-4a73-9815-df2ebc35671a for user: madara@gmail.com
+2026-01-05 17:49:17,756 - services.history_service - INFO - Conversation 7b327453-3c80-4a73-9815-df2ebc35671a deleted for madara@gmail.com
+2026-01-05 17:49:17,772 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:17,772 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:17,772 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-05 17:49:17,775 - services.history_service - INFO - Retrieved 7 chat sessions for madara@gmail.com
+2026-01-05 17:49:17,776 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 1, 'yesterday': 4, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-05 17:49:21,365 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:21,365 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:21,366 - api.routers.history - INFO - Deleting conversation e98a9fea-45ac-44aa-a05f-219989b146fa for user: madara@gmail.com
+2026-01-05 17:49:21,366 - services.history_service - INFO - Deleting conversation e98a9fea-45ac-44aa-a05f-219989b146fa for user: madara@gmail.com
+2026-01-05 17:49:21,370 - services.history_service - INFO - Conversation e98a9fea-45ac-44aa-a05f-219989b146fa deleted for madara@gmail.com
+2026-01-05 17:49:21,381 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:21,381 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:21,382 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-05 17:49:21,385 - services.history_service - INFO - Retrieved 6 chat sessions for madara@gmail.com
+2026-01-05 17:49:21,385 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 0, 'yesterday': 4, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-05 17:49:23,393 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:23,393 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:23,393 - services.chat_service - INFO - Resetting session e98a9fea-45ac-44aa-a05f-219989b146fa
+2026-01-05 17:49:23,400 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:23,401 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:23,402 - services.chat_service - INFO - Starting new streaming chat session for user: madara@gmail.com
+2026-01-05 17:49:23,415 - services.chat_service - INFO - Streaming session 27d9bd0e-5659-4cac-b24e-e17e8956773d saved to database
+2026-01-05 17:49:23,419 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:23,419 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:23,419 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-05 17:49:23,422 - services.history_service - INFO - Retrieved 7 chat sessions for madara@gmail.com
+2026-01-05 17:49:23,424 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 1, 'yesterday': 4, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-05 17:49:23,461 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:23,462 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:23,463 - api.routers.history - INFO - Fetching conversation 27d9bd0e-5659-4cac-b24e-e17e8956773d for user: madara@gmail.com
+2026-01-05 17:49:23,468 - services.history_service - INFO - Retrieved conversation 27d9bd0e-5659-4cac-b24e-e17e8956773d with 1 messages for madara@gmail.com
+2026-01-05 17:49:27,107 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:27,107 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:27,108 - services.chat_service - INFO - Streaming chat for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:49:27,109 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:49:45,347 - llm.llm_client - INFO - Streaming completed. Total tokens: 173
+2026-01-05 17:49:48,847 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:49:48,848 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:49:48,850 - services.chat_service - INFO - Streaming chat for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:49:48,851 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:50:11,454 - llm.llm_client - INFO - Streaming completed. Total tokens: 114
+2026-01-05 17:50:31,607 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:50:31,607 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:50:31,609 - services.chat_service - INFO - Streaming chat for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:50:31,610 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:50:58,756 - llm.llm_client - INFO - Streaming completed. Total tokens: 154
+2026-01-05 17:51:04,814 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:51:04,815 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:51:04,816 - services.chat_service - INFO - Streaming chat for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:51:04,816 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:51:38,045 - llm.llm_client - INFO - Streaming completed. Total tokens: 180
+2026-01-05 17:52:06,907 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:52:06,908 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:52:06,912 - services.chat_service - INFO - Streaming chat for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:52:06,913 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:52:47,134 - llm.llm_client - INFO - Streaming completed. Total tokens: 122
+2026-01-05 17:52:47,146 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:52:47,147 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:52:47,147 - api.routers.history - INFO - Fetching grouped history for user: madara@gmail.com
+2026-01-05 17:52:47,153 - services.history_service - INFO - Retrieved 7 chat sessions for madara@gmail.com
+2026-01-05 17:52:47,153 - services.history_service - INFO - Grouped history for madara@gmail.com: {'today': 1, 'yesterday': 4, 'this_week': 2, 'this_month': 0, 'older': 0}
+2026-01-05 17:52:54,688 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:52:54,688 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:52:54,689 - services.chat_service - INFO - Streaming chat for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:52:54,691 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:53:04,592 - llm.llm_client - INFO - Streaming completed. Total tokens: 152
+2026-01-05 17:53:15,043 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:53:15,043 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:53:15,044 - services.chat_service - INFO - Streaming chat for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:53:15,044 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:53:25,659 - llm.llm_client - INFO - Streaming completed. Total tokens: 157
+2026-01-05 17:53:39,061 - auth.jwt_handler - INFO - Token verified for user: madara@gmail.com
+2026-01-05 17:53:39,061 - auth.jwt_bearer - INFO - Authenticated user: madara@gmail.com
+2026-01-05 17:53:39,062 - services.chat_service - INFO - Streaming chat for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:53:39,062 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:53:43,721 - llm.llm_client - INFO - Streaming completed. Total tokens: 18
+2026-01-05 17:53:43,722 - llm.interview_agent - INFO - Interview completed after 8 questions
+2026-01-05 17:53:43,727 - services.chat_service - INFO - Interview finished for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:53:43,727 - services.chat_service - INFO - Disease match found: Uncomplicated Viral Fever
+2026-01-05 17:53:43,727 - services.chat_service - INFO - Streaming explanation for Uncomplicated Viral Fever
+2026-01-05 17:53:43,727 - llm.explanation_agent - INFO - Generating STREAMING explanation for disease: Uncomplicated Viral Fever
+2026-01-05 17:53:47,150 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 17:56:45,776 - llm.llm_client - INFO - Streaming completed. Total tokens: 1519
+2026-01-05 17:56:45,784 - services.chat_service - INFO - Assessment saved for session 27d9bd0e-5659-4cac-b24e-e17e8956773d
+2026-01-05 17:57:04,059 - auth.jwt_handler - ERROR - JWT error: Not enough segments
+2026-01-05 17:57:04,060 - auth.jwt_bearer - ERROR - JWT verification failed: 401: Invalid token: Not enough segments
+2026-01-05 17:57:10,574 - llm.explanation_agent - INFO - Generating explanation for disease: Uncomplicated Viral Fever
+2026-01-05 17:57:10,574 - llm.explanation_agent - INFO - Explanation generated successfully: 80 chars
+2026-01-05 17:57:10,580 - llm.interview_agent - INFO - Starting medical interview
+2026-01-05 17:57:10,581 - llm.interview_agent - INFO - Interview completed after 1 questions
+2026-01-05 17:57:10,821 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-05 17:57:10,861 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-05 17:57:10,867 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,880 - api.routers.auth - INFO - Registration attempt for email: test@example.com
+2026-01-05 17:57:10,880 - api.routers.auth - WARNING - Registration failed for test@example.com: exists
+2026-01-05 17:57:10,884 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/register "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,900 - api.routers.auth - INFO - Login attempt for email: test@example.com
+2026-01-05 17:57:10,900 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-05 17:57:10,907 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,917 - api.routers.auth - INFO - Login attempt for email: wrong@example.com
+2026-01-05 17:57:10,917 - api.routers.auth - WARNING - Login failed for wrong@example.com: invalid
+2026-01-05 17:57:10,924 - httpx - INFO - HTTP Request: POST http://testserver/api/auth/login "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,934 - httpx - INFO - HTTP Request: POST http://testserver/api/start "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,946 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,959 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,967 - httpx - INFO - HTTP Request: POST http://testserver/api/reset "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,982 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-01-05 17:57:10,993 - api.routers.history - INFO - Fetching grouped history for user: test@example.com
+2026-01-05 17:57:10,996 - httpx - INFO - HTTP Request: GET http://testserver/api/history/grouped?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-05 17:57:11,007 - api.routers.history - INFO - Fetching conversation s1 for user: test@example.com
+2026-01-05 17:57:11,011 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-05 17:57:11,024 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
+2026-01-05 17:57:11,025 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
