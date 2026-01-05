@@ -22999,3 +22999,975 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-01-04 20:02:42,654 - httpx - INFO - HTTP Request: GET http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
 2026-01-04 20:02:42,663 - api.routers.history - INFO - Deleting conversation s1 for user: test@example.com
 2026-01-04 20:02:42,663 - httpx - INFO - HTTP Request: DELETE http://testserver/api/history/s1?user_email=test@example.com "HTTP/1.1 200 OK"
+2026-01-05 11:02:32,571 - api.main - INFO - Starting model preload on app startup
+2026-01-05 11:02:33,359 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 11:02:39,668 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 11:07:10,212 - api.routers.auth - INFO - Registration attempt for email: shashi@gmail.com
+2026-01-05 11:07:10,801 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Shashikumar.Reddy\Downloads\MediM\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-05 11:07:11,486 - services.auth_service - INFO - User shashi@gmail.com registered successfully
+2026-01-05 11:07:11,549 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-05 11:07:11,588 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:11,589 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:11,589 - services.chat_service - INFO - Starting new chat session for user: shashi@gmail.com
+2026-01-05 11:07:11,597 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:11,598 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:11,598 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:07:11,741 - services.chat_service - INFO - Chat session 359149f3-7993-47e8-b581-56638cf7963a started and saved for shashi@gmail.com
+2026-01-05 11:07:11,769 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:11,771 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:11,771 - api.routers.history - INFO - Fetching conversation 359149f3-7993-47e8-b581-56638cf7963a for user: shashi@gmail.com
+2026-01-05 11:07:11,822 - services.history_service - INFO - Retrieved conversation 359149f3-7993-47e8-b581-56638cf7963a with 1 messages for shashi@gmail.com
+2026-01-05 11:07:12,034 - services.history_service - INFO - Retrieved 1 chat sessions for shashi@gmail.com
+2026-01-05 11:07:12,035 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 1, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 11:07:12,045 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:12,045 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:12,045 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:07:12,053 - services.history_service - INFO - Retrieved 1 chat sessions for shashi@gmail.com
+2026-01-05 11:07:12,053 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 1, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 11:07:51,708 - api.routers.auth - INFO - Login attempt for email: shashi@gmail.com
+2026-01-05 11:07:52,325 - services.auth_service - INFO - User shashi@gmail.com logged in successfully
+2026-01-05 11:07:52,325 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-05 11:07:52,346 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:52,346 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:52,351 - services.chat_service - INFO - Starting new chat session for user: shashi@gmail.com
+2026-01-05 11:07:52,356 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:52,357 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:52,359 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:07:52,361 - services.chat_service - INFO - Chat session 5d532d11-4d8d-4966-9f49-49d74daff442 started and saved for shashi@gmail.com
+2026-01-05 11:07:52,366 - services.history_service - INFO - Retrieved 2 chat sessions for shashi@gmail.com
+2026-01-05 11:07:52,369 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 11:07:52,384 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:52,386 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:52,388 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:07:52,389 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:52,392 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:52,395 - services.history_service - INFO - Retrieved 2 chat sessions for shashi@gmail.com
+2026-01-05 11:07:52,395 - api.routers.history - INFO - Fetching conversation 5d532d11-4d8d-4966-9f49-49d74daff442 for user: shashi@gmail.com
+2026-01-05 11:07:52,396 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 2, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 11:07:52,415 - services.history_service - INFO - Retrieved conversation 5d532d11-4d8d-4966-9f49-49d74daff442 with 1 messages for shashi@gmail.com
+2026-01-05 11:07:58,251 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:07:58,252 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:07:58,257 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-05 11:09:28,231 - llm.llm_client - INFO - LLM response received: 148 chars
+2026-01-05 11:09:28,233 - services.chat_service - INFO - Updating session 5d532d11-4d8d-4966-9f49-49d74daff442 title to: hi
+2026-01-05 11:52:00,351 - api.main - INFO - Starting model preload on app startup
+2026-01-05 11:52:00,867 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 11:52:04,792 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 11:53:02,142 - api.routers.auth - INFO - Login attempt for email: shashi@gmail.com
+2026-01-05 11:53:02,460 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Shashikumar.Reddy\Downloads\MediM\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-05 11:53:02,859 - services.auth_service - INFO - User shashi@gmail.com logged in successfully
+2026-01-05 11:53:02,888 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-05 11:53:02,919 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:53:02,919 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:53:02,922 - services.chat_service - INFO - Starting new chat session for user: shashi@gmail.com
+2026-01-05 11:53:02,926 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:53:02,927 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:53:02,927 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:53:03,016 - services.chat_service - INFO - Chat session 061d2a38-14db-4662-9b7c-3601178b2d16 started and saved for shashi@gmail.com
+2026-01-05 11:53:03,040 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:53:03,040 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:53:03,044 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 11:53:03,113 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 1 messages for shashi@gmail.com
+2026-01-05 11:53:03,207 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 11:53:03,207 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 11:53:03,211 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:53:03,211 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:53:03,215 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:53:03,215 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 11:53:03,215 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 11:53:06,766 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:53:06,767 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:53:06,775 - services.chat_service - INFO - Streaming chat for session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 11:53:06,779 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 11:54:02,948 - llm.llm_client - INFO - Streaming completed. Total tokens: 94
+2026-01-05 11:54:39,296 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:54:39,296 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:54:39,303 - services.chat_service - INFO - Streaming chat for session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 11:54:39,306 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 11:54:45,361 - llm.llm_client - INFO - Streaming completed. Total tokens: 46
+2026-01-05 11:54:52,305 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:54:52,306 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:54:52,308 - services.chat_service - INFO - Streaming chat for session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 11:54:52,310 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 11:55:03,242 - llm.llm_client - INFO - Streaming completed. Total tokens: 114
+2026-01-05 11:55:23,530 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:55:23,531 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:55:23,532 - services.chat_service - INFO - Streaming chat for session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 11:55:23,535 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 11:55:34,550 - llm.llm_client - INFO - Streaming completed. Total tokens: 110
+2026-01-05 11:57:42,528 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:57:42,529 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:57:42,530 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:57:42,532 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:57:42,532 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 11:57:42,532 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:57:42,545 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 11:57:42,545 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 11:57:42,559 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 9 messages for shashi@gmail.com
+2026-01-05 11:57:54,269 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:57:54,270 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:57:54,272 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 11:57:54,278 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:57:54,279 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:57:54,281 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 9 messages for shashi@gmail.com
+2026-01-05 11:57:54,281 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:57:54,285 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 11:57:54,286 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 11:59:42,474 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:59:42,474 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:59:42,475 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 11:59:42,480 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 11:59:42,480 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 9 messages for shashi@gmail.com
+2026-01-05 11:59:42,481 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 11:59:42,481 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 11:59:42,485 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 11:59:42,485 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:00:22,616 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:00:22,617 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:00:22,619 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:00:22,625 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:00:22,626 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:00:22,627 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 9 messages for shashi@gmail.com
+2026-01-05 12:00:22,628 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:00:22,633 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 12:00:22,633 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:01:06,729 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:01:06,729 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:01:06,730 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:01:06,736 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:01:06,736 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 9 messages for shashi@gmail.com
+2026-01-05 12:01:06,737 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:01:06,738 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:01:06,741 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 12:01:06,742 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:01:07,935 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:01:07,935 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:01:07,936 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:01:07,939 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:01:07,940 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:01:07,941 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 9 messages for shashi@gmail.com
+2026-01-05 12:01:07,941 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:01:07,944 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 12:01:07,944 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:01:19,287 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:01:19,288 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:01:19,289 - services.chat_service - INFO - Streaming chat for session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 12:01:19,290 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:02:22,001 - llm.llm_client - INFO - Streaming completed. Total tokens: 116
+2026-01-05 12:02:33,927 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:02:33,927 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:02:33,930 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:02:33,935 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:02:33,940 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:02:33,942 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 11 messages for shashi@gmail.com
+2026-01-05 12:02:33,945 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:02:33,957 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 12:02:33,959 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:02:50,645 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:02:50,645 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:02:50,646 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:02:50,651 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:02:50,652 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 11 messages for shashi@gmail.com
+2026-01-05 12:02:50,652 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:02:50,653 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:02:50,656 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 12:02:50,656 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:02:56,674 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:02:56,675 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:02:56,677 - services.chat_service - INFO - Streaming chat for session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 12:02:56,677 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:03:09,710 - llm.llm_client - INFO - Streaming completed. Total tokens: 130
+2026-01-05 12:03:09,710 - llm.interview_agent - INFO - Interview completed
+2026-01-05 12:03:09,711 - services.chat_service - INFO - Interview finished for session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 12:03:09,711 - llm.explanation_agent - INFO - Generating explanation for disease: Uncomplicated Viral Fever
+2026-01-05 12:03:14,040 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-05 12:07:16,745 - llm.llm_client - INFO - LLM response received: 1561 chars
+2026-01-05 12:07:16,749 - llm.explanation_agent - INFO - Explanation generated successfully: 1561 chars
+2026-01-05 12:07:17,287 - services.chat_service - INFO - Assessment saved for session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 12:08:17,221 - api.main - INFO - Starting model preload on app startup
+2026-01-05 12:08:17,734 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 12:08:22,094 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 12:08:23,587 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:08:23,587 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:08:23,587 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:08:23,591 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:08:23,591 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:08:24,194 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:08:24,747 - services.history_service - INFO - Retrieved 3 chat sessions for shashi@gmail.com
+2026-01-05 12:08:24,747 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 3, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:08:24,781 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 13 messages for shashi@gmail.com
+2026-01-05 12:08:39,961 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:08:39,961 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:08:39,963 - services.chat_service - INFO - Resetting session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 12:08:39,979 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:08:39,980 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:08:39,983 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 12:08:40,392 - services.chat_service - INFO - Streaming session 984b4fb5-8a96-4e49-9305-c66d401cc881 saved to database
+2026-01-05 12:08:40,401 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:08:40,402 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:08:40,408 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:08:40,417 - services.history_service - INFO - Retrieved 4 chat sessions for shashi@gmail.com
+2026-01-05 12:08:40,418 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:08:40,418 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:08:40,419 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:08:40,420 - api.routers.history - INFO - Fetching conversation 984b4fb5-8a96-4e49-9305-c66d401cc881 for user: shashi@gmail.com
+2026-01-05 12:08:40,440 - services.history_service - INFO - Retrieved conversation 984b4fb5-8a96-4e49-9305-c66d401cc881 with 1 messages for shashi@gmail.com
+2026-01-05 12:08:48,322 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:08:48,324 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:08:48,330 - services.chat_service - INFO - Streaming chat for session 984b4fb5-8a96-4e49-9305-c66d401cc881
+2026-01-05 12:08:48,334 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:09:21,422 - llm.llm_client - INFO - Streaming completed. Total tokens: 137
+2026-01-05 12:09:35,313 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:09:35,313 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:09:35,315 - services.chat_service - INFO - Streaming chat for session 984b4fb5-8a96-4e49-9305-c66d401cc881
+2026-01-05 12:09:35,316 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:09:45,455 - llm.llm_client - INFO - Streaming completed. Total tokens: 104
+2026-01-05 12:09:51,145 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:09:51,146 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:09:51,148 - services.chat_service - INFO - Streaming chat for session 984b4fb5-8a96-4e49-9305-c66d401cc881
+2026-01-05 12:09:51,148 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:09:58,849 - llm.llm_client - INFO - Streaming completed. Total tokens: 75
+2026-01-05 12:10:01,311 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:10:01,311 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:10:01,314 - services.chat_service - INFO - Streaming chat for session 984b4fb5-8a96-4e49-9305-c66d401cc881
+2026-01-05 12:10:01,315 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:10:11,892 - llm.llm_client - INFO - Streaming completed. Total tokens: 114
+2026-01-05 12:10:16,268 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:10:16,268 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:10:16,270 - services.chat_service - INFO - Streaming chat for session 984b4fb5-8a96-4e49-9305-c66d401cc881
+2026-01-05 12:10:16,270 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:10:26,993 - llm.llm_client - INFO - Streaming completed. Total tokens: 90
+2026-01-05 12:10:35,036 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:10:35,036 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:10:35,038 - services.chat_service - INFO - Streaming chat for session 984b4fb5-8a96-4e49-9305-c66d401cc881
+2026-01-05 12:10:35,039 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:10:46,406 - llm.llm_client - INFO - Streaming completed. Total tokens: 145
+2026-01-05 12:10:46,406 - llm.interview_agent - INFO - Interview completed
+2026-01-05 12:10:46,407 - services.chat_service - INFO - Interview finished for session 984b4fb5-8a96-4e49-9305-c66d401cc881
+2026-01-05 12:10:46,407 - llm.explanation_agent - INFO - Generating explanation for disease: Undifferentiated Symptom Pattern
+2026-01-05 12:10:49,905 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-05 12:14:53,265 - llm.llm_client - INFO - LLM response received: 2004 chars
+2026-01-05 12:14:53,265 - llm.explanation_agent - INFO - Explanation generated successfully: 2004 chars
+2026-01-05 12:14:53,420 - services.chat_service - INFO - Assessment saved for session 984b4fb5-8a96-4e49-9305-c66d401cc881
+2026-01-05 12:14:53,429 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:14:53,430 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:14:53,433 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:14:53,444 - services.history_service - INFO - Retrieved 4 chat sessions for shashi@gmail.com
+2026-01-05 12:14:53,447 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:15:16,769 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:15:16,769 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:15:16,772 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:15:16,776 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 13 messages for shashi@gmail.com
+2026-01-05 12:17:35,576 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:17:35,576 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:17:35,577 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:17:35,581 - services.history_service - INFO - Retrieved 4 chat sessions for shashi@gmail.com
+2026-01-05 12:17:35,581 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:20:11,047 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:20:11,047 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:20:11,049 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:20:11,051 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:20:11,054 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:20:11,056 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:20:11,063 - services.history_service - INFO - Retrieved 4 chat sessions for shashi@gmail.com
+2026-01-05 12:20:11,065 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:20:11,067 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 13 messages for shashi@gmail.com
+2026-01-05 12:23:10,779 - api.main - INFO - Starting model preload on app startup
+2026-01-05 12:23:11,232 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 12:23:14,706 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 12:23:57,769 - api.main - INFO - Starting model preload on app startup
+2026-01-05 12:23:58,069 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 12:24:01,567 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 12:24:45,602 - api.main - INFO - Starting model preload on app startup
+2026-01-05 12:24:45,897 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 12:24:49,763 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 12:24:51,608 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:24:51,608 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:24:51,609 - api.routers.history - INFO - Fetching conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 12:24:51,613 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:24:51,613 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:24:51,614 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:24:52,177 - services.history_service - INFO - Retrieved 4 chat sessions for shashi@gmail.com
+2026-01-05 12:24:52,178 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 4, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:24:52,197 - services.history_service - INFO - Retrieved conversation 061d2a38-14db-4662-9b7c-3601178b2d16 with 13 messages for shashi@gmail.com
+2026-01-05 12:24:55,837 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:24:55,838 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:24:55,840 - services.chat_service - INFO - Resetting session 061d2a38-14db-4662-9b7c-3601178b2d16
+2026-01-05 12:24:55,855 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:24:55,855 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:24:55,861 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 12:24:55,930 - services.chat_service - INFO - Streaming session a16b133b-a55c-475d-899f-c26fe461125c saved to database
+2026-01-05 12:24:55,933 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:24:55,934 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:24:55,941 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:24:55,946 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:24:55,946 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:24:55,951 - services.history_service - INFO - Retrieved 5 chat sessions for shashi@gmail.com
+2026-01-05 12:24:55,951 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:24:55,951 - api.routers.history - INFO - Fetching conversation a16b133b-a55c-475d-899f-c26fe461125c for user: shashi@gmail.com
+2026-01-05 12:24:55,978 - services.history_service - INFO - Retrieved conversation a16b133b-a55c-475d-899f-c26fe461125c with 1 messages for shashi@gmail.com
+2026-01-05 12:25:09,841 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:25:09,842 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:25:09,850 - services.chat_service - INFO - Streaming chat for session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:25:09,852 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:26:07,410 - llm.llm_client - INFO - Streaming completed. Total tokens: 122
+2026-01-05 12:26:13,914 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:26:13,915 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:26:13,917 - services.chat_service - INFO - Streaming chat for session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:26:13,918 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:26:40,915 - llm.llm_client - INFO - Streaming completed. Total tokens: 111
+2026-01-05 12:26:44,999 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:26:45,000 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:26:45,002 - services.chat_service - INFO - Streaming chat for session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:26:45,002 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:27:16,930 - llm.llm_client - INFO - Streaming completed. Total tokens: 114
+2026-01-05 12:27:19,660 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:27:19,661 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:27:19,665 - services.chat_service - INFO - Streaming chat for session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:27:19,665 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:27:57,323 - llm.llm_client - INFO - Streaming completed. Total tokens: 118
+2026-01-05 12:28:16,539 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:28:16,539 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:28:16,542 - services.chat_service - INFO - Streaming chat for session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:28:16,542 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:29:03,082 - llm.llm_client - INFO - Streaming completed. Total tokens: 131
+2026-01-05 12:29:05,957 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:29:05,958 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:29:05,959 - services.chat_service - INFO - Streaming chat for session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:29:05,961 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:29:11,643 - llm.llm_client - INFO - Streaming completed. Total tokens: 18
+2026-01-05 12:29:11,643 - llm.interview_agent - INFO - Interview completed after 6 questions
+2026-01-05 12:29:11,644 - services.chat_service - INFO - Interview finished for session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:29:11,644 - llm.explanation_agent - INFO - Generating explanation for disease: Undifferentiated Symptom Pattern
+2026-01-05 12:29:15,672 - llm.llm_client - INFO - Calling Ollama with model: llama3.1:8b, messages: 3
+2026-01-05 12:31:00,161 - llm.llm_client - INFO - LLM response received: 1051 chars
+2026-01-05 12:31:00,162 - llm.explanation_agent - INFO - Explanation generated successfully: 1051 chars
+2026-01-05 12:31:00,167 - services.chat_service - INFO - Assessment saved for session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:31:00,175 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:31:00,177 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:31:00,177 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:31:00,182 - services.history_service - INFO - Retrieved 5 chat sessions for shashi@gmail.com
+2026-01-05 12:31:00,185 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:34:51,472 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:34:51,473 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:34:51,474 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:34:51,477 - services.history_service - INFO - Retrieved 5 chat sessions for shashi@gmail.com
+2026-01-05 12:34:51,478 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:38:21,532 - api.main - INFO - Starting model preload on app startup
+2026-01-05 12:38:22,070 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 12:38:27,059 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 12:39:14,404 - api.main - INFO - Starting model preload on app startup
+2026-01-05 12:39:14,698 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 12:39:18,916 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 12:40:16,712 - api.main - INFO - Starting model preload on app startup
+2026-01-05 12:40:17,030 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 12:40:20,506 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 12:40:20,611 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:40:20,612 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:40:20,612 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:40:20,967 - services.history_service - INFO - Retrieved 5 chat sessions for shashi@gmail.com
+2026-01-05 12:40:20,968 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:41:17,011 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:41:17,012 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:41:17,019 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:41:17,021 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:41:17,024 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:41:17,028 - api.routers.history - INFO - Fetching conversation a16b133b-a55c-475d-899f-c26fe461125c for user: shashi@gmail.com
+2026-01-05 12:41:17,037 - services.history_service - INFO - Retrieved 5 chat sessions for shashi@gmail.com
+2026-01-05 12:41:17,047 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 5, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:41:17,432 - services.history_service - INFO - Retrieved conversation a16b133b-a55c-475d-899f-c26fe461125c with 13 messages for shashi@gmail.com
+2026-01-05 12:41:22,254 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:41:22,254 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:41:22,257 - services.chat_service - INFO - Resetting session a16b133b-a55c-475d-899f-c26fe461125c
+2026-01-05 12:41:22,274 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:41:22,276 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:41:22,278 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 12:41:22,336 - services.chat_service - INFO - Streaming session 7aadfc87-10c3-49fe-b139-721aa224962b saved to database
+2026-01-05 12:41:22,341 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:41:22,341 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:41:22,345 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:41:22,357 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:41:22,358 - services.history_service - INFO - Retrieved 6 chat sessions for shashi@gmail.com
+2026-01-05 12:41:22,359 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:41:22,359 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:41:22,360 - api.routers.history - INFO - Fetching conversation 7aadfc87-10c3-49fe-b139-721aa224962b for user: shashi@gmail.com
+2026-01-05 12:41:22,383 - services.history_service - INFO - Retrieved conversation 7aadfc87-10c3-49fe-b139-721aa224962b with 1 messages for shashi@gmail.com
+2026-01-05 12:42:08,203 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:42:08,204 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:42:08,206 - api.routers.history - INFO - Fetching conversation 7aadfc87-10c3-49fe-b139-721aa224962b for user: shashi@gmail.com
+2026-01-05 12:42:08,212 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:42:08,212 - services.history_service - INFO - Retrieved conversation 7aadfc87-10c3-49fe-b139-721aa224962b with 1 messages for shashi@gmail.com
+2026-01-05 12:42:08,212 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:42:08,214 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:42:08,218 - services.history_service - INFO - Retrieved 6 chat sessions for shashi@gmail.com
+2026-01-05 12:42:08,218 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:43:02,139 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:43:02,140 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:43:02,142 - api.routers.history - INFO - Fetching conversation 7aadfc87-10c3-49fe-b139-721aa224962b for user: shashi@gmail.com
+2026-01-05 12:43:02,153 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:43:02,154 - services.history_service - INFO - Retrieved conversation 7aadfc87-10c3-49fe-b139-721aa224962b with 1 messages for shashi@gmail.com
+2026-01-05 12:43:02,199 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:43:02,214 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:43:02,220 - services.history_service - INFO - Retrieved 6 chat sessions for shashi@gmail.com
+2026-01-05 12:43:02,222 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 12:43:29,488 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:43:29,488 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:43:29,500 - services.chat_service - INFO - Streaming chat for session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 12:43:29,502 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:44:19,596 - llm.llm_client - INFO - Streaming completed. Total tokens: 32
+2026-01-05 12:44:25,244 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:44:25,245 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:44:25,247 - services.chat_service - INFO - Streaming chat for session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 12:44:25,248 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:44:45,928 - llm.llm_client - INFO - Streaming completed. Total tokens: 100
+2026-01-05 12:44:57,484 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:44:57,484 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:44:57,486 - services.chat_service - INFO - Streaming chat for session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 12:44:57,487 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:45:26,515 - llm.llm_client - INFO - Streaming completed. Total tokens: 157
+2026-01-05 12:45:35,982 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:45:35,983 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:45:35,985 - services.chat_service - INFO - Streaming chat for session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 12:45:35,985 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:46:06,404 - llm.llm_client - INFO - Streaming completed. Total tokens: 94
+2026-01-05 12:46:10,750 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:46:10,750 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:46:10,752 - services.chat_service - INFO - Streaming chat for session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 12:46:10,753 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:46:54,869 - llm.llm_client - INFO - Streaming completed. Total tokens: 197
+2026-01-05 12:46:58,818 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:46:58,819 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:46:58,821 - services.chat_service - INFO - Streaming chat for session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 12:46:58,822 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:47:04,315 - llm.llm_client - INFO - Streaming completed. Total tokens: 18
+2026-01-05 12:47:04,315 - llm.interview_agent - INFO - Interview completed after 6 questions
+2026-01-05 12:47:04,319 - services.chat_service - INFO - Interview finished for session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 12:47:04,319 - services.chat_service - INFO - Disease match found: Uncomplicated Viral Fever
+2026-01-05 12:47:04,319 - services.chat_service - INFO - Streaming explanation for Uncomplicated Viral Fever
+2026-01-05 12:47:04,319 - llm.explanation_agent - INFO - Generating STREAMING explanation for disease: Uncomplicated Viral Fever
+2026-01-05 12:47:08,492 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 12:50:31,703 - llm.llm_client - INFO - Streaming completed. Total tokens: 1528
+2026-01-05 12:50:31,715 - services.chat_service - INFO - Assessment saved for session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 12:50:31,723 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 12:50:31,723 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 12:50:31,723 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 12:50:31,736 - services.history_service - INFO - Retrieved 6 chat sessions for shashi@gmail.com
+2026-01-05 12:50:31,736 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:03:16,555 - api.main - INFO - Starting model preload on app startup
+2026-01-05 14:03:17,021 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 14:03:20,199 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 14:04:08,590 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:04:08,590 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:04:08,611 - services.chat_service - INFO - Resetting session 7aadfc87-10c3-49fe-b139-721aa224962b
+2026-01-05 14:04:08,627 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:04:08,630 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:04:08,651 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 14:04:09,114 - services.chat_service - INFO - Streaming session 104736f1-6230-413c-985d-34c46387d6e4 saved to database
+2026-01-05 14:04:09,121 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:04:09,121 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:04:09,123 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:04:09,134 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:04:09,137 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:04:09,138 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:04:09,170 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:04:09,171 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:04:09,413 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 1 messages for shashi@gmail.com
+2026-01-05 14:04:24,039 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:04:24,039 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:04:24,046 - services.chat_service - INFO - Streaming chat for session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:04:24,055 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:05:17,586 - llm.llm_client - INFO - Streaming completed. Total tokens: 45
+2026-01-05 14:05:35,758 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:05:35,759 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:05:35,760 - services.chat_service - INFO - Streaming chat for session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:05:35,761 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:05:58,504 - llm.llm_client - INFO - Streaming completed. Total tokens: 120
+2026-01-05 14:06:15,590 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:06:15,590 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:06:15,592 - services.chat_service - INFO - Streaming chat for session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:06:15,594 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:06:43,105 - llm.llm_client - INFO - Streaming completed. Total tokens: 82
+2026-01-05 14:06:46,726 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:06:46,726 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:06:46,727 - services.chat_service - INFO - Streaming chat for session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:06:46,728 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:07:21,044 - llm.llm_client - INFO - Streaming completed. Total tokens: 110
+2026-01-05 14:07:26,854 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:07:26,854 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:07:26,856 - services.chat_service - INFO - Streaming chat for session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:07:26,857 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:08:08,598 - llm.llm_client - INFO - Streaming completed. Total tokens: 100
+2026-01-05 14:08:08,605 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:08:08,605 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:08:08,606 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:08:08,611 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:08:08,611 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:08:14,007 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:08:14,008 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:08:14,010 - services.chat_service - INFO - Streaming chat for session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:08:14,011 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:08:19,512 - llm.llm_client - INFO - Streaming completed. Total tokens: 18
+2026-01-05 14:08:19,512 - llm.interview_agent - INFO - Interview completed after 6 questions
+2026-01-05 14:08:19,537 - services.chat_service - INFO - Interview finished for session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:08:19,537 - services.chat_service - WARNING - No disease match, using fallback
+2026-01-05 14:08:19,537 - services.chat_service - INFO - Streaming explanation for Undifferentiated Symptom Pattern
+2026-01-05 14:08:19,537 - llm.explanation_agent - INFO - Generating STREAMING explanation for disease: Undifferentiated Symptom Pattern
+2026-01-05 14:08:23,818 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:10:03,931 - llm.llm_client - INFO - Streaming completed. Total tokens: 1166
+2026-01-05 14:10:03,980 - services.chat_service - INFO - Assessment saved for session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:10:03,985 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:10:03,985 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:10:03,986 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:10:03,987 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:10:03,988 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:10:03,988 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:10:03,996 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:10:03,997 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:10:04,000 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:10:43,476 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:10:43,476 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:10:43,483 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:10:43,487 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:10:43,487 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:10:43,487 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:10:43,494 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:10:43,495 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:10:43,500 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:10:57,727 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:10:57,727 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:10:57,729 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:10:57,737 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:10:57,737 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:10:57,738 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:10:57,739 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:10:57,744 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:10:57,745 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:00,727 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:00,728 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:00,729 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:11:00,735 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:00,737 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:00,738 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:11:00,739 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:00,744 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:11:00,744 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:07,448 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:07,448 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:07,450 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:07,450 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:07,450 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:11:07,450 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:07,458 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:11:07,460 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:07,461 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:11:13,065 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:13,065 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:13,066 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:11:13,071 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:13,077 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:13,078 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:11:13,081 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:13,088 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:11:13,088 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:24,292 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:24,292 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:24,295 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:11:24,298 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:24,298 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:11:24,298 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:24,298 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:24,307 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:11:24,308 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:28,554 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:28,554 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:28,557 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:11:28,563 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:28,563 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:11:28,565 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:28,567 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:28,571 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:11:28,572 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:32,661 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:32,661 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:32,663 - api.routers.history - INFO - Fetching conversation 104736f1-6230-413c-985d-34c46387d6e4 for user: shashi@gmail.com
+2026-01-05 14:11:32,665 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:32,666 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:32,668 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:32,669 - services.history_service - INFO - Retrieved conversation 104736f1-6230-413c-985d-34c46387d6e4 with 13 messages for shashi@gmail.com
+2026-01-05 14:11:32,682 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:11:32,686 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:34,832 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:34,832 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:34,833 - services.chat_service - INFO - Resetting session 104736f1-6230-413c-985d-34c46387d6e4
+2026-01-05 14:11:34,843 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:34,843 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:34,845 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 14:11:34,851 - services.chat_service - INFO - Streaming session 993e734b-aedb-4964-bc30-e66e0f2ac6f5 saved to database
+2026-01-05 14:11:34,855 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:34,855 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:34,857 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:34,860 - services.history_service - INFO - Retrieved 8 chat sessions for shashi@gmail.com
+2026-01-05 14:11:34,861 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 8, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:34,885 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:34,889 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:34,895 - api.routers.history - INFO - Fetching conversation 993e734b-aedb-4964-bc30-e66e0f2ac6f5 for user: shashi@gmail.com
+2026-01-05 14:11:34,901 - services.history_service - INFO - Retrieved conversation 993e734b-aedb-4964-bc30-e66e0f2ac6f5 with 1 messages for shashi@gmail.com
+2026-01-05 14:11:41,387 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:41,392 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:41,394 - api.routers.history - INFO - Deleting conversation 359149f3-7993-47e8-b581-56638cf7963a for user: shashi@gmail.com
+2026-01-05 14:11:41,394 - services.history_service - INFO - Deleting conversation 359149f3-7993-47e8-b581-56638cf7963a for user: shashi@gmail.com
+2026-01-05 14:11:41,401 - services.history_service - INFO - Conversation 359149f3-7993-47e8-b581-56638cf7963a deleted for shashi@gmail.com
+2026-01-05 14:11:41,421 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:41,421 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:41,425 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:41,430 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:11:41,430 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:43,233 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:43,233 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:43,237 - api.routers.history - INFO - Fetching conversation 5d532d11-4d8d-4966-9f49-49d74daff442 for user: shashi@gmail.com
+2026-01-05 14:11:43,247 - services.history_service - INFO - Retrieved conversation 5d532d11-4d8d-4966-9f49-49d74daff442 with 3 messages for shashi@gmail.com
+2026-01-05 14:11:46,675 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:46,676 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:46,677 - api.routers.history - INFO - Deleting conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 14:11:46,677 - services.history_service - INFO - Deleting conversation 061d2a38-14db-4662-9b7c-3601178b2d16 for user: shashi@gmail.com
+2026-01-05 14:11:46,682 - services.history_service - INFO - Conversation 061d2a38-14db-4662-9b7c-3601178b2d16 deleted for shashi@gmail.com
+2026-01-05 14:11:46,700 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:46,702 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:46,702 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:11:46,710 - services.history_service - INFO - Retrieved 6 chat sessions for shashi@gmail.com
+2026-01-05 14:11:46,711 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:11:48,566 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:11:48,568 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:11:48,570 - api.routers.history - INFO - Fetching conversation 993e734b-aedb-4964-bc30-e66e0f2ac6f5 for user: shashi@gmail.com
+2026-01-05 14:11:48,581 - services.history_service - INFO - Retrieved conversation 993e734b-aedb-4964-bc30-e66e0f2ac6f5 with 1 messages for shashi@gmail.com
+2026-01-05 14:12:02,065 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:12:02,065 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:12:02,067 - services.chat_service - INFO - Streaming chat for session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:12:02,067 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:12:38,089 - llm.llm_client - INFO - Streaming completed. Total tokens: 80
+2026-01-05 14:12:44,910 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:12:44,911 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:12:44,913 - services.chat_service - INFO - Streaming chat for session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:12:44,913 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:13:08,140 - llm.llm_client - INFO - Streaming completed. Total tokens: 111
+2026-01-05 14:13:40,480 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:13:40,481 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:13:40,483 - services.chat_service - INFO - Streaming chat for session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:13:40,484 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:14:09,450 - llm.llm_client - INFO - Streaming completed. Total tokens: 125
+2026-01-05 14:14:12,917 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:14:12,918 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:14:12,920 - services.chat_service - INFO - Streaming chat for session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:14:12,921 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:14:50,703 - llm.llm_client - INFO - Streaming completed. Total tokens: 147
+2026-01-05 14:14:58,944 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:14:58,948 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:14:58,953 - services.chat_service - INFO - Streaming chat for session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:14:58,954 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:15:48,322 - llm.llm_client - INFO - Streaming completed. Total tokens: 125
+2026-01-05 14:15:52,783 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:15:52,784 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:15:52,786 - services.chat_service - INFO - Streaming chat for session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:15:52,786 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:15:58,345 - llm.llm_client - INFO - Streaming completed. Total tokens: 18
+2026-01-05 14:15:58,346 - llm.interview_agent - INFO - Interview completed after 6 questions
+2026-01-05 14:15:58,347 - services.chat_service - INFO - Interview finished for session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:15:58,347 - services.chat_service - WARNING - No disease match, using fallback
+2026-01-05 14:15:58,347 - services.chat_service - INFO - Streaming explanation for Undifferentiated Symptom Pattern
+2026-01-05 14:15:58,347 - llm.explanation_agent - INFO - Generating STREAMING explanation for disease: Undifferentiated Symptom Pattern
+2026-01-05 14:16:02,198 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:17:53,069 - llm.llm_client - INFO - Streaming completed. Total tokens: 1215
+2026-01-05 14:17:53,098 - services.chat_service - INFO - Assessment saved for session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:17:53,107 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:17:53,107 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:17:53,107 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:17:53,123 - services.history_service - INFO - Retrieved 6 chat sessions for shashi@gmail.com
+2026-01-05 14:17:53,123 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:19:47,855 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:19:47,858 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:19:47,859 - api.routers.history - INFO - Fetching conversation 993e734b-aedb-4964-bc30-e66e0f2ac6f5 for user: shashi@gmail.com
+2026-01-05 14:19:47,863 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:19:47,865 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:19:47,865 - services.history_service - INFO - Retrieved conversation 993e734b-aedb-4964-bc30-e66e0f2ac6f5 with 13 messages for shashi@gmail.com
+2026-01-05 14:19:47,866 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:19:47,870 - services.history_service - INFO - Retrieved 6 chat sessions for shashi@gmail.com
+2026-01-05 14:19:47,871 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:20:39,220 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:20:39,220 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:20:39,229 - api.routers.history - INFO - Fetching conversation 993e734b-aedb-4964-bc30-e66e0f2ac6f5 for user: shashi@gmail.com
+2026-01-05 14:20:39,235 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:20:39,235 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:20:39,237 - services.history_service - INFO - Retrieved conversation 993e734b-aedb-4964-bc30-e66e0f2ac6f5 with 13 messages for shashi@gmail.com
+2026-01-05 14:20:39,238 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:20:39,240 - services.history_service - INFO - Retrieved 6 chat sessions for shashi@gmail.com
+2026-01-05 14:20:39,241 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 6, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:20:50,732 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:20:50,733 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:20:50,736 - services.chat_service - INFO - Resetting session 993e734b-aedb-4964-bc30-e66e0f2ac6f5
+2026-01-05 14:20:50,751 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:20:50,753 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:20:50,755 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 14:20:50,771 - services.chat_service - INFO - Streaming session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 saved to database
+2026-01-05 14:20:50,776 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:20:50,776 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:20:50,777 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:20:50,782 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:20:50,782 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:20:50,791 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:20:50,792 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:20:50,796 - api.routers.history - INFO - Fetching conversation 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 for user: shashi@gmail.com
+2026-01-05 14:20:50,811 - services.history_service - INFO - Retrieved conversation 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 with 1 messages for shashi@gmail.com
+2026-01-05 14:20:59,692 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:20:59,692 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:20:59,694 - services.chat_service - INFO - Streaming chat for session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:20:59,694 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:21:35,616 - llm.llm_client - INFO - Streaming completed. Total tokens: 122
+2026-01-05 14:21:46,001 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:21:46,002 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:21:46,004 - services.chat_service - INFO - Streaming chat for session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:21:46,006 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:22:11,857 - llm.llm_client - INFO - Streaming completed. Total tokens: 113
+2026-01-05 14:22:20,901 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:22:20,901 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:22:20,904 - services.chat_service - INFO - Streaming chat for session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:22:20,905 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:22:52,235 - llm.llm_client - INFO - Streaming completed. Total tokens: 110
+2026-01-05 14:23:17,886 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:23:17,887 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:23:17,888 - services.chat_service - INFO - Streaming chat for session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:23:17,888 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:23:51,829 - llm.llm_client - INFO - Streaming completed. Total tokens: 90
+2026-01-05 14:24:00,289 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:24:00,289 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:24:00,291 - services.chat_service - INFO - Streaming chat for session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:24:00,293 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:24:50,690 - llm.llm_client - INFO - Streaming completed. Total tokens: 179
+2026-01-05 14:24:55,775 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:24:55,776 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:24:55,778 - services.chat_service - INFO - Streaming chat for session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:24:55,779 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:25:01,449 - llm.llm_client - INFO - Streaming completed. Total tokens: 18
+2026-01-05 14:25:01,449 - llm.interview_agent - INFO - Interview completed after 6 questions
+2026-01-05 14:25:01,451 - services.chat_service - INFO - Interview finished for session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:25:01,451 - services.chat_service - WARNING - No disease match, using fallback
+2026-01-05 14:25:01,451 - services.chat_service - INFO - Streaming explanation for Undifferentiated Symptom Pattern
+2026-01-05 14:25:01,451 - llm.explanation_agent - INFO - Generating STREAMING explanation for disease: Undifferentiated Symptom Pattern
+2026-01-05 14:25:05,344 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:26:57,996 - llm.llm_client - INFO - Streaming completed. Total tokens: 1156
+2026-01-05 14:26:58,026 - services.chat_service - INFO - Assessment saved for session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:26:58,030 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:26:58,031 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:26:58,034 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:26:58,057 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:26:58,057 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:27:59,483 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:27:59,483 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:27:59,485 - api.routers.history - INFO - Fetching conversation 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 for user: shashi@gmail.com
+2026-01-05 14:27:59,494 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:27:59,496 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:27:59,497 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:27:59,510 - services.history_service - INFO - Retrieved conversation 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 with 13 messages for shashi@gmail.com
+2026-01-05 14:27:59,511 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:27:59,512 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:29:45,064 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:29:45,065 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:29:45,066 - api.routers.history - INFO - Fetching conversation 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 for user: shashi@gmail.com
+2026-01-05 14:29:45,075 - services.history_service - INFO - Retrieved conversation 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 with 13 messages for shashi@gmail.com
+2026-01-05 14:29:45,077 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:29:45,078 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:29:45,080 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:29:45,084 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:29:45,085 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:30:47,093 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:30:47,094 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:30:47,095 - api.routers.history - INFO - Fetching conversation 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 for user: shashi@gmail.com
+2026-01-05 14:30:47,105 - services.history_service - INFO - Retrieved conversation 2a47f21c-90ba-4408-99c0-866ca1d6fcb4 with 13 messages for shashi@gmail.com
+2026-01-05 14:30:47,106 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:30:47,108 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:30:47,110 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:30:47,114 - services.history_service - INFO - Retrieved 7 chat sessions for shashi@gmail.com
+2026-01-05 14:30:47,116 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 7, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:30:54,229 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:30:54,230 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:30:54,233 - services.chat_service - INFO - Resetting session 2a47f21c-90ba-4408-99c0-866ca1d6fcb4
+2026-01-05 14:30:54,249 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:30:54,250 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:30:54,250 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 14:30:54,268 - services.chat_service - INFO - Streaming session d5b8ae1b-96ea-4381-aa1c-5965acf9097d saved to database
+2026-01-05 14:30:54,274 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:30:54,274 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:30:54,277 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:30:54,284 - services.history_service - INFO - Retrieved 8 chat sessions for shashi@gmail.com
+2026-01-05 14:30:54,284 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 8, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:30:54,303 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:30:54,311 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:30:54,316 - api.routers.history - INFO - Fetching conversation d5b8ae1b-96ea-4381-aa1c-5965acf9097d for user: shashi@gmail.com
+2026-01-05 14:30:54,328 - services.history_service - INFO - Retrieved conversation d5b8ae1b-96ea-4381-aa1c-5965acf9097d with 1 messages for shashi@gmail.com
+2026-01-05 14:31:02,172 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:31:02,175 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:31:02,179 - services.chat_service - INFO - Streaming chat for session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:31:02,183 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:31:44,444 - llm.llm_client - INFO - Streaming completed. Total tokens: 133
+2026-01-05 14:32:03,450 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:32:03,450 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:32:03,452 - services.chat_service - INFO - Streaming chat for session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:32:03,453 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:32:26,920 - llm.llm_client - INFO - Streaming completed. Total tokens: 86
+2026-01-05 14:32:35,905 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:32:35,905 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:32:35,910 - services.chat_service - INFO - Streaming chat for session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:32:35,910 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:33:09,553 - llm.llm_client - INFO - Streaming completed. Total tokens: 134
+2026-01-05 14:33:22,521 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:33:22,522 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:33:22,524 - services.chat_service - INFO - Streaming chat for session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:33:22,531 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:34:09,629 - llm.llm_client - INFO - Streaming completed. Total tokens: 124
+2026-01-05 14:34:20,669 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:34:20,669 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:34:20,671 - services.chat_service - INFO - Streaming chat for session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:34:20,672 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:35:13,896 - llm.llm_client - INFO - Streaming completed. Total tokens: 96
+2026-01-05 14:35:18,589 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:35:18,589 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:35:18,591 - services.chat_service - INFO - Streaming chat for session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:35:18,592 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:35:24,270 - llm.llm_client - INFO - Streaming completed. Total tokens: 18
+2026-01-05 14:35:24,271 - llm.interview_agent - INFO - Interview completed after 6 questions
+2026-01-05 14:35:24,271 - services.chat_service - INFO - Interview finished for session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:35:24,271 - services.chat_service - WARNING - No disease match, using fallback
+2026-01-05 14:35:24,271 - services.chat_service - INFO - Streaming explanation for Undifferentiated Symptom Pattern
+2026-01-05 14:35:24,271 - llm.explanation_agent - INFO - Generating STREAMING explanation for disease: Undifferentiated Symptom Pattern
+2026-01-05 14:35:28,283 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:37:39,024 - llm.llm_client - INFO - Streaming completed. Total tokens: 1394
+2026-01-05 14:37:39,030 - services.chat_service - INFO - Assessment saved for session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:37:39,037 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:37:39,037 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:37:39,037 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:37:39,046 - services.history_service - INFO - Retrieved 8 chat sessions for shashi@gmail.com
+2026-01-05 14:37:39,046 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 8, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:40:47,742 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:40:47,743 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:40:47,744 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:40:47,749 - services.history_service - INFO - Retrieved 8 chat sessions for shashi@gmail.com
+2026-01-05 14:40:47,750 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 8, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:41:55,346 - api.main - INFO - Starting model preload on app startup
+2026-01-05 14:41:55,943 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 14:41:59,591 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 14:42:41,363 - api.main - INFO - Starting model preload on app startup
+2026-01-05 14:42:41,811 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 14:42:45,579 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 14:43:31,431 - api.main - INFO - Starting model preload on app startup
+2026-01-05 14:43:31,730 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 14:43:35,127 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 14:43:44,842 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:43:44,842 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:43:44,843 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:43:44,844 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:43:44,844 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:43:44,847 - api.routers.history - INFO - Fetching conversation d5b8ae1b-96ea-4381-aa1c-5965acf9097d for user: shashi@gmail.com
+2026-01-05 14:43:45,522 - services.history_service - INFO - Retrieved 8 chat sessions for shashi@gmail.com
+2026-01-05 14:43:45,524 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 8, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:43:45,543 - services.history_service - INFO - Retrieved conversation d5b8ae1b-96ea-4381-aa1c-5965acf9097d with 13 messages for shashi@gmail.com
+2026-01-05 14:43:47,332 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:43:47,333 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:43:47,337 - services.chat_service - INFO - Resetting session d5b8ae1b-96ea-4381-aa1c-5965acf9097d
+2026-01-05 14:43:47,350 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:43:47,350 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:43:47,355 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 14:43:47,456 - services.chat_service - INFO - Streaming session 50478181-cf73-4bd6-8829-ca2c62c0c85f saved to database
+2026-01-05 14:43:47,460 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:43:47,460 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:43:47,462 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:43:47,468 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:43:47,470 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:43:47,475 - api.routers.history - INFO - Fetching conversation 50478181-cf73-4bd6-8829-ca2c62c0c85f for user: shashi@gmail.com
+2026-01-05 14:43:47,481 - services.history_service - INFO - Retrieved 9 chat sessions for shashi@gmail.com
+2026-01-05 14:43:47,482 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 9, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:43:47,499 - services.history_service - INFO - Retrieved conversation 50478181-cf73-4bd6-8829-ca2c62c0c85f with 1 messages for shashi@gmail.com
+2026-01-05 14:43:55,124 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:43:55,127 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:43:55,134 - services.chat_service - INFO - Streaming chat for session 50478181-cf73-4bd6-8829-ca2c62c0c85f
+2026-01-05 14:43:55,138 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:44:56,552 - llm.llm_client - INFO - Streaming completed. Total tokens: 32
+2026-01-05 14:45:05,337 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:45:05,338 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:45:05,341 - services.chat_service - INFO - Streaming chat for session 50478181-cf73-4bd6-8829-ca2c62c0c85f
+2026-01-05 14:45:05,342 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:45:28,337 - llm.llm_client - INFO - Streaming completed. Total tokens: 100
+2026-01-05 14:45:36,526 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:45:36,526 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:45:36,528 - services.chat_service - INFO - Streaming chat for session 50478181-cf73-4bd6-8829-ca2c62c0c85f
+2026-01-05 14:45:36,529 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:46:04,738 - llm.llm_client - INFO - Streaming completed. Total tokens: 85
+2026-01-05 14:46:12,382 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:46:12,383 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:46:12,385 - services.chat_service - INFO - Streaming chat for session 50478181-cf73-4bd6-8829-ca2c62c0c85f
+2026-01-05 14:46:12,387 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:46:49,041 - llm.llm_client - INFO - Streaming completed. Total tokens: 130
+2026-01-05 14:46:55,453 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:46:55,454 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:46:55,457 - services.chat_service - INFO - Streaming chat for session 50478181-cf73-4bd6-8829-ca2c62c0c85f
+2026-01-05 14:46:55,458 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:47:44,661 - llm.llm_client - INFO - Streaming completed. Total tokens: 88
+2026-01-05 14:47:52,173 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:47:52,174 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:47:52,175 - services.chat_service - INFO - Streaming chat for session 50478181-cf73-4bd6-8829-ca2c62c0c85f
+2026-01-05 14:47:52,177 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:47:58,139 - llm.llm_client - INFO - Streaming completed. Total tokens: 18
+2026-01-05 14:47:58,139 - llm.interview_agent - INFO - Interview completed after 6 questions
+2026-01-05 14:47:58,140 - services.chat_service - INFO - Interview finished for session 50478181-cf73-4bd6-8829-ca2c62c0c85f
+2026-01-05 14:47:58,140 - services.chat_service - INFO - Disease match found: Uncomplicated Viral Fever
+2026-01-05 14:47:58,140 - services.chat_service - INFO - Streaming explanation for Uncomplicated Viral Fever
+2026-01-05 14:47:58,143 - llm.explanation_agent - INFO - Generating STREAMING explanation for disease: Uncomplicated Viral Fever
+2026-01-05 14:48:02,468 - llm.llm_client - INFO - Starting streaming call to Ollama with model: llama3.1:8b
+2026-01-05 14:52:31,942 - llm.llm_client - INFO - Streaming completed. Total tokens: 1581
+2026-01-05 14:52:31,966 - services.chat_service - INFO - Assessment saved for session 50478181-cf73-4bd6-8829-ca2c62c0c85f
+2026-01-05 14:52:31,970 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:52:31,972 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:52:31,972 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:52:31,978 - services.history_service - INFO - Retrieved 9 chat sessions for shashi@gmail.com
+2026-01-05 14:52:31,978 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 9, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:53:53,823 - api.main - INFO - Starting model preload on app startup
+2026-01-05 14:53:54,464 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 14:54:00,393 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 14:54:52,303 - api.main - INFO - Starting model preload on app startup
+2026-01-05 14:54:52,792 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2026-01-05 14:54:56,607 - api.main - INFO - RAG models preloaded successfully
+2026-01-05 14:55:05,414 - api.routers.auth - INFO - Login attempt for email: shashi@gmail.com
+2026-01-05 14:55:05,790 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\Shashikumar.Reddy\Downloads\MediM\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-05 14:55:06,193 - services.auth_service - INFO - User shashi@gmail.com logged in successfully
+2026-01-05 14:55:06,251 - auth.jwt_handler - INFO - Access token created successfully
+2026-01-05 14:55:06,323 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:55:06,334 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:55:06,340 - services.chat_service - INFO - Starting new streaming chat session for user: shashi@gmail.com
+2026-01-05 14:55:06,560 - services.chat_service - INFO - Streaming session 1321c643-8abd-4056-a216-10bc9a308baf saved to database
+2026-01-05 14:55:06,569 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:55:06,570 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:55:06,574 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:55:06,594 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:55:06,599 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:55:06,601 - api.routers.history - INFO - Fetching conversation 1321c643-8abd-4056-a216-10bc9a308baf for user: shashi@gmail.com
+2026-01-05 14:55:06,667 - services.history_service - INFO - Retrieved 10 chat sessions for shashi@gmail.com
+2026-01-05 14:55:06,667 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 10, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:55:06,689 - auth.jwt_handler - INFO - Token verified for user: shashi@gmail.com
+2026-01-05 14:55:06,691 - auth.jwt_bearer - INFO - Authenticated user: shashi@gmail.com
+2026-01-05 14:55:06,698 - api.routers.history - INFO - Fetching grouped history for user: shashi@gmail.com
+2026-01-05 14:55:06,705 - services.history_service - INFO - Retrieved 10 chat sessions for shashi@gmail.com
+2026-01-05 14:55:06,705 - services.history_service - INFO - Grouped history for shashi@gmail.com: {'today': 10, 'yesterday': 0, 'this_week': 0, 'this_month': 0, 'older': 0}
+2026-01-05 14:55:06,975 - services.history_service - INFO - Retrieved conversation 1321c643-8abd-4056-a216-10bc9a308baf with 1 messages for shashi@gmail.com

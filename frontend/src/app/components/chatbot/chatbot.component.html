@@ -13,15 +13,28 @@
       <div class="messages" #messagesContainer>
         <div *ngFor="let msg of messages" class="row" [class.user]="msg.role === 'user'">
 
-          <div class="bubble" [class.loading-bubble]="msg.loading" [class.final-bubble]="msg.isFinal">
+          <div class="bubble" 
+               [class.loading-bubble]="msg.loading" 
+               [class.thinking-bubble]="msg.thinking"
+               [class.final-bubble]="msg.isFinal">
+
+            <!-- 🆕 THINKING INDICATOR (Simple) -->
+            <ng-container *ngIf="msg.thinking">
+              <div class="thinking-indicator">
+                <span>Thinking</span>
+                <span class="typing">
+                  <span></span><span></span><span></span>
+                </span>
+              </div>
+            </ng-container>
 
             <!-- NORMAL MESSAGE -->
-            <ng-container *ngIf="!msg.loading && !msg.isFinal">
+            <ng-container *ngIf="!msg.loading && !msg.thinking && !msg.isFinal">
               <span style="white-space: pre-wrap;">{{ msg.content }}</span>
             </ng-container>
 
             <!-- FINAL ASSESSMENT -->
-            <ng-container *ngIf="!msg.loading && msg.isFinal && msg.finalData">
+            <ng-container *ngIf="!msg.loading && !msg.thinking && msg.isFinal && msg.finalData">
               <div class="final-assessment">
                 <h3>Assessment Complete</h3>
 
@@ -49,7 +62,7 @@
               </div>
             </ng-container>
 
-            <!-- TYPING INDICATOR -->
+            <!-- LEGACY LOADING INDICATOR -->
             <ng-container *ngIf="msg.loading">
               <span class="typing">
                 <span></span><span></span><span></span>
@@ -64,12 +77,16 @@
       <div class="input-box">
         <!--  Show message for completed conversations -->
         <div *ngIf="conversationFinished" class="conversation-completed">
-          <p> This conversation is completed. Click "New Chat" to start fresh.</p>
+          <p>✓ This conversation is completed. Click "New Chat" to start fresh.</p>
         </div>
 
         <!--  Show input for active conversations -->
         <ng-container *ngIf="!conversationFinished">
-          <textarea [(ngModel)]="input" placeholder="Please enter your symptoms" (keydown)="handleKeydown($event)">
+          <textarea 
+            [(ngModel)]="input" 
+            placeholder="Please enter your symptoms" 
+            (keydown)="handleKeydown($event)"
+            [disabled]="isWaitingForResponse">
           </textarea>
 
           <button (click)="send()" [disabled]="isWaitingForResponse || !input.trim()">

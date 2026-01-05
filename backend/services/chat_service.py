@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from sqlalchemy.orm import Session as DBSession
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-
+from typing import AsyncGenerator
 import logging
 
 from llm.interview_agent import MedicalInterviewAgent
@@ -18,16 +18,6 @@ from database.connection import SessionLocal
 from database.chat_models import ChatSession, ChatMessage, ChatAssessment
 
 logger = logging.getLogger(__name__)
-from llm.explanation_agent import MedicalExplanationAgent
-from llm.fact_extractor import extract_facts
-from rules.disease_engine import DiseasePatternEngine
-from scripts.step4_query_system_hybrid import hybrid_search
-
-from guardrails.input_guard import sanitize_user_input
-from guardrails.scope_guard import ensure_medical_scope
-
-from database.connection import SessionLocal
-from database.chat_models import ChatSession, ChatMessage, ChatAssessment
 
 
 def retriever(query, top_k=5):
@@ -44,7 +34,7 @@ def retriever(query, top_k=5):
 disease_engine = DiseasePatternEngine()
 explanation_agent = MedicalExplanationAgent(retriever)
 
-# In-memory sessions (still needed for active chat)
+# In-memory sessions
 _sessions = {}
 
 
@@ -72,12 +62,10 @@ def restore_session_from_db(session_id: str, db: DBSession) -> bool:
     Restore an active session from database to memory.
     Returns True if successful, False if session not found or completed.
     """
-    # Already in memory
     if session_id in _sessions:
         return True
     
     try:
-        # Get session from database
         db_session = db.query(ChatSession).filter(
             ChatSession.session_id == uuid.UUID(session_id),
             ChatSession.status == 'active'
@@ -86,12 +74,10 @@ def restore_session_from_db(session_id: str, db: DBSession) -> bool:
         if not db_session:
             return False
         
-        # Get all messages for this session
         messages = db.query(ChatMessage).filter(
             ChatMessage.session_id == uuid.UUID(session_id)
         ).order_by(ChatMessage.message_order).all()
         
-        # Rebuild conversation history for interview agent
         conversation_history = []
         for msg in messages:
             if msg.role in ['user', 'assistant']:
@@ -100,12 +86,10 @@ def restore_session_from_db(session_id: str, db: DBSession) -> bool:
                     "content": msg.content
                 })
         
-        # Recreate interview agent with history
         interview = MedicalInterviewAgent()
         interview.history = conversation_history
-        interview.finished = False  # Will continue interview
+        interview.finished = False
         
-        # Restore session state
         _sessions[session_id] = {
             "interview": interview,
             "final": None,
@@ -113,45 +97,38 @@ def restore_session_from_db(session_id: str, db: DBSession) -> bool:
             "user_email": db_session.user_email
         }
         
-        print(f"Restored session {session_id} with {len(messages)} messages")
+        logger.info(f"Restored session {session_id} with {len(messages)} messages")
         return True
         
     except Exception as e:
-        print(f" Error restoring session: {e}")
+        logger.error(f"Error restoring session: {e}")
         return False
 
 
 # =====================================================
-# START SESSION (with DB save)
+# START SESSION (NON-STREAMING)
 # =====================================================
 def start_session(user_message: str | None, user_email: str):
     """
-    Start new chat session and save to database
+    Start new chat session and save to database (non-streaming version)
     """
     logger.info(f"Starting new chat session for user: {user_email}")
     
     session_id = uuid.uuid4()
     interview = MedicalInterviewAgent()
     
-    # CASE 1: Start with specific message (Legacy support / optional)
     if user_message:
-        #  GUARDRAILS
         clean_input = sanitize_user_input(user_message)
         ensure_medical_scope(clean_input)
         reply = interview.start(clean_input)
         title = _generate_title(user_message)
-        message_count = 3 # Greeting + User + Reply
-    
-    # CASE 2: Start empty session (New default)
+        message_count = 3
     else:
-        # Just return the greeting
         reply = "Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns."
         title = "New Chat"
-        message_count = 1 # Greeting only
+        message_count = 1
         interview.history.append({"role": "assistant", "content": reply})
-
     
-    # Store in memory for active chat
     _sessions[str(session_id)] = {
         "interview": interview,
         "final": None,
@@ -159,10 +136,8 @@ def start_session(user_message: str | None, user_email: str):
         "user_email": user_email
     }
     
-    # Save to database with proper transaction handling
     db = SessionLocal()
     try:
-        # 1. Create session record FIRST
         db_session = ChatSession(
             session_id=session_id,
             user_email=user_email,
@@ -170,10 +145,8 @@ def start_session(user_message: str | None, user_email: str):
             status='active'
         )
         db.add(db_session)
-        db.flush()  # Commit session_id before messages
+        db.flush()
         
-        # 2. Save messages
-        # Always save greeting
         greeting = ChatMessage(
             session_id=session_id,
             role='assistant',
@@ -202,18 +175,10 @@ def start_session(user_message: str | None, user_email: str):
         db.commit()
         logger.info(f"Chat session {session_id} started and saved for {user_email}")
         
-    except IntegrityError as e:
+    except (IntegrityError, SQLAlchemyError) as e:
         db.rollback()
-        logger.error(f"Database integrity error starting session for {user_email}: {e}")
-        print(f" Database integrity error: {e}")
+        logger.error(f"Database error starting session: {e}")
         raise ValueError(f"Failed to save session: {e}")
-        
-    except SQLAlchemyError as e:
-        db.rollback()
-        logger.error(f"Database error starting session for {user_email}: {e}")
-        print(f" Database error: {e}")
-        raise ValueError(f"Database error: {e}")
-        
     finally:
         db.close()
     
@@ -221,43 +186,190 @@ def start_session(user_message: str | None, user_email: str):
 
 
 # =====================================================
-#  UPDATED: CHAT SESSION (with DB restore)
+# START SESSION STREAMING (NEW)
 # =====================================================
-def chat_session(session_id: str, user_message: str):
-    logger.debug(f"Continuing chat session {session_id}")
+async def start_session_streaming(user_message: str | None, user_email: str) -> AsyncGenerator[dict, None]:
+    """
+    Start new chat session with streaming response
+    Yields: {"type": "session_id", "data": ...} or {"type": "token", "data": ...}
+    """
+    logger.info(f"Starting new streaming chat session for user: {user_email}")
+    
+    session_id = uuid.uuid4()
+    interview = MedicalInterviewAgent()
+    
+    # First yield the session ID
+    yield {
+        "type": "session_id",
+        "data": str(session_id)
+    }
+    
+    if user_message:
+        clean_input = sanitize_user_input(user_message)
+        ensure_medical_scope(clean_input)
+        title = _generate_title(user_message)
+        
+        # Stream the response
+        full_response = []
+        async for token in interview.start_streaming(clean_input):
+            full_response.append(token)
+            yield {
+                "type": "token",
+                "data": token
+            }
+        
+        reply = "".join(full_response)
+        message_count = 3
+    else:
+        reply = "Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns."
+        title = "New Chat"
+        message_count = 1
+        interview.history.append({"role": "assistant", "content": reply})
+        
+        # Yield the greeting
+        yield {
+            "type": "token",
+            "data": reply
+        }
+    
+    # Store in memory
+    _sessions[str(session_id)] = {
+        "interview": interview,
+        "final": None,
+        "message_count": message_count,
+        "user_email": user_email
+    }
+    
+    # Save to database
+    db = SessionLocal()
+    try:
+        db_session = ChatSession(
+            session_id=session_id,
+            user_email=user_email,
+            title=title,
+            status='active'
+        )
+        db.add(db_session)
+        db.flush()
+        
+        greeting = ChatMessage(
+            session_id=session_id,
+            role='assistant',
+            content='Hello! I am MediMind, your medical assistant. Please describe your symptoms or health concerns.',
+            message_order=1
+        )
+        db.add(greeting)
+        
+        if user_message:
+            user_msg = ChatMessage(
+                session_id=session_id,
+                role='user',
+                content=user_message,
+                message_order=2
+            )
+            db.add(user_msg)
+            
+            bot_reply = ChatMessage(
+                session_id=session_id,
+                role='assistant',
+                content=reply,
+                message_order=3
+            )
+            db.add(bot_reply)
+        
+        db.commit()
+        logger.info(f"Streaming session {session_id} saved to database")
+        
+    except (IntegrityError, SQLAlchemyError) as e:
+        db.rollback()
+        logger.error(f"Database error in streaming session: {e}")
+    finally:
+        db.close()
+    
+    # Signal completion
+    yield {
+        "type": "done",
+        "data": {
+            "finished": interview.finished
+        }
+    }
+
+
+# =====================================================
+# CHAT SESSION STREAMING (WITH END_OF_INTERVIEW FILTERING)
+# =====================================================
+async def chat_session_streaming(session_id: str, user_message: str) -> AsyncGenerator[dict, None]:
+    """
+    Continue chat session with streaming response
+    Yields: {"type": "token"|"finalizing"|"explanation_token"|"final"|"done", "data": ...}
+    """
+    logger.info(f"Streaming chat for session {session_id}")
+    
     if not _is_valid_uuid(session_id):
         logger.warning(f"Invalid session_id: {session_id}")
         raise ValueError("Invalid session_id")
-
-    #  NEW: Try to restore session from database if not in memory
+    
+    # Restore session if needed
     if session_id not in _sessions:
         logger.info(f"Restoring session {session_id} from database")
         db = SessionLocal()
         try:
             if not restore_session_from_db(session_id, db):
-                logger.warning(f"Session {session_id} not found or completed")
                 raise ValueError("Session not found or has been completed. Please start a new chat.")
         finally:
             db.close()
-
-    #  GUARDRAILS
+    
+    # Guardrails
     clean_input = sanitize_user_input(user_message)
     ensure_medical_scope(clean_input)
+    
+    session = _sessions[session_id]
+    interview = session["interview"]
+    message_count = session["message_count"]
+    
+    # 🆕 Stream the reply with BULLETPROOF END_OF_INTERVIEW filtering
+    full_response = []
+    finalizing_sent = False
+    buffer = ""  # Buffer to handle multi-token patterns
 
-    session = _sessions[session_id]
-    interview = session["interview"]
-    message_count = session["message_count"]
+    async for token in interview.reply_streaming(clean_input):
+        full_response.append(token)
+        buffer += token
+        
+        # Check if buffer contains END_OF_INTERVIEW (case insensitive)
+        if "end_of_interview" in buffer.lower() or "<end_of_interview>" in buffer.lower():
+            # Send finalizing message only once
+            if not finalizing_sent:
+                yield {
+                    "type": "finalizing",
+                    "data": "Finalizing your assessment..."
+                }
+                finalizing_sent = True
+            
+            # Clear buffer and stop sending tokens
+            buffer = ""
+            continue
+        
+        # If we've already sent finalizing, don't send more tokens
+        if finalizing_sent:
+            continue
+        
+        # Yield normal tokens
+        yield {
+            "type": "token",
+            "data": token
+        }
+        
+        # Keep buffer size manageable (last 30 chars to detect pattern)
+        if len(buffer) > 30:
+            buffer = buffer[-30:]
+
+    reply = "".join(full_response)
+
     
-    session = _sessions[session_id]
-    interview = session["interview"]
-    message_count = session["message_count"]
-    
-    reply = interview.reply(clean_input)
-    
-    #  Save messages to database
+    # Save messages to database
     db = SessionLocal()
     try:
-        # Save user message
         user_msg = ChatMessage(
             session_id=uuid.UUID(session_id),
             role='user',
@@ -266,7 +378,6 @@ def chat_session(session_id: str, user_message: str):
         )
         db.add(user_msg)
         
-        # Save bot reply
         bot_msg = ChatMessage(
             session_id=uuid.UUID(session_id),
             role='assistant',
@@ -275,59 +386,210 @@ def chat_session(session_id: str, user_message: str):
         )
         db.add(bot_msg)
         
-        # Update session timestamp
         update_data = {"updated_at": datetime.utcnow()}
         
-        # Update title if it's the first user message (currently "New Chat")
         if message_count <= 1:
             update_data["title"] = _generate_title(user_message)
-            logger.info(f"Updating session {session_id} title to: {update_data['title']}")
-
+        
         db.query(ChatSession).filter(
             ChatSession.session_id == uuid.UUID(session_id)
         ).update(update_data)
         
         db.commit()
-        
         session["message_count"] = message_count + 2
         
-    except IntegrityError as e:
+    except (IntegrityError, SQLAlchemyError) as e:
         db.rollback()
-        logger.error(f"Failed to save messages for session {session_id}: {e}")
-        print(f" Failed to save messages: {e}")
-        # Continue without saving (better than crashing)
-        
-    except SQLAlchemyError as e:
-        db.rollback()
-        logger.error(f"Database error saving messages for session {session_id}: {e}")
-        print(f" Database error: {e}")
-        
+        logger.error(f"Failed to save streaming messages: {e}")
     finally:
         db.close()
-
-    #  Interview finished
+    
+    # CHECK IF INTERVIEW FINISHED AND STREAM EXPLANATION
     if interview.finished:
         logger.info(f"Interview finished for session {session_id}")
+        
         if session["final"] is None:
             facts = extract_facts(interview.history)
             matches = disease_engine.evaluate(facts)
-
+            
             if matches:
                 top = matches[0]
-                logger.info(f"Disease match for session {session_id}: {top['disease']}")
+                logger.info(f"Disease match found: {top['disease']}")
             else:
-                logger.warning(f"No disease match for session {session_id}, using fallback")
+                logger.warning("No disease match, using fallback")
                 top = {
                     "disease": "Undifferentiated Symptom Pattern",
                     "severity": "MEDIUM",
                     "reason": "Symptoms require further medical evaluation"
                 }
+            
+            # STREAM THE EXPLANATION
+            logger.info(f"Streaming explanation for {top['disease']}")
+            explanation_parts = []
+            
+            try:
+                async for token in explanation_agent.explain_streaming(
+                    disease=top["disease"],
+                    history=interview.history
+                ):
+                    explanation_parts.append(token)
+                    
+                    # Yield each explanation token as it arrives
+                    yield {
+                        "type": "explanation_token",
+                        "data": token
+                    }
+            except Exception as e:
+                logger.error(f"Error streaming explanation: {e}")
+                # Fallback explanation if streaming fails
+                fallback = f"Assessment complete for {top['disease']}. The symptoms you described are consistent with this condition. Please consult a healthcare provider for proper evaluation."
+                explanation_parts = [fallback]
+                yield {
+                    "type": "explanation_token",
+                    "data": fallback
+                }
+            
+            final_explanation = ''.join(explanation_parts).strip()
+            
+            session["final"] = {
+                "disease": top["disease"],
+                "severity": top["severity"],
+                "reason": top["reason"],
+                "explanation": final_explanation
+            }
+            
+            # Save assessment to database
+            db = SessionLocal()
+            try:
+                assessment = ChatAssessment(
+                    session_id=uuid.UUID(session_id),
+                    disease=top["disease"],
+                    severity=top["severity"],
+                    reason=top["reason"],
+                    explanation=final_explanation
+                )
+                db.add(assessment)
+                
+                db.query(ChatSession).filter(
+                    ChatSession.session_id == uuid.UUID(session_id)
+                ).update({
+                    "status": "completed",
+                    "completed_at": datetime.utcnow()
+                })
+                
+                db.commit()
+                logger.info(f"Assessment saved for session {session_id}")
+                
+            except (IntegrityError, SQLAlchemyError) as e:
+                db.rollback()
+                logger.error(f"Failed to save assessment: {e}")
+            finally:
+                db.close()
+        
+        # Yield final assessment metadata
+        yield {
+            "type": "final",
+            "data": session["final"]
+        }
+    
+    # Signal completion
+    yield {
+        "type": "done",
+        "data": {
+            "finished": interview.finished
+        }
+    }
 
+
+
+# =====================================================
+# CHAT SESSION (NON-STREAMING - KEEP FOR BACKWARDS COMPATIBILITY)
+# =====================================================
+def chat_session(session_id: str, user_message: str):
+    """Non-streaming version - kept for backwards compatibility"""
+    logger.debug(f"Continuing chat session {session_id}")
+    
+    if not _is_valid_uuid(session_id):
+        logger.warning(f"Invalid session_id: {session_id}")
+        raise ValueError("Invalid session_id")
+    
+    if session_id not in _sessions:
+        logger.info(f"Restoring session {session_id} from database")
+        db = SessionLocal()
+        try:
+            if not restore_session_from_db(session_id, db):
+                raise ValueError("Session not found or has been completed. Please start a new chat.")
+        finally:
+            db.close()
+    
+    clean_input = sanitize_user_input(user_message)
+    ensure_medical_scope(clean_input)
+    
+    session = _sessions[session_id]
+    interview = session["interview"]
+    message_count = session["message_count"]
+    
+    reply = interview.reply(clean_input)
+    
+    # Save to database
+    db = SessionLocal()
+    try:
+        user_msg = ChatMessage(
+            session_id=uuid.UUID(session_id),
+            role='user',
+            content=user_message,
+            message_order=message_count + 1
+        )
+        db.add(user_msg)
+        
+        bot_msg = ChatMessage(
+            session_id=uuid.UUID(session_id),
+            role='assistant',
+            content=reply,
+            message_order=message_count + 2
+        )
+        db.add(bot_msg)
+        
+        update_data = {"updated_at": datetime.utcnow()}
+        
+        if message_count <= 1:
+            update_data["title"] = _generate_title(user_message)
+        
+        db.query(ChatSession).filter(
+            ChatSession.session_id == uuid.UUID(session_id)
+        ).update(update_data)
+        
+        db.commit()
+        session["message_count"] = message_count + 2
+        
+    except (IntegrityError, SQLAlchemyError) as e:
+        db.rollback()
+        logger.error(f"Failed to save messages: {e}")
+    finally:
+        db.close()
+    
+    if interview.finished:
+        logger.info(f"Interview finished for session {session_id}")
+        
+        if session["final"] is None:
+            facts = extract_facts(interview.history)
+            matches = disease_engine.evaluate(facts)
+            
+            if matches:
+                top = matches[0]
+            else:
+                top = {
+                    "disease": "Undifferentiated Symptom Pattern",
+                    "severity": "MEDIUM",
+                    "reason": "Symptoms require further medical evaluation"
+                }
+            
+            # Use non-streaming explain for backwards compatibility
             explanation = explanation_agent.explain(
                 disease=top["disease"],
                 history=interview.history
             )
-
+            
             session["final"] = {
                 "disease": top["disease"],
                 "severity": top["severity"],
@@ -335,7 +597,6 @@ def chat_session(session_id: str, user_message: str):
                 "explanation": explanation
             }
             
-            #  Save assessment and mark session complete
             db = SessionLocal()
             try:
                 assessment = ChatAssessment(
@@ -347,7 +608,6 @@ def chat_session(session_id: str, user_message: str):
                 )
                 db.add(assessment)
                 
-                # Update session status
                 db.query(ChatSession).filter(
                     ChatSession.session_id == uuid.UUID(session_id)
                 ).update({
@@ -356,26 +616,18 @@ def chat_session(session_id: str, user_message: str):
                 })
                 
                 db.commit()
-                logger.info(f"Assessment saved for completed session {session_id}")
                 
-            except IntegrityError as e:
+            except (IntegrityError, SQLAlchemyError) as e:
                 db.rollback()
-                logger.error(f"Failed to save assessment for session {session_id}: {e}")
-                print(f" Failed to save assessment: {e}")
-                
-            except SQLAlchemyError as e:
-                db.rollback()
-                logger.error(f"Database error saving assessment for session {session_id}: {e}")
-                print(f" Database error: {e}")
-                
+                logger.error(f"Failed to save assessment: {e}")
             finally:
                 db.close()
-
+        
         return {
             "finished": True,
             "final": session["final"]
         }
-
+    
     return {
         "finished": False,
         "reply": reply

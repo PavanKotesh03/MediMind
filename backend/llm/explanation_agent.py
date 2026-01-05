@@ -1,6 +1,6 @@
-from llm.llm_client import call_llm
+from llm.llm_client import call_llm, call_llm_streaming
 from llm.prompts import EXPLANATION_SYSTEM_PROMPT
-
+from typing import AsyncGenerator
 import logging
 
 logger = logging.getLogger(__name__)
@@ -82,6 +82,63 @@ Mention warning signs briefly.
         
         logger.info(f"Explanation generated successfully: {len(result)} chars")
         return result
+
+    # 🆕 ADD STREAMING VERSION
+    async def explain_streaming(self, disease: str, history: list) -> AsyncGenerator[str, None]:
+        """
+        Streaming version of explain() - same logic but yields tokens
+        """
+        logger.info(f"Generating STREAMING explanation for disease: {disease}")
+        
+        # Same logic as explain()
+        symptom_query = self._build_symptom_query(history)
+
+        if disease.lower().startswith("undifferentiated"):
+            rag_query = symptom_query
+            explanation_mode = "symptom-based"
+            logger.debug("Using symptom-based RAG for undifferentiated disease")
+        else:
+            rag_query = disease
+            explanation_mode = "disease-based"
+            logger.debug("Using disease-based RAG")
+
+        # RAG retrieval
+        docs = self.retriever(rag_query, top_k=6)
+        context = self._format_context(docs)
+
+        history_text = "\n".join(
+            f"- {m['content']}"
+            for m in history if m["role"] == "user"
+        )
+
+        messages = [
+            {"role": "system", "content": EXPLANATION_SYSTEM_PROMPT},
+            {
+                "role": "system",
+                "content": f"TEXTBOOK CONTEXT:\n{context}"
+            },
+            {
+                "role": "user",
+                "content": f"""
+Patient symptoms:
+{history_text}
+
+Current assessment: {disease}
+
+Explain the symptoms in simple terms.
+Explain possible physiological reasons for these symptoms
+without confirming a diagnosis.
+Explain why the severity level is appropriate.
+Mention warning signs briefly.
+
+(Explanation mode: {explanation_mode})
+"""
+            }
+        ]
+
+        # 🆕 Stream the response
+        async for token in call_llm_streaming(messages, max_tokens=450):
+            yield token
 
     def _build_symptom_query(self, history):
         """

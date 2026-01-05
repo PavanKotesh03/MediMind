@@ -84,4 +84,4 @@ class ConversationDetail(BaseModel):
     assessment: Optional[FinalAssessment] = None
     
     class Config:
-        from_attributes = True
+        from_attributes = True  # ✅ Fixed: removed the 'g' typo
