@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 OLLAMA_URL = "http://localhost:11434/api/chat"
 MODEL_NAME = "llama3.1:8b"
 
-def call_llm(messages, max_tokens=150, temperature=0.7):
+def call_llm(messages, max_tokens=256, temperature=0.2):
     """
     Call Ollama LLM using /api/chat endpoint with llama3.1:8b
     
@@ -72,7 +72,7 @@ def call_llm(messages, max_tokens=150, temperature=0.7):
         raise Exception(f"LLM error: {e}")
 
 
-def call_llm_streaming(messages, max_tokens=150, temperature=0.7):
+def call_llm_streaming(messages, max_tokens=256, temperature=0.2):
     """
     Call Ollama LLM with streaming support (for future use)
     
