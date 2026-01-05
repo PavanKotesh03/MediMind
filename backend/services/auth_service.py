@@ -91,7 +91,7 @@ def register_oauth_user(db: Session, email: str, name: str) -> dict:
         first_name=first_name,
         last_name=last_name,
         email=email,
-        age=0,  # Default for OAuth
+        age=None,  # Default for OAuth
         gender="Other",  # Default for OAuth
         password_hash="oauth_user_no_password" # Unusable password
     )
